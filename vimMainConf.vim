@@ -5,7 +5,6 @@
 "
 "
 
-
 " set mapleader
 let mapleader = "\\"
 
@@ -16,6 +15,7 @@ source ~/.vim/config/ConfBasicVim.vim
 source ~/.vim/config/ConfTagList.vim
 source ~/.vim/config/ConfBufExplorer.vim
 source ~/.vim/config/ConfWinManager.vim
+source ~/.vim/config/ConfLookupFile.vim
 
 " Don't use Ex mode, use Q for formatting
 map Q gq
