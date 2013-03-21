@@ -1,7 +1,7 @@
 " This is the Linux source file of Vim
 "
-" Maintainer:	Moyan Xiao<xiaomoyan@gmail.com>
-" Last change:	  Thu Mar 21 05:55:53 CST 2013
+" Maintainer:   Moyan Xiao<xiaomoyan@gmail.com>
+" Last change:    Thu Mar 21 05:55:53 CST 2013
 "
 "
 " Modified based on vim_example.vim
@@ -15,14 +15,13 @@ set nocompatible
 set backspace=indent,eol,start
 
 " backup options
-set backup		" keep a backup file
-set backupext=".bak"
+set backup      " keep a backup file
 
 " basic options
-set history=150		" keep 150 lines of command line history
-set ruler		" show the cursor position all the time
-set showcmd		" display incomplete commands
-set incsearch		" do incremental searching
+set history=150     " keep 150 lines of command line history
+set ruler       " show the cursor position all the time
+set showcmd     " display incomplete commands
+set incsearch       " do incremental searching
 set spell
 set number
 set hlsearch    " highlighting the search results
@@ -54,6 +53,9 @@ nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 
 " set mapleader
 let mapleader = "\\"
+
+" Source the config file of the plugin
+source ~/.vim/config/ConfTagList.vim
 
 " Don't use Ex mode, use Q for formatting
 map Q gq
@@ -97,7 +99,7 @@ if has("autocmd")
 
 else
 
-  set autoindent		" always set autoindenting on
+  set autoindent        " always set autoindenting on
 
 endif " has("autocmd")
 
@@ -106,7 +108,7 @@ endif " has("autocmd")
 " Only define it when not defined already.
 if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
-		  \ | wincmd p | diffthis
+          \ | wincmd p | diffthis
 endif
 
 "Commond for .vimrc
