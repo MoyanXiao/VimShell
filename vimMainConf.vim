@@ -16,6 +16,8 @@ source ~/.vim/config/ConfTagList.vim
 source ~/.vim/config/ConfBufExplorer.vim
 source ~/.vim/config/ConfWinManager.vim
 source ~/.vim/config/ConfLookupFile.vim
+source ~/.vim/config/ConfMark.vim
+
 
 " Don't use Ex mode, use Q for formatting
 map Q gq
