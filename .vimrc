@@ -4,7 +4,6 @@
 " Last change:    Thu Mar 21 05:55:53 CST 2013
 "
 "
-" Modified based on vim_example.vim
 
 
 " set mapleader
@@ -15,6 +14,7 @@ source ~/.vim/config/ConfBasicVim.vim
 
 " Source the config file of the plugin
 source ~/.vim/config/ConfTagList.vim
+source ~/.vim/config/ConfBufExplorer.vim
 
 " Don't use Ex mode, use Q for formatting
 map Q gq
