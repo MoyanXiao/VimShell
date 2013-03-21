@@ -18,3 +18,6 @@ endif
 nmap <silent> <leader>lk <Plug>LookupFile<cr> 
 nmap <silent> <leader>ll :LUBufs<cr> 
 nmap <silent> <leader>lw :LUWalk<cr>
+
+nnoremap <buffer> <ESC><ESC> <C-W>q
+inoremap <buffer> <ESC><ESC> <ESC><C-W>q
