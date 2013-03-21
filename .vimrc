@@ -15,6 +15,7 @@ source ~/.vim/config/ConfBasicVim.vim
 " Source the config file of the plugin
 source ~/.vim/config/ConfTagList.vim
 source ~/.vim/config/ConfBufExplorer.vim
+source ~/.vim/config/ConfWinManager.vim
 
 " Don't use Ex mode, use Q for formatting
 map Q gq
