@@ -38,7 +38,7 @@ set expandtab
 set smarttab
 set textwidth=120
 set clipboard+=unnamed
-colo ron
+colo elflord
 retab
 
 " Format Related options

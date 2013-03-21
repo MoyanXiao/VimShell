@@ -18,6 +18,7 @@ source ~/.vim/config/ConfWinManager.vim
 source ~/.vim/config/ConfLookupFile.vim
 source ~/.vim/config/ConfMark.vim
 source ~/.vim/config/ConfComplete.vim
+source ~/.vim/config/ConfMarkChange.vim
 
 
 " Don't use Ex mode, use Q for formatting
