@@ -54,5 +54,8 @@ set foldenable
 set foldmethod=syntax
 nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 
+" Session options
+set ssop-=options
+
 " netrw-browse options
 let g:netrw_winsize = 30
