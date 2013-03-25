@@ -26,7 +26,7 @@ endfunction
 
 function! project#command#createTagFile(listFile, tagFile)
     execute '!ctags -f ' . a:tagFile .
-                \' -R --c++-kinds=+p --fields=+aiS --extra=+q --tag-relative=no' .
+                \' -R --c++-kinds=+p --fields=+aiS --extra=+q --tag-relative=no ' .
                 \' -L ' . a:listFile 
 endfunction
 

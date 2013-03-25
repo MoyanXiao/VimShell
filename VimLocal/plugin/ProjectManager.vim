@@ -4,10 +4,11 @@ endif
 let g:loaded_project_manager = 1
 
 map <Leader>pc :call project#control#CreateProject()<cr>
+map <Leader>ps :call project#control#SaveProject()<cr>
 map <Leader>pq :call project#control#CloseProject()<cr>
 
-let g:workspace_path = "./workspace/"
-let g:project_path = '.'
+let g:project_path = $PWD
+let g:workspace_path = g:project_path."/workspace/"
 let g:project_file = g:workspace_path . "workspace_info"
 let g:session_file = g:workspace_path . 'session.vim'
 let g:viminfo_file= g:workspace_path . 'viminfo.vim'
@@ -26,4 +27,4 @@ if argc() =~ 0
     call project#control#StartProject()
 endif
 
-call project#control#InitProject()
+call project#control#UpdateProject()

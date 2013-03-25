@@ -27,7 +27,7 @@ function! project#control#StartProject()
     endif
 endfunction
 
-function! project#control#InitProject()
+function! project#control#UpdateProject()
     let extList = ['c','h','cpp','hpp', 'vim']
     echo "find the file list in the path " .g:workspace_path.": "
     echo extList
@@ -47,7 +47,7 @@ function! project#control#InitProject()
         call project#command#createTagFile(
                     \g:file_list,
                     \g:tags_file)
-        let &tags=g:tags_file
+        let &tags=g:tags_file.';..//'
     endif
 
     if executable('cscope')
@@ -60,9 +60,15 @@ function! project#control#InitProject()
     endif
 endfunction
 
-function! project#control#CloseProject()
-    echo "Save and close the project..."
+function! project#control#SaveProject()
+    echo "Save the project ..."
     silent! execute "mksession! ".g:session_file
     silent! execute "wviminfo! ".g:viminfo_file
-    silent! execute "wqall"
+    silent! execute "wall"
+endfunction
+
+function! project#control#CloseProject()
+    call project#control#SaveProject()
+    echo "close the project..."
+    silent! execute "qall"
 endfunction
