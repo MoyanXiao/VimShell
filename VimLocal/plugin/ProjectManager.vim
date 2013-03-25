@@ -17,11 +17,16 @@ let g:file_tags = g:workspace_path . 'filetags'
 let g:cscope_file = g:workspace_path . 'cscope.out'
 let g:tags_file = g:workspace_path . 'tags'
 
+let g:config_dict = {}
+
 if !filereadable(g:project_file)
     finish
 endif
 
 echo "Project information file is found, entering..."
+
+let g:config_dict=project#workspaceInfo#LoadWorkSpaceInfo(g:project_file)
+echo g:config_dict
 
 if argc() =~ 0
     call project#control#StartProject()

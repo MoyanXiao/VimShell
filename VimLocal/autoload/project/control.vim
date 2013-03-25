@@ -6,9 +6,18 @@ let g:loaded_auto_project_ctrl=1
 function! project#control#CreateProject()
     execute "!mkdir -p ./workspace"
     " TODO edit the file workspace_info
-    execute "edit ./workspace/workspace_info"
-
-    call project#control#InitProject()
+    execute "!touch ".g:project_file
+    execute "!chmod a+w ".g:project_file
+    "let g:config_dict={'FileExtense':['h','hpp','c','cpp']}
+    let stringExt=input("input the extension list, seperate by ' ':")
+    if stringExt =~ ''
+        " Default C/C++ project
+        let g:config_dict={'FileExtense':['h','hpp','c','cpp']}
+    else
+        let g:config_dict['FileExtense']=split(stringExt)
+    endif
+    call project#workspaceInfo#SaveWorkSpaceInfo(g:project_file, g:config_dict)
+    call project#control#UpdateProject()
 endfunction
 
 function! project#control#StartProject()
@@ -26,9 +35,9 @@ function! project#control#StartProject()
         silent! execute "rviminfo! ".g:viminfo_file
     endif
 endfunction
-
+  
 function! project#control#UpdateProject()
-    let extList = ['c','h','cpp','hpp', 'vim']
+    let extList = g:config_dict['FileExtense']
     echo "find the file list in the path " .g:workspace_path.": "
     echo extList
     call project#command#findTagsFileList(g:project_path,
@@ -62,13 +71,17 @@ endfunction
 
 function! project#control#SaveProject()
     echo "Save the project ..."
+    call project#workspaceInfo#SaveWorkSpaceInfo(g:project_file, g:config_dict)
     silent! execute "mksession! ".g:session_file
     silent! execute "wviminfo! ".g:viminfo_file
     silent! execute "wall"
 endfunction
 
 function! project#control#CloseProject()
-    call project#control#SaveProject()
+    let quit=input("Do you want to save before the project is closed?('n' to exit without save)")
+    if quit !~ 'n' && quit !~ 'N'
+        call project#control#SaveProject()
+    endif
     echo "close the project..."
     silent! execute "qall"
 endfunction
