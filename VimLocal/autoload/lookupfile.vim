@@ -16,6 +16,7 @@ let g:lookupfile#lastResults = []
 let g:lookupfile#lastStatsMsg = []
 let g:lookupfile#recentFiles = []
 
+
 function! lookupfile#OpenWindow(bang, initPat)
   let origWinnr = winnr()
   let _isf = &isfname
@@ -174,9 +175,10 @@ function! s:SetupBuf()
   command! -buffer -nargs=0 -bang AddPattern :call <SID>AddPattern()
   nnoremap <buffer> <silent> <Plug>LookupFile :call lookupfile#CloseWindow()<CR>
   inoremap <buffer> <silent> <Plug>LookupFile <C-E><C-C>:call lookupfile#CloseWindow()<CR>
-
   aug LookupFile
     au!
+    autocmd BufEnter,BufWinEnter <buffer> call acp#disable()
+    autocmd BufLeave,BufWinLeave  <buffer> call acp#enable ()
     if g:LookupFile_ShowFiller
       exec 'au' (g:LookupFile_OnCursorMovedI ? 'CursorMovedI' : 'CursorHoldI')
             \ '<buffer> call <SID>ShowFiller()'

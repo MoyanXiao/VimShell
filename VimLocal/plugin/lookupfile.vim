@@ -181,6 +181,7 @@ endfun
 
 let s:baseBufNr = 0
 function! s:LookupUsing(ftr, bang, initPat, minPatLen)
+  call acp#disable()
   let cmd = ':LUTags'
   if a:ftr != 'Tags'
     call s:SaveSett('LookupFunc')

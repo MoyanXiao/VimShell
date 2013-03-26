@@ -12,9 +12,6 @@ let g:LookupFile_PreserveLastPattern = 0
 let g:LookupFile_PreservePatternHistory = 1 
 let g:LookupFile_AlwaysAcceptFirst = 1
 let g:LookupFile_AllowNewFiles = 0 
-if filereadable("./filenametags") 
-    let g:LookupFile_TagExpr = '"./filenametags"'
-endif
 nmap <silent> <leader>lk <Plug>LookupFile<cr> 
 nmap <silent> <leader>ll :LUBufs<cr> 
 nmap <silent> <leader>lw :LUWalk<cr>

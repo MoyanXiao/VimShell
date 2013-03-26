@@ -48,7 +48,7 @@ function! project#control#UpdateProject()
         call project#command#findLookupFilelist(
                     \g:project_path,
                     \g:file_tags)
-        let g:LookupFile_TagExpr =g:file_tags
+        let &tags=g:file_tags
     endif
 
     if executable('ctags')
@@ -56,7 +56,7 @@ function! project#control#UpdateProject()
         call project#command#createTagFile(
                     \g:file_list,
                     \g:tags_file)
-        let &tags=g:tags_file.';..//'
+        let &tags= &tags.",".g:tags_file.';..//'
     endif
 
     if executable('cscope')
@@ -83,5 +83,5 @@ function! project#control#CloseProject()
         call project#control#SaveProject()
     endif
     echo "close the project..."
-    silent! execute "qall"
+    silent! execute "qall!"
 endfunction

@@ -21,7 +21,7 @@ endfunction
 function! project#command#findLookupFilelist(curPath, targetFile)
     execute '!echo -e "\!_TAG_FILE_SORTED\t2\t/2=foldcase" > ' . a:targetFile 
     execute '!find '.a:curPath.' -not -regex ".*\.\(png\|gif\)" ' .
-                \' -type f -printf "\%f\t\%p\t1\n" | sort -f >>'.a:targetFile 
+                \' -type f -printf "\%f\t\%p\t1\n"|grep -v "\.git" | sort -f >>'.a:targetFile 
 endfunction
 
 function! project#command#createTagFile(listFile, tagFile)

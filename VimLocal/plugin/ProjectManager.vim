@@ -33,3 +33,4 @@ if argc() =~ 0
 endif
 
 call project#control#UpdateProject()
+
