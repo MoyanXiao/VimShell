@@ -61,4 +61,4 @@ set ssop-=options
 " netrw-browse options
 let g:netrw_winsize = 30
 
-nnoremap ;; :q
+nnoremap ;; :q<CR>
