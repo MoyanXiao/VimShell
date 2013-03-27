@@ -20,6 +20,7 @@ source ~/.vim/config/ConfMark.vim
 source ~/.vim/config/ConfComplete.vim
 source ~/.vim/config/ConfMarkChange.vim
 source ~/.vim/config/ConfMRU.vim
+source ~/.vim/config/ConfCscope.vim
 
 
 " Don't use Ex mode, use Q for formatting
