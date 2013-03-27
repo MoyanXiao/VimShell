@@ -25,6 +25,7 @@ set history=150     " keep 150 lines of command line history
 set ruler       " show the cursor position all the time
 set showcmd     " display incomplete commands
 set incsearch       " do incremental searching
+set hidden
 set spell
 set number
 set hlsearch    " highlighting the search results
@@ -59,3 +60,5 @@ set ssop-=options
 
 " netrw-browse options
 let g:netrw_winsize = 30
+
+nnoremap ;; :q
