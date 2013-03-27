@@ -12,9 +12,8 @@ let mapleader = "\\"
 source ~/.vim/config/ConfBasicVim.vim
 
 " Source the config file of the plugin
-source ~/.vim/config/ConfTagList.vim
 source ~/.vim/config/ConfBufExplorer.vim
-source ~/.vim/config/ConfWinManager.vim
+source ~/.vim/config/ConfLayout.vim
 source ~/.vim/config/ConfLookupFile.vim
 source ~/.vim/config/ConfMark.vim
 source ~/.vim/config/ConfComplete.vim

@@ -271,7 +271,7 @@ function! <SID>StartWindowsManager()
 		let cen = 1
 		" for now assume that the explorer windows always stay on the left.
 		" TODO: make this optional later
-		wincmd H
+		wincmd L
 		" set up the correct width
 		exe g:winManagerWidth.'wincmd |'
 	end
@@ -312,7 +312,7 @@ function! <SID>StartWindowsManager()
 				" if this is the first explorer shown, need to push it to the
 				" right.
 				if nothingShown
-					wincmd H
+					wincmd L
 					" set up the correct width
 					exe g:winManagerWidth.'wincmd |'
 				end
@@ -700,7 +700,7 @@ function! <SID>RefreshWinManager(...)
 					exe 'call '.name.'_ReSize()'
 				end
 				if nearestWindow == 'inf'
-					wincmd H
+					wincmd L
 					" set up the correct width
 					" set width only if we are creating a new window...
 					exe g:winManagerWidth.'wincmd |'
