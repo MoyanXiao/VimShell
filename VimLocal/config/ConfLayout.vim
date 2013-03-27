@@ -1,4 +1,3 @@
-
 " This is the config file of winManager plugin
 " To be loaded by .vimrc
 "
@@ -16,5 +15,38 @@ let Tlist_Use_Right_Window = 1
 nmap <C-W><C-F> :FirstExplorerWindow<cr>
 nmap <C-W><C-B> :BottomExplorerWindow<cr>
 
-nmap <silent> <F3> :NERDTreeToggle<cr>:WMToggle<cr>
+map <unique> <F3> :call project#layout#LayoutToggle()<cr>
+
+map <unique> ;ws <C-W><C-S>
+map <unique> ;wv <C-W><C-V>
+map <unique> ;ww <C-W><C-W>
+map <unique> ;wq <C-W><C-Q>
+map <unique> ;wj <C-W>j
+map <unique> ;wk <C-W>k
+map <unique> ;wl <C-W>l
+map <unique> ;wh <C-W>h
+map <unique> ;wmj <C-W>J
+map <unique> ;wmk <C-W>K
+map <unique> ;wml <C-W>L
+map <unique> ;wmh <C-W>H
+map <unique> ;wt <C-W>T
+map <unique> ;w= <C-W>=
+map <unique> ;wf <C-W>f
+map <unique> ;wi <C-W><C-I>
+
+map <unique> ;pn :tabnew<CR>
+map <unique> ;pf <C-W>f
+map <unique> ;po :tabonly<CR>
+map <unique> ;pc :tabclose<CR> 
+map <unique> ;pp :tabs<CR> 
+map <unique> ;pl gt
+map <unique> ;ph gT
+map <unique> ;p^ :tabfirst
+map <unique> ;p$ :tablast 
+
+map <unique> ;md :call project#layout#LayoutMoveTo(1)<cr>
+map <unique> ;mb :call project#layout#LayoutMoveTo(2)<cr>
+map <unique> ;ml :call project#layout#LayoutMoveTo(3)<cr>
+map <unique> ;mr :call project#layout#LayoutMoveBack()<cr>
+
 

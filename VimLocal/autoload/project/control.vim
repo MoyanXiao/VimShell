@@ -72,6 +72,7 @@ endfunction
 function! project#control#SaveProject()
     echo "Save the project ..."
     call project#workspaceInfo#SaveWorkSpaceInfo(g:project_file, g:config_dict)
+    exec "tabdo ". "call project#layout#LayoutClose()"
     silent! execute "mksession! ".g:session_file
     silent! execute "wviminfo! ".g:viminfo_file
     silent! execute "wall"
