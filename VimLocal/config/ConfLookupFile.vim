@@ -12,7 +12,7 @@ let g:LookupFile_PreserveLastPattern = 0
 let g:LookupFile_PreservePatternHistory = 1 
 let g:LookupFile_AlwaysAcceptFirst = 1
 let g:LookupFile_AllowNewFiles = 0 
-nmap <silent> <leader>lk <Plug>LookupFile<cr> 
-nmap <silent> <leader>ll :LUBufs<cr> 
+
+nmap <silent> <leader>lt :LUTags<cr>
+nmap <silent> <leader>lb :LUBufs<cr> 
 nmap <silent> <leader>lw :LUWalk<cr>
-nmap <silent> <leader>lq <C-W>q

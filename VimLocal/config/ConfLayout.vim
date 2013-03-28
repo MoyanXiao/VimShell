@@ -12,9 +12,6 @@ let Tlist_Show_One_File = 1
 let Tlist_Exit_OnlyWindow = 1
 let Tlist_Use_Right_Window = 1
 
-nmap <C-W><C-F> :FirstExplorerWindow<cr>
-nmap <C-W><C-B> :BottomExplorerWindow<cr>
-
 map <unique> <F3> :call project#layout#LayoutToggle()<cr>
 
 map <unique> ;ws <C-W><C-S>
