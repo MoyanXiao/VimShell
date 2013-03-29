@@ -367,10 +367,6 @@ function! s:LookupWalk(pattern)
   " Remove leading or trailing '*'s as we add a star anyway. This also makes
   " '**' as '', but we rule this case out already.
   let filePat = substitute(filePat, '^\*\+\|\*\+$', '', 'g')
-  " On windows, the case is anyway ignored.
-  if !genutils#OnMS() && !matchingExactCase
-    let filePat = s:FilePatIgnoreCase(filePat)
-  endif
   "exec BPBreak(1)
   let _shellslash = &shellslash
   set shellslash
@@ -384,11 +380,6 @@ function! s:LookupWalk(pattern)
   endtry
   let fl = split(files, "\<NL>")
   let regexPat = s:TranslateFileRegex(filePat)
-  " This is a psuedo case-sensitive match for windows, when 'smartcase' is
-  " set.
-  if genutils#OnMS() && matchingExactCase
-    call filter(fl, 'fnamemodify(v:val, ":t") =~# regexPat')
-  endif
   " Find the start of path component that uses any of the *, [], ? or {
   " wildcard. Path until this is unambiguously common to all, so we can strip
   " it off, for brevity.

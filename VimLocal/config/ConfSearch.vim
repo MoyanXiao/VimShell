@@ -78,6 +78,10 @@ map <unique> ;ttp :ptp<CR>
 map <unique> ;fl [I
 map <unique> ;fn ]I
 map <unique> ;fcl :ilist
+map <unique> ;fj :jumps<CR>
+map <unique> ;fo <C-O>
+map <unique> ;fi <C-I>
+map <unique> ;fc :changes<CR>
 
 map <unique> ;in :checkpath<CR>
 map <unique> ;ia :checkpath!<CR>

@@ -30,6 +30,7 @@ set spell
 set number
 set hlsearch    " highlighting the search results
 set wildmenu
+set laststatus=2
 syntax on
 
 " Define the shift and <TAB> ralated options
@@ -55,10 +56,11 @@ set foldenable
 set foldmethod=syntax
 nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 
-" Session options
+" Session optionhf
 set ssop-=options
 
 " netrw-browse options
 let g:netrw_winsize = 30
 
 nnoremap ;; :q<CR>
+nnoremap ;<F1> :help <C-R>=expand("<cword>")<CR><CR>

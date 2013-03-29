@@ -57,10 +57,10 @@ function! lookupfile#OpenWindow(bang, initPat)
     let initPat = g:lookupfile#lastPattern
   endif
   $
-  if getline('.') !=# initPat
-    silent! put=''
-    call setline('.', initPat)
-  endif
+  "if getline('.') !=# initPat
+    "silent! put=''
+    call setline('.','')
+"endif
   startinsert!
   if !g:LookupFile_OnCursorMovedI
     " This is a hack to bring up the popup immediately, while reopening the
@@ -401,6 +401,7 @@ function! lookupfile#LookupFile(showingFiller, ...)
         echohl ErrorMsg | echo "Exception: " . v:exception | echohl NONE
         return ''
       finally
+          echo _tags
         let &tags = _tags
       endtry
 
@@ -426,13 +427,14 @@ function! lookupfile#LookupFile(showingFiller, ...)
       " When UsingSpecializedTags, sort by the actual name (Timothy, Guo
       " (firemeteor dot guo at gmail dot com)).
       if type(get(files, 0)) == 4
-        call sort(files, "s:CmpByName")
+        call sort(copy(files), "s:CmpByName")
       else
-        call sort(files)
+        call sort(copy(files))
       endif
     endif
     let g:lookupfile#lastPattern = pattern
     let g:lookupfile#lastResults = files
+    
   endif
   if statusMsg == ''
     if len(files) > 0
