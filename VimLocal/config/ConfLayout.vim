@@ -11,6 +11,7 @@ let Tlist_Ctags_Cmd = '/usr/bin/ctags'
 let Tlist_Show_One_File = 1
 let Tlist_Exit_OnlyWindow = 1
 let Tlist_Use_Right_Window = 1
+let Tlist_Enable_Fold_Column=0
 
 map <unique> <F3> :call project#layout#LayoutToggle()<cr>
 
@@ -45,5 +46,7 @@ map <unique> ;md :call project#layout#LayoutMoveTo(1)<cr>
 map <unique> ;mb :call project#layout#LayoutMoveTo(2)<cr>
 map <unique> ;ml :call project#layout#LayoutMoveTo(3)<cr>
 map <unique> ;mr :call project#layout#LayoutMoveBack()<cr>
+
+
 
 

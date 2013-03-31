@@ -26,12 +26,19 @@ set ruler       " show the cursor position all the time
 set showcmd     " display incomplete commands
 set incsearch       " do incremental searching
 set hidden
-set spell
 set number
-set hlsearch    " highlighting the search results
 set wildmenu
+
+
+" display options
+set spell
 set laststatus=2
+set hlsearch    " highlighting the search results
+syntax enable
 syntax on
+set background=dark
+set t_Co=256
+colo peaksea
 
 " Define the shift and <TAB> ralated options
 set shiftwidth=4     " number of spaces for (auto) indent
@@ -40,7 +47,6 @@ set expandtab
 set smarttab
 set textwidth=120
 set clipboard+=unnamed
-colo elflord
 retab
 
 " Format Related options

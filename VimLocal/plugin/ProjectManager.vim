@@ -24,7 +24,6 @@ let g:config_dict = {}
 echo "Project information file is found, entering..."
 
 let g:config_dict=project#workspaceInfo#LoadWorkSpaceInfo(g:project_file)
-echo g:config_dict
 
 if argc() =~ 0
     call project#control#StartProject()

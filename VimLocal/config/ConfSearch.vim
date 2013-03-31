@@ -85,3 +85,5 @@ map <unique> ;fc :changes<CR>
 
 map <unique> ;in :checkpath<CR>
 map <unique> ;ia :checkpath!<CR>
+
+map <unique> ;ff :CtrlP<CR>
