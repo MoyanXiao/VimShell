@@ -34,32 +34,32 @@ map <unique> ;gve :vert scs find e <C-R>=expand("<cword>")<CR><CR>
 map <unique> ;gvf :vert scs find f <C-R>=expand("<cfile>")<CR><CR>
 map <unique> ;gvi :vert scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 
-map <unique> ;cs :cs find s <C-R>=input("Search C Sympol:")<CR>
-map <unique> ;cg :cs find g <C-R>=input("Search Defination:")<CR>
-map <unique> ;cd :cs find d <C-R>=input("Search Functions called:")<CR>
-map <unique> ;cc :cs find c <C-R>=input("Search Functions calling:")<CR>
-map <unique> ;ct :cs find t <C-R>=input("Search assignment:")<CR>
-map <unique> ;ce :cs find e <C-R>=input("Search egreps:")<CR>
-map <unique> ;cf :cs find f <C-R>=input("Search files:")<CR>
-map <unique> ;ci :cs find i <C-R>=input("Search #include files:")<CR>
+map <unique> <silent> ;cs :call project#operation#CscopeFind('s', 'Search C Sympol:')<CR>
+map <unique> <silent> ;cg :call project#operation#CscopeFind('g', "Search Defination:")<CR>
+map <unique> <silent> ;cd :call project#operation#CscopeFind('d', "Search Functions called:")<CR>
+map <unique> <silent> ;cc :call project#operation#CscopeFind('c', "Search Functions calling:")<CR>
+map <unique> <silent> ;ct :call project#operation#CscopeFind('t', "Search assignment:")<CR>
+map <unique> <silent> ;ce :call project#operation#CscopeFind('e', "Search egreps:")<CR>
+map <unique> <silent> ;cf :call project#operation#CscopeFind('f', "Search files:")<CR>
+map <unique> <silent> ;ci :call project#operation#CscopeFind('i', "Search #include files:")<CR>
 
-map <unique> ;chs :scs find s <C-R>=input("Search Open H C Sympol:")<CR>
-map <unique> ;chg :scs find g <C-R>=input("Search Open H Defination:")<CR>
-map <unique> ;chd :scs find d <C-R>=input("Search Open H Functions called:")<CR>
-map <unique> ;chc :scs find c <C-R>=input("Search Open H Functions calling:")<CR>
-map <unique> ;cht :scs find t <C-R>=input("Search Open H assignment:")<CR>
-map <unique> ;che :scs find e <C-R>=input("Search Open H egreps:")<CR>
-map <unique> ;chf :scs find f <C-R>=input("Search Open H files:")<CR>
-map <unique> ;chi :scs find i <C-R>=input("Search Open H #include files:")<CR>
+map <unique> ;chs :call project#operation#CscopeFind('s', "Search Open H C Sympol:", 'h')<CR>
+map <unique> ;chg :call project#operation#CscopeFind('g', "Search Open H Defination:", 'h')<CR>
+map <unique> ;chd :call project#operation#CscopeFind('d', "Search Open H Functions called:", 'h')<CR>
+map <unique> ;chc :call project#operation#CscopeFind('c', "Search Open H Functions calling:", 'h')<CR>
+map <unique> ;cht :call project#operation#CscopeFind('t', "Search Open H assignment:", 'h')<CR>
+map <unique> ;che :call project#operation#CscopeFind('e', "Search Open H egreps:", 'h')<CR>
+map <unique> ;chf :call project#operation#CscopeFind('f', "Search Open H files:", 'h')<CR>
+map <unique> ;chi :call project#operation#CscopeFind('i', "Search Open H #include files:", 'h')<CR>
 
-map <unique> ;cvs :vert scs find s <C-R>=input("Search Open V C Sympol:")<CR>
-map <unique> ;cvg :vert scs find g <C-R>=input("Search Open V Defination:")<CR>
-map <unique> ;cvd :vert scs find d <C-R>=input("Search Open V Functions called:")<CR>
-map <unique> ;cvc :vert scs find c <C-R>=input("Search Open V Functions calling:")<CR>
-map <unique> ;cvt :vert scs find t <C-R>=input("Search Open V assignment:")<CR>
-map <unique> ;cve :vert scs find e <C-R>=input("Search Open V egreps:")<CR>
-map <unique> ;cvf :vert scs find f <C-R>=input("Search Open V files:")<CR>
-map <unique> ;cvi :vert scs find i <C-R>=input("Search Open V #include files:")<CR>
+map <unique> ;cvs :call project#operation#CscopeFind('s', "Search Open V C Sympol:", 'v')<CR>
+map <unique> ;cvg :call project#operation#CscopeFind('g', "Search Open V Defination:", 'v')<CR>
+map <unique> ;cvd :call project#operation#CscopeFind('d', "Search Open V Functions called:", 'v')<CR>
+map <unique> ;cvc :call project#operation#CscopeFind('c', "Search Open V Functions calling:", 'v')<CR>
+map <unique> ;cvt :call project#operation#CscopeFind('t', "Search Open V assignment:", 'v')<CR>
+map <unique> ;cve :call project#operation#CscopeFind('e', "Search Open V egreps:", 'v')<CR>
+map <unique> ;cvf :call project#operation#CscopeFind('f', "Search Open V files:", 'v')<CR>
+map <unique> ;cvi :call project#operation#CscopeFind('i', "Search Open V #include files:", 'v')<CR>
 
 map <unique> ;ts :tag <C-R>=expand("<cword>")<CR><CR>
 map <unique> ;tl :tselect <C-R>=expand("<cword>")<CR><CR>
