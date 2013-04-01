@@ -3,6 +3,12 @@ if exists("g:loaded_auto_project_layout")
 endif
 let g:loaded_auto_project_layout=1
 
+aug layout
+    au!
+    au TabEnter * call project#layout#LayoutTabEnter()
+    au TabLeave * call project#layout#LayoutClose()
+aug END
+
 function! project#layout#LayoutToggle()
     if IsWinManagerVisible()
         let t:winlayout=[]
@@ -10,6 +16,12 @@ function! project#layout#LayoutToggle()
     else
         let t:winlayout=[]
         call project#layout#LayoutOpen()
+    endif
+endfunction
+
+function! project#layout#LayoutTabEnter()
+    if exists("t:winlayout") && len(t:winlayout)>0
+        call project#layout#LayoutToggle()
     endif
 endfunction
 
@@ -25,8 +37,17 @@ function! project#layout#LayoutOpen()
         let curbufname=bufname("%")
     endif
     call add(t:winlayout, {curbufname : winnr()+1})
+    let fd=&fdm
+    let nu=&nu
+    let wrap=&wrap
+    let &fdm='manual'
+    let &nu=0
+    let &wrap=0
     exec "NERDTree"
     exec "WManager"
+    let &fdm=fd
+    let &nu=nu
+    let &wrap=wrap
     call add(t:winlayout, {bufname(winbufnr(1)) : 1})
     call add(t:winlayout, {bufname(winbufnr(winnr("$")-1)) : winnr("$")-1})
     call add(t:winlayout, {bufname(winbufnr(winnr("$"))) : winnr("$")})

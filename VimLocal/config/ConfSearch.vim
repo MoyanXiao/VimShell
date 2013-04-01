@@ -34,32 +34,32 @@ map <unique> ;gve :vert scs find e <C-R>=expand("<cword>")<CR><CR>
 map <unique> ;gvf :vert scs find f <C-R>=expand("<cfile>")<CR><CR>
 map <unique> ;gvi :vert scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 
-map <unique> ;cs :cs find s 
-map <unique> ;cg :cs find g 
-map <unique> ;cd :cs find d 
-map <unique> ;cc :cs find c 
-map <unique> ;ct :cs find t 
-map <unique> ;ce :cs find e 
-map <unique> ;cf :cs find f 
-map <unique> ;ci :cs find i 
+map <unique> ;cs :cs find s <C-R>=input("Search C Sympol:")<CR>
+map <unique> ;cg :cs find g <C-R>=input("Search Defination:")<CR>
+map <unique> ;cd :cs find d <C-R>=input("Search Functions called:")<CR>
+map <unique> ;cc :cs find c <C-R>=input("Search Functions calling:")<CR>
+map <unique> ;ct :cs find t <C-R>=input("Search assignment:")<CR>
+map <unique> ;ce :cs find e <C-R>=input("Search egreps:")<CR>
+map <unique> ;cf :cs find f <C-R>=input("Search files:")<CR>
+map <unique> ;ci :cs find i <C-R>=input("Search #include files:")<CR>
 
-map <unique> ;chs :scs find s 
-map <unique> ;chg :scs find g 
-map <unique> ;chd :scs find d 
-map <unique> ;chc :scs find c 
-map <unique> ;cht :scs find t 
-map <unique> ;che :scs find e 
-map <unique> ;chf :scs find f 
-map <unique> ;chi :scs find i 
+map <unique> ;chs :scs find s <C-R>=input("Search Open H C Sympol:")<CR>
+map <unique> ;chg :scs find g <C-R>=input("Search Open H Defination:")<CR>
+map <unique> ;chd :scs find d <C-R>=input("Search Open H Functions called:")<CR>
+map <unique> ;chc :scs find c <C-R>=input("Search Open H Functions calling:")<CR>
+map <unique> ;cht :scs find t <C-R>=input("Search Open H assignment:")<CR>
+map <unique> ;che :scs find e <C-R>=input("Search Open H egreps:")<CR>
+map <unique> ;chf :scs find f <C-R>=input("Search Open H files:")<CR>
+map <unique> ;chi :scs find i <C-R>=input("Search Open H #include files:")<CR>
 
-map <unique> ;cvs :vert scs find s 
-map <unique> ;cvg :vert scs find g 
-map <unique> ;cvd :vert scs find d 
-map <unique> ;cvc :vert scs find c 
-map <unique> ;cvt :vert scs find t 
-map <unique> ;cve :vert scs find e 
-map <unique> ;cvf :vert scs find f 
-map <unique> ;cvi :vert scs find i 
+map <unique> ;cvs :vert scs find s <C-R>=input("Search Open V C Sympol:")<CR>
+map <unique> ;cvg :vert scs find g <C-R>=input("Search Open V Defination:")<CR>
+map <unique> ;cvd :vert scs find d <C-R>=input("Search Open V Functions called:")<CR>
+map <unique> ;cvc :vert scs find c <C-R>=input("Search Open V Functions calling:")<CR>
+map <unique> ;cvt :vert scs find t <C-R>=input("Search Open V assignment:")<CR>
+map <unique> ;cve :vert scs find e <C-R>=input("Search Open V egreps:")<CR>
+map <unique> ;cvf :vert scs find f <C-R>=input("Search Open V files:")<CR>
+map <unique> ;cvi :vert scs find i <C-R>=input("Search Open V #include files:")<CR>
 
 map <unique> ;ts :tag <C-R>=expand("<cword>")<CR><CR>
 map <unique> ;tl :tselect <C-R>=expand("<cword>")<CR><CR>
@@ -87,3 +87,5 @@ map <unique> ;in :checkpath<CR>
 map <unique> ;ia :checkpath!<CR>
 
 map <unique> ;ff :CtrlP<CR>
+let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir', 'rtscript',
+            \ 'undo', 'line', 'changes', 'mixed', 'bookmarkdir']
