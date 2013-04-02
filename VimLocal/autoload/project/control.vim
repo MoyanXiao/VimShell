@@ -3,6 +3,17 @@ if exists("g:loaded_auto_project_ctrl")
 endif
 let g:loaded_auto_project_ctrl=1
 
+let g:session_file = g:workspace_path . 'session.vim'
+let g:viminfo_file= g:workspace_path . 'viminfo.vim'
+let g:file_list = g:workspace_path . 'files.list'
+let g:file_tags = g:workspace_path . 'filetags'
+let g:cscope_file = g:workspace_path . 'cscope.out'
+let g:tags_file = g:workspace_path . 'tags'
+"let g:config_dict = {}
+
+map <Leader>ps :call project#control#SaveProject()<cr>
+map <Leader>pq :call project#control#CloseProject()<cr>
+
 function! project#control#CreateProject()
     execute "!mkdir -p ./workspace"
     " TODO edit the file workspace_info
@@ -10,7 +21,7 @@ function! project#control#CreateProject()
     execute "!chmod a+w ".g:project_file
     "let g:config_dict={'FileExtense':['h','hpp','c','cpp']}
     let stringExt=input("input the extension list, seperate by ' ':")
-    if stringExt =~ ''
+    if stringExt == ''
         " Default C/C++ project
         let g:config_dict={'FileExtense':['h','hpp','c','cpp']}
     else

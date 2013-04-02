@@ -7,6 +7,10 @@ if exists("loaded_Cscope_conf")
 endif
 let loaded_Cscope_conf = 1
 
+set cscopetagorder=1
+map <unique> ;gq :set cscopequickfix=s+,c+,d+,i+,t+,e+<CR>
+map <unique> ;gp :set cscopequickfix=s-,c-,d-,i-,t-,e-<CR>
+
 map <unique> ;gs :cs find s <C-R>=expand("<cword>")<CR><CR>
 map <unique> ;gg :cs find g <C-R>=expand("<cword>")<CR><CR>
 map <unique> ;gd :cs find d <C-R>=expand("<cword>")<CR><CR>

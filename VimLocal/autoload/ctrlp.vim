@@ -42,6 +42,9 @@ fu! s:ignore()
 		\ '\.jpg$',
 		\ '\.gif$',
 		\ '\.zip$',
+		\ '\.d$',
+		\ '\.o$',
+		\ '\.lo$',
 		\ '\.rar$',
 		\ '\.tar\.gz$',
 		\ ]
@@ -72,7 +75,7 @@ let [s:pref, s:bpref, s:opts, s:new_opts, s:lc_opts] =
 	\ 'match_window_reversed': ['s:mwreverse', 1],
 	\ 'max_depth':             ['s:maxdepth', 40],
 	\ 'max_files':             ['s:maxfiles', 10000],
-	\ 'max_height':            ['s:mxheight', 10],
+	\ 'max_height':            ['s:mxheight', 15],
 	\ 'max_history':           ['s:maxhst', exists('+hi') ? &hi : 20],
 	\ 'mruf_default_order':    ['s:mrudef', 0],
 	\ 'open_func':             ['s:openfunc', {}],
@@ -87,7 +90,7 @@ let [s:pref, s:bpref, s:opts, s:new_opts, s:lc_opts] =
 	\ 'use_caching':           ['s:caching', 1],
 	\ 'use_migemo':            ['s:migemo', 0],
 	\ 'user_command':          ['s:usrcmd', ''],
-	\ 'working_path_mode':     ['s:pathmode', 'ra'],
+	\ 'working_path_mode':     ['s:pathmode', 0],
 	\ }, {
 	\ 'open_multiple_files':   's:opmul',
 	\ 'regexp':                's:regexp',
@@ -2152,7 +2155,7 @@ fu! ctrlp#init(type, ...)
 	let [s:matches, s:init] = [1, 1]
 	cal s:Reset(a:0 ? a:1 : {})
 	noa cal s:Open()
-	cal s:SetWD(a:0 ? a:1 : {})
+    cal s:SetWD(a:0 ? a:1 : {})
 	cal s:MapNorms()
 	cal s:MapSpecs()
 	cal ctrlp#syntax()
