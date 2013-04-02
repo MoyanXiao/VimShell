@@ -68,5 +68,9 @@ set ssop-=options
 " netrw-browse options
 let g:netrw_winsize = 30
 
-nnoremap ;; :q<CR>
+nnoremap ;qq :q<CR>
+nnoremap ;qa :qall<CR>
+nnoremap ;qw :wq<CR>
+nnoremap ;qs :wqall<CR>
+
 nnoremap ;<F1> :help <C-R>=expand("<cword>")<CR><CR>

@@ -1326,7 +1326,7 @@ fu! ctrlp#statusline()
 	let focus   = s:focus ? 'prt'  : 'win'
 	let byfname = s:byfname ? 'file' : 'path'
 	let marked  = s:opmul != '0' ?
-		\ exists('s:marked') ? ' <'.s:dismrk().'>' : ' <->' : ''
+		\ exists('s:marked') ? ' <'.s:dismrk().'>' : ' <<--'.(s:itemtype+1).'/'.len(tps).'-->>' : ''
 	if s:status != {}
 		let args = [focus, byfname, s:regexp, prv, s:ctype, nxt, marked]
 		let &l:stl = call(s:status['main'], args, s:status)

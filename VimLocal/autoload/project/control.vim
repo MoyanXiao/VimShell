@@ -81,8 +81,10 @@ function! project#control#SaveProject()
 endfunction
 
 function! project#control#CloseProject()
-    let quit=input("Do you want to save before the project is closed?('n' to exit without save)")
-    if quit !~ 'n' && quit !~ 'N'
+    let quit= confirm("Do you want to close the project(Default: Yes)?", "&Yes\n&No\nCancel", 1)
+    if quit==0 || quit==3
+        return
+    elseif quit == 1
         call project#control#SaveProject()
     endif
     echo "close the project..."

@@ -87,5 +87,6 @@ map <unique> ;in :checkpath<CR>
 map <unique> ;ia :checkpath!<CR>
 
 map <unique> ;ff :CtrlP<CR>
+map <unique> ;fu :FufFile<CR>
 let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir', 'rtscript',
             \ 'undo', 'line', 'changes', 'mixed', 'bookmarkdir']
