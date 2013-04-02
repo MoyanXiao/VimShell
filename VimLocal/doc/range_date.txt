@@ -1,0 +1,108 @@
+*range_date.txt*  auxiliary functions to work with ranges and dates
+
+1. Overview                                     *range_date-overview*
+
+This script provides auxiliary functions to work with ranges and dates. 
+Four functions return ranges as arrays:
+
+Range_int (|range_date-Range_int|) - returns an array of numbers
+Range_char (|range_date-Range_char|) - returns an array of characters
+Range_month (|range_date-Range_month|) - returns an array of month
+Range_date (|range_date-Range_date|) - returns an array of dates
+
+Two functions convert (gregorian) dates in the form YYYYMMDD into julian dates 
+(days since 01.01.4713 v.Chr.) to calculate with dates:
+
+Gd2jd (|range_date-Gd2jd|) - converts gregorian date string (YYYYMMDD) to julian date
+Jd2gd (|range_date-Jd2gd|) - converts julian date to gregorian date string (YYYYMMDD)
+
+One functions formats a date given in the form YYYYMMDD or YYYYMM:
+
+Format_date (|range_date-Format_date|) - Returns the given date in the given format
+
+
+2. Range_int                                    *range_date-Range_int*
+
+Signature: Range_int(start, stop[, step[, format]])
+
+Returns an array containing the numbers from 'start' to 'stop'. Optionally a 'step' width 
+can be provided (e.g. use only every second number) and a 'format' (in the form used by printf 
+can be given). Note that a step has to be provided if the format is provided.
+
+Example: Range_int(1,29,2,"%02d")
+Result: ['01', '03', '05', '07', '09', '11', '13', '15', '17', '19', '21', '23', '25', '27', '29']
+
+
+3. Range_char                                   *range_date-Range_char*
+
+Signature: Range_char(start, stop)
+
+Returns an array containing the characters from 'start' to 'stop'. Actually the ASCII value is 
+incremented in a loop.
+
+Example: Range_char('a','h')
+Result: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
+
+Example: Range_char('A','c')
+Result: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '[', '\', ']', '^', '_', '`', 'a', 'b', 'c']
+
+
+4. Range_month                                  *range_date-Range_month*
+
+Signature: Range_month(start, stop[, format])
+
+Returns an array with months from 'start' to 'stop' (both given as strings in the format YYYYMM) 
+in the format 'format' (used by |range_date-Format_date|). 
+
+Example: Range_month('200710','200803','MM.YYYY')
+Result: ['10.2007', '11.2007', '12.2007', '01.2008', '02.2008', '03.2008']
+
+
+5. Range_date                                   *range_date-Range_date*
+
+Signature: Range_month(start, stop[, format])
+
+Returns an array with dates from 'start' to 'stop' (both given as strings in the format YYYYMMDD)
+in the format 'format' (used by |range_date-Format_date|).
+
+Example: Range_date('20071229','20080103','DD.MM.YYYY')
+Result: ['29.12.2007', '30.12.2007', '31.12.2007', '01.01.2008', '02.01.2008', '03.01.2008']
+
+
+6. Gd2jd                                        *range_date-Gd2jd*
+
+Signature: Gd2jd(gregorian_date)
+
+Returns the julian date that corresponds to the given 'gregorian_date' (which has to be
+a string in the format YYYYMMDD). This will only work for dates from 1901 to 2099.
+
+Example: Gd2jd('20080325')
+Result: 2454551
+
+
+7. Jd2gd                                        *range_date-Jd2gd*
+
+Signature: Jd2gd(julian_date)
+
+Returns the gregorian date (in the format YYYYMMMDD) that corresponds to the given 'julian_date'. 
+This will only work for dates from 1901 to 2099.
+
+Example: Jd2gd(2454551)
+Result: '20080325'
+
+
+8. Format_date                                  *range_date-Format_date*
+
+Signature: Format_date(date, format)
+
+Returns the date 'date' in the format 'format'. 'date' is a string of the format
+YYYY[MM[DD[HH[MI[SS]]]]], e.g. 2008, 20080325, 200803252312 usw.
+
+'format' is a string containing a combination of the literals YY, YYYY, MM, DD, HH, MI, SS, 
+e.g. "DD.MM.YYYY" or "the date DD.MM in the year YYYY"
+
+Example: Format_date('20080325','DD.MM.YY')
+Result: '25.03.08'
+
+Example: Format_date('20080325','Today is the day no. DD in month no. MM of the year YY')
+Result: 'Today is the day no. 25 in month no. 03 of the year 08'

@@ -1,0 +1,146 @@
+*vimgen.txt*  vim inline generator / template expander
+
+1. Overview                                     *vimgen-overview*
+
+Vimgen is a simple template system that works inside a VIM buffer. The 
+Input is a region of text. Everything until the first empty line in this 
+region is considered the data section, everything below the first empty line
+is the template section. 
+
+The region of text can either be provided as range, e.g.
+
+:1,10Vimgen
+
+or you can mark the region in visual mode and type :Vimgen
+
+:'>,'<Vimgen
+
+This documentation has the following sections:
+
+Overview - this section                         |vimgen-overview|
+Options - configuration parameter               |vimgen-options| 
+Data - description of the data section          |vimgen-data|
+Template - description of the template section  |vimgen-template|
+Examples - examples of vimgen usage             |vimgen-examples|
+
+
+2. Options                                      *vimgen-options*
+
+The following global variables can be set to influence vimgen's
+behaviour:
+
+g:vgen_sc    - start character of vimgen tags, defaults to «
+g:vgen_ec    - end character of vimgen tags, defaults to »
+g:vgen_lc    - the loop character (see |vimgen-template|), default to - 
+g:vgen_sfc   - the "skip first iteration" character (see |vimgen-template|),
+               default to !
+g:vgen_delim - a text for the line that separates input from output
+               default to ----vimgen---- 
+
+
+3. Data                                         *vimgen-data*
+
+The data section of the input (everything until the first empty line) has to 
+be a valid VIM dictionary. Newlines ("\n") but no empty lines can be inserted for 
+better readability (they are ignored). The data section is evaluated using VIM's 
+eval function, hence it can include VIM functions, e.g. from |range_date.txt|.
+
+Example: {'a':['1','2','3'], 'b':['a','b','c']}
+Example: {'day':Range_date('20070615','20070715'), 'year':['2007','2008']}
+
+
+4. Template                                     *vimgen-template*
+
+The template section of the input (everything below the first empty line) is the
+desired output (including newlines etc.) that has to be enriched/multiplied by the 
+data using vimgen tags.
+
+There are only three types of tags (for better readability shown with the default
+characters, see |vimgen-options|):
+
+«-var»...«-»          this tags loop over the variable 'var' which has to be 
+                      a list. Inside the loop «var» references the element of
+                      the current iteration
+
+«!var»...«-»          used inside a loop over 'var'. The test/tags that are surrounded
+                      by this tag are ignored in the first iteration of the loop. This
+                      is useful for enumerations (see |vimgen-examples|)
+
+«var»                 this tag is replaced with the variable 'var', where 'var'
+                      either has only one value or the tag is surrounded by 
+                      a loop iterating over 'var'. In case of nested dictionaries,
+                      a dot notation is used, e.g. a.b.c
+
+5. Examples                                     *vimgen-examples*
+
+{'a':['spring','sommer','fall','winter']}
+
+There are four seasons: «-a»«!a», «!»«a»«-».
+----vimgen----
+There are four seasons: spring, sommer, fall, winter.
+
+----------------------------------------------------------------------
+
+{'n':{'a':Range_int(1,5,1,"%03d"), 
+      'b':Range_char('a','c')}}
+
+«-n.a»«-n.b»«n.b»«n.a»
+«-»«-»
+----vimgen----
+a001
+b001
+c001
+a002
+b002
+c002
+a003
+b003
+c003
+a004
+b004
+c004
+a005
+b005
+c005
+
+----------------------------------------------------------------------
+
+{'date':Range_month("200712","200803"), 'code':[['foo','0OF'',''OFF2'],['bar','RAB']]}
+
+CREATE TABLE test_table
+    (date_id  DATE NOT NULL, id1 NUMBER, id2 NUMBER) 
+PARTITION BY RANGE (date_id) SUBPARTITION BY LIST (id1)
+(
+  «-date»«!date», 
+  «!»PARTITION testpart_«date» VALUES LESS THAN (TO_DATE('«date»01', 'YYYYMMDD'))
+  ( 
+    «-code»«!code»,
+    «!»SUBPARTITION testpart_«date»_«code[0]» VALUES ('«code[1]»')«-»
+  )«-»
+);
+----vimgen----
+CREATE TABLE test_table
+    (date_id  DATE NOT NULL, id1 NUMBER, id2 NUMBER) 
+PARTITION BY RANGE (date_id) SUBPARTITION BY LIST (id1)
+(
+  PARTITION testpart_200712 VALUES LESS THAN (TO_DATE('20071201', 'YYYYMMDD'))
+  ( 
+    SUBPARTITION testpart_200712_foo VALUES ('0OF','OFF2'),
+    SUBPARTITION testpart_200712_bar VALUES ('RAB')
+  ), 
+  PARTITION testpart_200801 VALUES LESS THAN (TO_DATE('20080101', 'YYYYMMDD'))
+  ( 
+    SUBPARTITION testpart_200801_foo VALUES ('0OF','OFF2'),
+    SUBPARTITION testpart_200801_bar VALUES ('RAB')
+  ), 
+  PARTITION testpart_200802 VALUES LESS THAN (TO_DATE('20080201', 'YYYYMMDD'))
+  ( 
+    SUBPARTITION testpart_200802_foo VALUES ('0OF','OFF2'),
+    SUBPARTITION testpart_200802_bar VALUES ('RAB')
+  ), 
+  PARTITION testpart_200803 VALUES LESS THAN (TO_DATE('20080301', 'YYYYMMDD'))
+  ( 
+    SUBPARTITION testpart_200803_foo VALUES ('0OF','OFF2'),
+    SUBPARTITION testpart_200803_bar VALUES ('RAB')
+  )
+);
