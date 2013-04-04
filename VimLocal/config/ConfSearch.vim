@@ -8,6 +8,9 @@ endif
 let loaded_Cscope_conf = 1
 
 set cscopetagorder=1
+
+map <unique> ;no :noh<CR>
+
 map <unique> ;gq :set cscopequickfix=s+,c+,d+,i+,t+,e+<CR>
 map <unique> ;gp :set cscopequickfix=s-,c-,d-,i-,t-,e-<CR>
 

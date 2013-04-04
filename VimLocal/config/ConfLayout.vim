@@ -13,6 +13,11 @@ let Tlist_Exit_OnlyWindow = 1
 let Tlist_Use_Right_Window = 1
 let Tlist_Enable_Fold_Column=0
 
+
+let g:NERDTreeMapActivateNode="O"
+let g:NERDTreeMapOpenRecursively="o"
+let g:NERDTreeMapPreview="<space>"
+
 map <unique> <F3> :call project#layout#LayoutToggle()<cr>
 
 map <unique> ;ws <C-W><C-S>

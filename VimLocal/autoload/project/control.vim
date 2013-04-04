@@ -25,6 +25,7 @@ function! project#control#CreateProject()
         " Default C/C++ project
         let g:config_dict={'FileExtense':['h','hpp','c','cpp']}
     else
+        let g:config_dict = {}
         let g:config_dict['FileExtense']=split(stringExt)
     endif
     call project#workspaceInfo#SaveWorkSpaceInfo(g:project_file, g:config_dict)
