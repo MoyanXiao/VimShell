@@ -315,7 +315,6 @@ function! s:C_InitMenus ()
 	endif
 	"
 	" Preparation
-	call mmtemplates#core#CreateMenus ( 'g:C_Templates', s:C_RootMenu, 'do_reset' )
 	"
 	exe 'amenu '.s:C_RootMenu.'C\/C\+\+ <Nop>'
 	exe 'amenu '.s:C_RootMenu.'-Sep00-  <Nop>'
@@ -324,7 +323,6 @@ function! s:C_InitMenus ()
 	"----- Menu : C-Comments --------------------------------------------------   {{{2
 	"===============================================================================================
 	"
-	call mmtemplates#core#CreateMenus ( 'g:C_Templates', s:C_RootMenu, 'sub_menu', '&Comments' )
 	let	MenuComments	= s:C_RootMenu.'&Comments'
 	"
 	exe "amenu <silent> ".MenuComments.'.end-of-&line\ comment<Tab>\\cl           :call C_EndOfLineComment( )<CR>'
@@ -348,23 +346,19 @@ function! s:C_InitMenus ()
   "===============================================================================================
   "----- Menu : Statements (title)                              {{{2
   "===============================================================================================
-	call mmtemplates#core#CreateMenus ( 'g:C_Templates', s:C_RootMenu, 'sub_menu', '&Statements' )
 	"
   "===============================================================================================
   "----- Menu : Idioms (title)                             {{{2
   "===============================================================================================
-	call mmtemplates#core#CreateMenus ( 'g:C_Templates', s:C_RootMenu, 'sub_menu', '&Idioms' )
 	"
   "===============================================================================================
   "----- Menu : Preprocessor (title)                             {{{2
   "===============================================================================================
-	call mmtemplates#core#CreateMenus ( 'g:C_Templates', s:C_RootMenu, 'sub_menu', '&Preprocessor' )
 	"
 	"===============================================================================================
 	"----- Menu : Snippets ----------------------------------------------------   {{{2
 	"===============================================================================================
 	"
- 	call mmtemplates#core#CreateMenus ( 'g:C_Templates', s:C_RootMenu, 'sub_menu', 'S&nippets' )
 	let	ahead	= 'anoremenu <silent> '.s:C_RootMenu.'S&nippets.'
 	let	vhead	= 'vnoremenu <silent> '.s:C_RootMenu.'S&nippets.'
 	let	ihead	= 'inoremenu <silent> '.s:C_RootMenu.'S&nippets.'
@@ -396,31 +390,18 @@ function! s:C_InitMenus ()
 
 	exe ahead.'-SEP2-									     :'
 		"
-		exe ahead.'edit\ &local\ templates<Tab>\\ntl       :call mmtemplates#core#EditTemplateFiles(g:C_Templates,-1)<CR>'
-		exe ihead.'edit\ &local\ templates<Tab>\\ntl  <C-C>:call mmtemplates#core#EditTemplateFiles(g:C_Templates,-1)<CR>'
 		if g:C_Installation == 'system'
-			exe ahead.'edit\ &local\ templates<Tab>\\ntg       :call mmtemplates#core#EditTemplateFiles(g:C_Templates,1)<CR>'
-			exe ihead.'edit\ &local\ templates<Tab>\\ntg  <C-C>:call mmtemplates#core#EditTemplateFiles(g:C_Templates,1)<CR>'
 		endif
 		"
-		exe ahead.'reread\ &templates<Tab>\\ntr       :call mmtemplates#core#ReadTemplates(g:C_Templates,"reload","all")<CR>'
-		exe ihead.'reread\ &templates<Tab>\\ntr  <C-C>:call mmtemplates#core#ReadTemplates(g:C_Templates,"reload","all")<CR>'
-	"
-	if !empty(s:C_CodeSnippets)
-		call mmtemplates#core#CreateMenus ( 'g:C_Templates', s:C_RootMenu, 'do_styles', 
-					\ 'specials_menu', 'Snippets'	)
-	endif
 	"
   "===============================================================================================
   "----- Menu : Run                             {{{2
   "===============================================================================================
 	"
- 	call mmtemplates#core#CreateMenus ( 'g:C_Templates', s:C_RootMenu, 'sub_menu', 'C&++' )
 	"
 	"===============================================================================================
 	"----- Menu : run  ----- --------------------------------------------------   {{{2
 	"===============================================================================================
-	call mmtemplates#core#CreateMenus ( 'g:C_Templates', s:C_RootMenu, 'sub_menu', '&Run' )
 	"
 	let	ahead	= 'anoremenu <silent> '.s:MenuRun.'.'
 	let	vhead	= 'vnoremenu <silent> '.s:MenuRun.'.'
@@ -525,7 +506,6 @@ function! s:C_InitMenus ()
   "===============================================================================================
   "----- Menu : GENERATE MENU ITEMS FROM THE TEMPLATES                              {{{2
   "===============================================================================================
-	call mmtemplates#core#CreateMenus ( 'g:C_Templates', s:C_RootMenu, 'do_templates' )
   "===============================================================================================
   "===============================================================================================
 	"
@@ -734,8 +714,8 @@ function! C_EndOfLineComment ( ) range
 		if linelength < b:C_LineEndCommentColumn
 			let diff	= b:C_LineEndCommentColumn -1 -linelength
 		endif
-		exe "normal	".diff."A "
-			call mmtemplates#core#InsertTemplate(g:C_Templates, 'Comments.end-of-line-comment')
+		"exe "normal	".diff."A "
+			"call mmtemplates#core#InsertTemplate(g:C_Templates, 'Comments.end-of-line-comment')
 		if line > a:firstline
 			normal k
 		endif
@@ -1106,13 +1086,13 @@ function! C_CodeFor( direction, ... ) range
 	endif
 	"
 	if a:0 == 0
-		call mmtemplates#core#InsertTemplate ( g:C_Templates, 'Statements.for block',
-					\ '|INIT|', txt_init, '|CONDITION|', txt_cond, '|INCREMENT|', txt_incr,
-					\ 'range', a:firstline, a:lastline )
+		"call mmtemplates#core#InsertTemplate ( g:C_Templates, 'Statements.for block',
+					"\ '|INIT|', txt_init, '|CONDITION|', txt_cond, '|INCREMENT|', txt_incr,
+					"\ 'range', a:firstline, a:lastline )
 	elseif a:0 == 1 && a:1 == 'v'
-		call mmtemplates#core#InsertTemplate ( g:C_Templates, 'Statements.for block',
-					\ '|INIT|', txt_init, '|CONDITION|', txt_cond, '|INCREMENT|', txt_incr,
-					\ 'range', a:firstline, a:lastline, 'v' )
+		"call mmtemplates#core#InsertTemplate ( g:C_Templates, 'Statements.for block',
+					"\ '|INIT|', txt_init, '|CONDITION|', txt_cond, '|INCREMENT|', txt_incr,
+					"\ 'range', a:firstline, a:lastline, 'v' )
 	else
     echohl WarningMsg | echomsg "for loop construction : unknown argument ".a:1 | echohl None
 	endif
@@ -1989,14 +1969,14 @@ endfunction    " ----------  end of function C_HlMessage ----------
 "------------------------------------------------------------------------------
 function! C_Settings ()
 	let	txt =     " C/C++-Support settings\n\n"
-	let txt = txt.'                   author :  "'.mmtemplates#core#ExpandText( g:C_Templates, '|AUTHOR|'      )."\"\n"
-	let txt = txt.'                authorref :  "'.mmtemplates#core#ExpandText( g:C_Templates, '|AUTHORREF|'   )."\"\n"
-	let txt = txt.'                  company :  "'.mmtemplates#core#ExpandText( g:C_Templates, '|COMPANY|'     )."\"\n"
-	let txt = txt.'         copyright holder :  "'.mmtemplates#core#ExpandText( g:C_Templates, '|COPYRIGHT|'   )."\"\n"
-	let txt = txt.'                    email :  "'.mmtemplates#core#ExpandText( g:C_Templates, '|EMAIL|'       )."\"\n"
-  let txt = txt.'                  licence :  "'.mmtemplates#core#ExpandText( g:C_Templates, '|LICENSE|'     )."\"\n"
-	let txt = txt.'             organization :  "'.mmtemplates#core#ExpandText( g:C_Templates, '|ORGANIZATION|')."\"\n"
-	let txt = txt.'                  project :  "'.mmtemplates#core#ExpandText( g:C_Templates, '|PROJECT|'     )."\"\n"
+	"let txt = txt.'                   author :  "'.mmtemplates#core#ExpandText( g:C_Templates, '|AUTHOR|'      )."\"\n"
+	"let txt = txt.'                authorref :  "'.mmtemplates#core#ExpandText( g:C_Templates, '|AUTHORREF|'   )."\"\n"
+	"let txt = txt.'                  company :  "'.mmtemplates#core#ExpandText( g:C_Templates, '|COMPANY|'     )."\"\n"
+	"let txt = txt.'         copyright holder :  "'.mmtemplates#core#ExpandText( g:C_Templates, '|COPYRIGHT|'   )."\"\n"
+	"let txt = txt.'                    email :  "'.mmtemplates#core#ExpandText( g:C_Templates, '|EMAIL|'       )."\"\n"
+  "let txt = txt.'                  licence :  "'.mmtemplates#core#ExpandText( g:C_Templates, '|LICENSE|'     )."\"\n"
+	"let txt = txt.'             organization :  "'.mmtemplates#core#ExpandText( g:C_Templates, '|ORGANIZATION|')."\"\n"
+	"let txt = txt.'                  project :  "'.mmtemplates#core#ExpandText( g:C_Templates, '|PROJECT|'     )."\"\n"
 	let txt = txt.'         C / C++ compiler :  '.s:C_CCompiler.' / '.s:C_CplusCompiler."\n"
 	let txt = txt.'         C file extension :  "'.s:C_CExtension.'"  (everything else is C++)'."\n"
 	let txt = txt.'    extension for objects :  "'.s:C_ObjExtension."\"\n"
@@ -2009,7 +1989,7 @@ function! C_Settings ()
 	let txt = txt.'          libraries (C++) :  "'.s:C_CplusLibs."\"\n"
 	let txt = txt.'   code snippet directory :  "'.s:C_CodeSnippets."\"\n"
 	" ----- template files  ------------------------
- 	let txt = txt.'           template style :  "'.mmtemplates#core#Resource ( g:C_Templates, "style" )[0]."\"\n"
+     "let txt = txt.'           template style :  "'.mmtemplates#core#Resource ( g:C_Templates, "style" )[0]."\"\n"
 	let txt = txt.'      plugin installation :  "'.g:C_Installation."\"\n"
 	if g:C_Installation == 'system'
 		let txt = txt.'global template directory :  '.s:C_GlobalTemplateDir."\n"
@@ -2247,15 +2227,15 @@ function! C_CreateGuiMenus ()
 		aunmenu <silent> &Tools.Load\ C\ Support
 		amenu   <silent> 40.1000 &Tools.-SEP100- :
 		amenu   <silent> 40.1030 &Tools.Unload\ C\ Support <C-C>:call C_RemoveGuiMenus()<CR>
-		call s:C_RereadTemplates('no')
-		call s:C_InitMenus()
-		let  s:C_MenusVisible = 'yes'
+		"call s:C_RereadTemplates('no')
+		"call s:C_InitMenus()
+		"let  s:C_MenusVisible = 'yes'
 	endif
 endfunction    " ----------  end of function C_CreateGuiMenus  ----------
 
 function! C_CheckAndRereadTemplates ()
 	if s:C_TemplatesLoaded == 'no'
-		call s:C_RereadTemplates('no')        
+		"call s:C_RereadTemplates('no')        
 		let  s:C_TemplatesLoaded	= 'yes'
 	endif
 endfunction    " ----------  end of function C_CheckAndRereadTemplates  ----------
@@ -2267,9 +2247,9 @@ endfunction    " ----------  end of function C_CheckAndRereadTemplates  --------
 "       RETURNS:  
 "===============================================================================
 function! s:C_RereadTemplates ( displaymsg )
-	let g:C_Templates = mmtemplates#core#NewLibrary ()
-	call mmtemplates#core#ChangeSyntax  ( g:C_Templates, 'comment', '§', '§' )
-	let s:C_TemplateJumpTarget 	=  mmtemplates#core#Resource ( g:C_Templates, "jumptag" )[0]
+	"let g:C_Templates = mmtemplates#core#NewLibrary ()
+	"call mmtemplates#core#ChangeSyntax  ( g:C_Templates, 'comment', '§', '§' )
+	"let s:C_TemplateJumpTarget 	=  mmtemplates#core#Resource ( g:C_Templates, "jumptag" )[0]
 
 	let	messsage							= ''
 	"
@@ -2278,7 +2258,7 @@ function! s:C_RereadTemplates ( displaymsg )
 		" SYSTEM INSTALLATION
 		"-------------------------------------------------------------------------------
 		if filereadable( s:C_GlobalTemplateFile )
-			call mmtemplates#core#ReadTemplates ( g:C_Templates, 'load', s:C_GlobalTemplateFile )
+			"call mmtemplates#core#ReadTemplates ( g:C_Templates, 'load', s:C_GlobalTemplateFile )
 		else
 			echomsg "Global template file '".s:C_GlobalTemplateFile."' not readable."
 			return
@@ -2310,25 +2290,25 @@ function! s:C_RereadTemplates ( displaymsg )
 			endif
 		endif
 		"
-		if filereadable( s:C_LocalTemplateFile )
-			call mmtemplates#core#ReadTemplates ( g:C_Templates, 'load', s:C_LocalTemplateFile )
-			let messsage	= messsage." and '".s:C_LocalTemplateFile."'"
-			if mmtemplates#core#ExpandText( g:C_Templates, '|AUTHOR|' ) == 'YOUR NAME'
-				echomsg "Please set your personal details in file '".s:C_LocalTemplateFile."'."
-			endif
-		endif
+		"if filereadable( s:C_LocalTemplateFile )
+			""call mmtemplates#core#ReadTemplates ( g:C_Templates, 'load', s:C_LocalTemplateFile )
+			""let messsage	= messsage." and '".s:C_LocalTemplateFile."'"
+			""if mmtemplates#core#ExpandText( g:C_Templates, '|AUTHOR|' ) == 'YOUR NAME'
+				""echomsg "Please set your personal details in file '".s:C_LocalTemplateFile."'."
+			""endif
+		"endif
 		"
 	else
 		"-------------------------------------------------------------------------------
 		" LOCAL INSTALLATION
 		"-------------------------------------------------------------------------------
-		if filereadable( s:C_LocalTemplateFile )
-			call mmtemplates#core#ReadTemplates ( g:C_Templates, 'load', s:C_LocalTemplateFile )
-			let	messsage	= "Templates read from '".s:C_LocalTemplateFile."'"
-		else
-			echomsg "Local template file '".s:C_LocalTemplateFile."' not readable." 
-			return
-		endif
+		"if filereadable( s:C_LocalTemplateFile )
+			"call mmtemplates#core#ReadTemplates ( g:C_Templates, 'load', s:C_LocalTemplateFile )
+			"let	messsage	= "Templates read from '".s:C_LocalTemplateFile."'"
+		"else
+			"echomsg "Local template file '".s:C_LocalTemplateFile."' not readable." 
+			"return
+		"endif
 		"
 	endif
 	if a:displaymsg == 'yes'
@@ -2452,11 +2432,11 @@ function! C_InsertTemplateWrapper ()
 	"
 	call C_CheckAndRereadTemplates()
 	if isdirectory(expand('%:p:h'))
-		if index( s:C_SourceCodeExtensionsList, expand('%:e') ) >= 0 
- 			call mmtemplates#core#InsertTemplate(g:C_Templates, 'Comments.file description impl')
-		else
- 			call mmtemplates#core#InsertTemplate(g:C_Templates, 'Comments.file description-header')
-		endif
+		"if index( s:C_SourceCodeExtensionsList, expand('%:e') ) >= 0 
+             "call mmtemplates#core#InsertTemplate(g:C_Templates, 'Comments.file description impl')
+		"else
+             "call mmtemplates#core#InsertTemplate(g:C_Templates, 'Comments.file description-header')
+		"endif
 		set modified
 	endif
 endfunction    " ----------  end of function C_InsertTemplateWrapper  ----------
@@ -2597,16 +2577,16 @@ function! s:CreateAdditionalMaps ()
 	"
 	" ---------- snippet menu : templates ----------------------------------------
 	"
-	nnoremap    <buffer>  <silent> <LocalLeader>ntl       :call mmtemplates#core#EditTemplateFiles(g:C_Templates,-1)<CR>
-	inoremap    <buffer>  <silent> <LocalLeader>ntl  <C-C>:call mmtemplates#core#EditTemplateFiles(g:C_Templates,-1)<CR>
-	if g:C_Installation == 'system'
-		nnoremap  <buffer>  <silent> <LocalLeader>ntg       :call mmtemplates#core#EditTemplateFiles(g:C_Templates,1)<CR>
-		inoremap  <buffer>  <silent> <LocalLeader>ntg  <C-C>:call mmtemplates#core#EditTemplateFiles(g:C_Templates,1)<CR>
-	endif
-	nnoremap    <buffer>  <silent> <LocalLeader>ntr       :call mmtemplates#core#ReadTemplates(g:C_Templates,"reload","all")<CR>
-	inoremap    <buffer>  <silent> <LocalLeader>ntr  <C-C>:call mmtemplates#core#ReadTemplates(g:C_Templates,"reload","all")<CR>
-	nnoremap    <buffer>  <silent> <LocalLeader>nts       :call mmtemplates#core#ChooseStyle(g:C_Templates,"!pick")<CR>
-	inoremap    <buffer>  <silent> <LocalLeader>nts  <C-C>:call mmtemplates#core#ChooseStyle(g:C_Templates,"!pick")<CR>
+	"nnoremap    <buffer>  <silent> <LocalLeader>ntl       :call mmtemplates#core#EditTemplateFiles(g:C_Templates,-1)<CR>
+	"inoremap    <buffer>  <silent> <LocalLeader>ntl  <C-C>:call mmtemplates#core#EditTemplateFiles(g:C_Templates,-1)<CR>
+	"if g:C_Installation == 'system'
+		"nnoremap  <buffer>  <silent> <LocalLeader>ntg       :call mmtemplates#core#EditTemplateFiles(g:C_Templates,1)<CR>
+		"inoremap  <buffer>  <silent> <LocalLeader>ntg  <C-C>:call mmtemplates#core#EditTemplateFiles(g:C_Templates,1)<CR>
+	"endif
+	"nnoremap    <buffer>  <silent> <LocalLeader>ntr       :call mmtemplates#core#ReadTemplates(g:C_Templates,"reload","all")<CR>
+	"inoremap    <buffer>  <silent> <LocalLeader>ntr  <C-C>:call mmtemplates#core#ReadTemplates(g:C_Templates,"reload","all")<CR>
+	"nnoremap    <buffer>  <silent> <LocalLeader>nts       :call mmtemplates#core#ChooseStyle(g:C_Templates,"!pick")<CR>
+	"inoremap    <buffer>  <silent> <LocalLeader>nts  <C-C>:call mmtemplates#core#ChooseStyle(g:C_Templates,"!pick")<CR>
 	"
 	" ---------- C++ menu ----------------------------------------------------
 	"
@@ -2719,7 +2699,7 @@ if has("autocmd")
 				\	if ( &filetype == 'cpp' || &filetype == 'c') |
 				\		call C_CreateMenusDelayed() |
 				\		call s:CreateAdditionalMaps() |
-				\		call mmtemplates#core#CreateMaps ( 'g:C_Templates', g:C_MapLeader ) |
+				"\		call mmtemplates#core#CreateMaps ( 'g:C_Templates', g:C_MapLeader ) |
 				\	endif
 
 		"-------------------------------------------------------------------------------
@@ -2737,7 +2717,7 @@ if has("autocmd")
 				" template styles are related to file extensions 
 				"-------------------------------------------------------------------------------
 				for [ pattern, stl ] in items( g:C_Styles )
-					exe "autocmd BufNewFile,BufRead,BufEnter ".pattern." call mmtemplates#core#ChooseStyle ( g:C_Templates, '".stl."')"
+					"exe "autocmd BufNewFile,BufRead,BufEnter ".pattern." call mmtemplates#core#ChooseStyle ( g:C_Templates, '".stl."')"
 					exe "autocmd BufNewFile                  ".pattern." call C_InsertTemplateWrapper()"
 				endfor
 				"
