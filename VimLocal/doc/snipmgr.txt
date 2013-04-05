@@ -1,0 +1,126 @@
+*snipmgr.txt*  A simple snippets manager for 'snipMate' Vim plugin
+
+SnipMgr                                                              *snipmgr*
+
+    VERSION:      1.2
+    DATE:         04-09-2011
+    AUTHOR:       Tamir Lavi <tlavi@null.net>
+    LICENSE:      Vim |license|
+    REQUIREMENTS: Vim 7+, |nocp|, |snipMate|
+    REPOSITORY:   http://github.com/tlavi/SnipMgr
+
+==============================================================================
+CONTENTS                                                    *snipmgr-contents*
+
+    1.OVERVIEW....................................|snipmgr-overview|
+    2.INSTALLATION................................|snipmgr-installation|
+    3.USAGE.......................................|snipmgr-usage|
+    4.SETTINGS....................................|snipmgr-settings|
+    5.ABOUT.......................................|snipmgr-about|
+    6.LICENSE.....................................|snipmgr-license|
+    7.THANKS......................................|snipmgr-thanks|
+
+=============================================================================
+OVERVIEW                                                   *snipmgr-overview*
+
+SnipMgr provides a simple "SnipMgr" menu tree that allows you to easily
+manage your snipMate snippets.  In addition, you can use the |:SnipAdd|,
+|:SnipRemove| and |:SnipUpdate| commands or the |<leader>ssa|, |<leader>ssr|,
+and |<leader>ssu| key bindings.
+
+=============================================================================
+INSTALLATION                                           *snipmgr-installation*
+
+Before installing SnipMgr you must install |snipMate|
+(http://www.vim.org/scripts/script.php?script_id=2540)
+
+After snipMate is installed, download snipmgr-x.x.zip and unzip it into your
+|runtimepath| directory.
+
+You should place the files as follows:
+>
+    <your_runtimepath>/plugin/snipmgr.vim
+    <your_runtimepath>/doc/snipmgr.txt
+<
+For easy uninstallation, put the files into a new directory and just add the
+directory path to the |rtp| variable in your |.vimrc|:
+>
+    :set rtp+=<new_directory_path>
+<
+
+Then update your help tag files using the |:helptags| command:
+>
+    :helptags $VIMRUNTIME/doc
+<
+or (if you install the plugin into the <new_directory_path>)
+>
+    :helptags <new_directory_path>/doc
+<
+For more details see |add-local-help|.
+
+=============================================================================
+USAGE                                                         *snipmgr-usage*
+
+Adding snippets ~
+                                                       *<leader>ssa* *:SnipAdd*
+Just select any strings in |visual-mode|, |Select-mode| or |visual-block|
+mode and call the :SnipAdd command by using the SnipMgr menu, command line,
+or default key binding |<leader>ssa|.
+
+Removing snippets ~
+                                                    *<leader>ssr* *:SnipRemove*
+For removing already existing snippets use the |:SnipRemove| command or
+|<leader>ssr| key binding.
+
+Updating the snippets list ~
+                                                    *<leader>ssu* *:SnipUpdate*
+If you manually add any snippets for the current filetype, you can call the
+|:SnipUpdate| command and use these snippets instantly without restarting
+Vim. Default key binding: |<leader>ssu|.
+
+=============================================================================
+SETTINGS                                                   *snipmgr-settings*
+                                                             
+                                                             *loaded_snipmgr*
+Default value: 1 (when SnipMgr has successfully loaded)
+Allows you to disable loading of SnipMgr from your |.vimrc|:
+>
+    let loaded_snipmgr = 0
+<
+
+                                                     *g:snipmgr_disable_menu*
+Default value: 0
+Allows you to disable the "SnipMgr" branch in the main menu when assigned to
+1:
+>
+    let g:snipmgr_disable_menu = 1
+<
+
+                                                     *g:snipmgr_snippets_dir*
+Default value: 'snippets' dir inside the first item of |rtp|
+If you prefer to store snippets in a place different from your |rtp|, change
+the value in |g:snipmgr_snippets_dir| to your preferred. For example:
+>
+    let g:snipmgr_snippets_dir = $HOME."/foo/snippets"
+<
+
+=============================================================================
+ABOUT                                                         *snipmgr-about*
+
+Author:     Tamir Lavi <tlavi@null.net>
+License:    Vim |license|
+Repository: https://github.com/tlavi/SnipMgr
+Wiki:       https://github.com/tlavi/SnipMgr/wiki
+Issues:     https://github.com/tlavi/SnipMgr/issues
+
+=============================================================================
+LICENSE                                                     *snipmgr-license*
+
+This plugin is distributable under the same terms as Vim itself. See
+|license|. No warranties, expressed or implied.
+
+=============================================================================
+THANKS                                                       *snipmgr-thanks*
+
+I thank Robert David Grant (https://github.com/bgrant) for proofreading the
+help file.
