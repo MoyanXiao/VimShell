@@ -21,6 +21,7 @@ source ~/.vim/config/ConfMarkChange.vim
 source ~/.vim/config/ConfMRU.vim
 source ~/.vim/config/ConfSearch.vim 
 source ~/.vim/config/ConfPrograming.vim
+source ~/.vim/config/ConfEdit.vim
 
 
 
