@@ -27,6 +27,7 @@ set showcmd     " display incomplete commands
 set incsearch       " do incremental searching
 set hidden
 set number
+set cursorline
 set wildmenu
 
 

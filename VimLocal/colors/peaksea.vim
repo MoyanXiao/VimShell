@@ -222,13 +222,13 @@ if &background=='light'
       hi TabLineFill	ctermfg=fg	ctermbg=250	cterm=NONE
       hi TabLineSel	ctermfg=fg	ctermbg=NONE	cterm=NONE
       hi CursorColumn	ctermfg=NONE	ctermbg=216
-      hi CursorLine	ctermfg=NONE	ctermbg=NONE	cterm=underline
+      hi CursorLine	ctermfg=NONE ctermbg=NONE cterm=underline
       hi MatchParen	ctermfg=NONE	ctermbg=150
     endif
 
     hi TabLine		cterm=underline
     hi TabLineFill	cterm=underline
-    hi CursorLine	cterm=underline
+    hi CursorLine   cterm=underline
 
     " For reversed stuffs, clear the reversed prop and set the bold prop again
     hi IncSearch	cterm=bold
@@ -313,7 +313,7 @@ elseif &background=='dark'
     hi TabLineFill	guifg=fg	guibg=#008000	gui=NONE
     hi TabLineSel	guifg=fg	guibg=NONE	gui=NONE
     hi CursorColumn	guifg=NONE	guibg=#800000	gui=NONE
-    hi CursorLine	guifg=NONE	guibg=NONE	gui=underline
+    hi CursorLine	guifg=NONE guibg=NONE gui=underline
     hi MatchParen	guifg=NONE	guibg=#800080
   endif
 
@@ -558,12 +558,12 @@ elseif &background=='dark'
       hi TabLineFill	ctermfg=fg	ctermbg=28	cterm=NONE
       hi TabLineSel	ctermfg=fg	ctermbg=NONE	cterm=NONE
       hi CursorColumn	ctermfg=NONE	ctermbg=88	cterm=NONE
-      hi CursorLine	ctermfg=NONE	ctermbg=NONE	cterm=underline
+      hi CursorLine	ctermfg=NONE ctermbg=0 cterm=NONE
       hi MatchParen	ctermfg=NONE	ctermbg=90
       hi TabLine	cterm=underline  
       hi TabLineFill	cterm=underline  
       hi Underlined	cterm=underline  
-      hi CursorLine	cterm=underline 
+      "hi CursorLine	cterm=underline  
     endif
 
   endif " t_Co
