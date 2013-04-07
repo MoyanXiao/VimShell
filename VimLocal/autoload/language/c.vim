@@ -26,12 +26,7 @@ function! language#c#AdjustLineEndComm() range
     while linenumber <= a:lastline
         let	line= getline(".")
 
-        " line is not a pure comment but contains one
-        "
         if  match( line, '^\s*'.s:c_cppcomment ) < 0 &&  match( line, s:c_cppcomment ) > 0
-            "
-            " disregard comments starting in a string
-            "
             let	idx1 = -1
             let	idx2 = -1
             let	commentstart= -2
@@ -42,9 +37,6 @@ function! language#c#AdjustLineEndComm() range
                 let commentstart= match   ( line, '"[^"]\+"', start )
                 let commentend	= matchend( line, '"[^"]\+"', start )
             endwhile
-            "
-            " try to adjust the comment
-            "
             let idx1	= 1 + match( line, '\s*'.s:c_cppcomment, start )
             let idx2	= 1 + idx2
             call setpos(".", [ 0, linenumber, idx1, 0 ] )
@@ -117,16 +109,14 @@ endfunction
 
 let s:C_If0_Counter = 0 
 let s:C_If0_Txt = "If0Label_"   
-
 let s:C_Com1                    = '/*'     " C-style : comment start
 let s:C_Com2                    = '*/'     " C-style : comment end
+
 function! language#c#PPIf0(mode) range
     "
     let	s:C_If0_Counter	= 0
     let	save_line = line(".")
     let	actual_line = 0
-    "
-    " search for the maximum option number (if any)
     "
     normal gg
     while actual_line < search( s:C_If0_Txt."\\d\\+" )
@@ -145,6 +135,7 @@ function! language#c#PPIf0(mode) range
         let zz= zz."\n#endif     ".s:C_Com1." ----- #if 0 : ".s:C_If0_Txt.s:C_If0_Counter." ----- ".s:C_Com2."\n\n"
         put =zz
         normal 2k
+        call feedkeys("i\t")
     endif
 
     if a:mode=='v'
@@ -186,12 +177,7 @@ function! language#c#PPIf0Remove ()
     silent exe ':'.lastline.','.lastline.'d'
     silent exe ':'.frstline.','.frstline.'d'
 
-endfunction    " ----------  end of functionlanguage#c#PPIf0Remove ----------
-
-"
-"------------------------------------------------------------------------------
-"  Handle prototypes       {{{1
-"------------------------------------------------------------------------------
+endfunction
 "
 let s:C_Prototype        = []
 let s:C_PrototypeShow    = []
@@ -220,9 +206,8 @@ function! language#c#ProtoPick( type ) range
     let prototyp  = substitute( prototyp, '\s\+', " ", "g" )				" squeeze whitespaces
     let prototyp  = substitute( prototyp, '\s\+$', "", "" )					" remove trailing whitespaces
     "
-    "-------------------------------------------------------------------------------
     " prototype for  methods
-    "-------------------------------------------------------------------------------
+    "
     if a:type == 'method'
         "
         " remove template keyword
@@ -248,9 +233,9 @@ function! language#c#ProtoPick( type ) range
         let resfct	= substitute( resfct, '\s\+', '', 'g' )
 
         if  !empty(resret) && match( resfct, resret.'$' ) >= 0
-            "-------------------------------------------------------------------------------
+            "
             " remove scope resolution from the return type (keep 'std::')
-            "-------------------------------------------------------------------------------
+            " 
             let returntype	= substitute( returntype, '<\s*\w\+\s*>', '', 'g' )
             let returntype 	= substitute( returntype, '\<std\s*::', 'std##', 'g' )	" remove the scope res. operator
             let returntype 	= substitute( returntype, '\<\h\w*\s*::', '', 'g' )			" remove the scope res. operator
@@ -287,11 +272,8 @@ function! language#c#ProtoPick( type ) range
         echon	's'
     endif
     "
-endfunction    " ---------  end of functionlanguage#c#ProtoPick ----------
-"
-"------------------------------------------------------------------------------
-" language#c#ProtoInsert : insert       {{{1
-"------------------------------------------------------------------------------
+endfunction 
+
 function! language#c#ProtoInsert ()
     "
     " use internal formatting to avoid conficts when using == below
@@ -312,11 +294,8 @@ function! language#c#ProtoInsert ()
     " restore formatter programm
     let &equalprg	= equalprg_save
     "
-endfunction    " ---------  end of functionlanguage#c#ProtoInsert  ----------
-"
-"------------------------------------------------------------------------------
-" language#c#ProtoClear : clear       {{{1
-"------------------------------------------------------------------------------
+endfunction
+
 function! language#c#ProtoClear ()
     if s:C_PrototypeCounter > 0
         let s:C_Prototype        = []
@@ -330,11 +309,8 @@ function! language#c#ProtoClear ()
     else
         echo "currently no prototypes available"
     endif
-endfunction    " ---------  end of functionlanguage#c#ProtoClear  ----------
-"
-"------------------------------------------------------------------------------
-" language#c#ProtoShow : show       {{{1
-"------------------------------------------------------------------------------
+endfunction
+
 function! language#c#ProtoShow ()
     if s:C_PrototypeCounter > 0
         for protytype in s:C_PrototypeShow
@@ -343,5 +319,5 @@ function! language#c#ProtoShow ()
     else
         echo "currently no prototypes available"
     endif
-endfunction    " ---------  end of functionlanguage#c#ProtoShow  ----------
+endfunction
 "
