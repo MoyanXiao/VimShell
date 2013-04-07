@@ -8,13 +8,13 @@ function! project#common#SaveOptions(group, optList, escapeChar)
     let s:global_option_dict[a:group] = {}
     for opt in a:optList
         exe 'let escaped =&'.opt
-        let escaped	= escape( escaped, ' |"\'.escapeChar )
-        let s:global_option_dict[a:group][a:optList]	= escaped
+        let escaped	= escape( escaped, ' |"\'.a:escapeChar )
+        let s:global_option_dict[a:group][opt] = escaped
     endfor
 endfunction  
 
 function! project#common#RestoreOptions(group, optList)
-    if len[a:optList] == 0
+    if len(a:optList) == 0
         for opt in keys(s:global_option_dict[a:group])
             exe ':set '.opt.'='.s:global_option_dict[a:group][opt]
         endfor
@@ -40,3 +40,16 @@ function! project#common#Input ( promp, text, ... )
     let retval  = substitute( retval, '\s\+$', "", "" )
     return retval
 endfunction  
+
+function! project#common#Confirm( msg, conList, ...)
+    if len(a:conList) == 0
+        return ""
+    endif
+    let defopt = 1
+    if a:0 > 0 && a:1 > 1
+        let defopt = a:1
+    endif
+    let msg = a:msg
+    let rt = confirm(msg, join(a:conList,"\n"), defopt)
+    return substitute(a:conList[rt-1], '&', "", "")
+endfunction
