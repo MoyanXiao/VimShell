@@ -3,11 +3,13 @@ if exists("g:loaded_auto_language_c")
 endif
 let g:loaded_auto_language_c = 1
 
+let s:ScriptIdentifier = "INDENTY_C_LANGUAGE"
 let s:C_LineEndCommColDefault = 49
 
 let	s:c_cppcomment= '\(\/\*.\{-}\*\/\|\/\/.*$\)'
 
-function! C_AdjustLineEndComm ( ) range
+
+function! language#c#AdjustLineEndComm() range
     "
     if !exists("b:C_LineEndCommentColumn")
         let	b:C_LineEndCommentColumn	= s:C_LineEndCommColDefault
@@ -15,7 +17,7 @@ function! C_AdjustLineEndComm ( ) range
 
     let save_cursor = getpos(".")
 
-    let	save_expandtab	= &expandtab
+    call project#common#SaveOptions(s:ScriptIdentifier,['expandtab'],'')
     exe	":set expandtab"
 
     let	linenumber	= a:firstline
@@ -30,13 +32,13 @@ function! C_AdjustLineEndComm ( ) range
             "
             " disregard comments starting in a string
             "
-            let	idx1	      = -1
-            let	idx2	      = -1
+            let	idx1 = -1
+            let	idx2 = -1
             let	commentstart= -2
             let	commentend	= 0
             while commentstart < idx2 && idx2 < commentend
-                let start	      = commentend
-                let idx2	      = match( line, s:c_cppcomment, start )
+                let start = commentend
+                let idx2 = match( line, s:c_cppcomment, start )
                 let commentstart= match   ( line, '"[^"]\+"', start )
                 let commentend	= matchend( line, '"[^"]\+"', start )
             endwhile
@@ -73,33 +75,26 @@ function! C_AdjustLineEndComm ( ) range
         let linenumber=linenumber+1
         normal j
     endwhile
-    "
     " restore tab expansion settings and cursor position
-    let &expandtab	= save_expandtab
+    call project#common#RestoreOptions(s:ScriptIdentifier, [])
     call setpos('.', save_cursor)
+endfunction
 
-endfunction		" ---------- end of function  C_AdjustLineEndComm  ----------
-"
-"------------------------------------------------------------------------------
-"  C_GetLineEndCommCol: get line-end comment position    {{{1
-"------------------------------------------------------------------------------
-function! C_GetLineEndCommCol ()
+function! language#c#GetLineEndCommCol ()
     let actcol	= virtcol(".")
     if actcol+1 == virtcol("$")
-        let	b:C_LineEndCommentColumn	= ''
+        let	b:C_LineEndCommentColumn = ''
         while match( b:C_LineEndCommentColumn, '^\s*\d\+\s*$' ) < 0
             let b:C_LineEndCommentColumn = project#common#Input( 'start line-end comment at virtual column : ', actcol, '' )
         endwhile
     else
-        let	b:C_LineEndCommentColumn	= virtcol(".")
+        let	b:C_LineEndCommentColumn = virtcol(".")
     endif
     echomsg "line end comments will start at column  ".b:C_LineEndCommentColumn
-endfunction		" ---------- end of function  C_GetLineEndCommCol  ----------
-"
-"------------------------------------------------------------------------------
-"  C_EndOfLineComment: single line-end comment    {{{1
-"------------------------------------------------------------------------------
-function! C_EndOfLineComment ( ) range
+endfunction
+
+"" TODO finish this function
+function! language#c#EndOfLineComment() range
     if !exists("b:C_LineEndCommentColumn")
         let	b:C_LineEndCommentColumn	= s:C_LineEndCommColDefault
     endif
@@ -112,21 +107,24 @@ function! C_EndOfLineComment ( ) range
         if linelength < b:C_LineEndCommentColumn
             let diff	= b:C_LineEndCommentColumn -1 -linelength
         endif
-        "exe "normal	".diff."A "
+        "exe "normal ".diff."A "
         "call mmtemplates#core#InsertTemplate(g:C_Templates, 'Comments.end-of-line-comment')
         if line > a:firstline
             normal k
         endif
     endfor
-endfunction		" ---------- end of function  C_EndOfLineComment  ----------
-""------------------------------------------------------------------------------
-"  C_PPIf0 : #if 0 .. #endif        {{{1
-"------------------------------------------------------------------------------
-function! C_PPIf0 (mode)
+endfunction
+
+let s:C_If0_Counter = 0 
+let s:C_If0_Txt = "If0Label_"   
+
+let s:C_Com1                    = '/*'     " C-style : comment start
+let s:C_Com2                    = '*/'     " C-style : comment end
+function! language#c#PPIf0(mode) range
     "
     let	s:C_If0_Counter	= 0
-    let	save_line					= line(".")
-    let	actual_line				= 0
+    let	save_line = line(".")
+    let	actual_line = 0
     "
     " search for the maximum option number (if any)
     "
@@ -143,18 +141,18 @@ function! C_PPIf0 (mode)
     silent exe ":".save_line
     "
     if a:mode=='a'
-        let zz=    "\n#if  0     ".s:C_Com1." ----- #if 0 : ".s:C_If0_Txt.s:C_If0_Counter." ----- ".s:C_Com2."\n"
+        let zz="\n#if  0     ".s:C_Com1." ----- #if 0 : ".s:C_If0_Txt.s:C_If0_Counter." ----- ".s:C_Com2."\n"
         let zz= zz."\n#endif     ".s:C_Com1." ----- #if 0 : ".s:C_If0_Txt.s:C_If0_Counter." ----- ".s:C_Com2."\n\n"
         put =zz
-        normal 4k
+        normal 2k
     endif
 
     if a:mode=='v'
-        let	pos1	= line("'<")
-        let	pos2	= line("'>")
-        let zz=      "#endif     ".s:C_Com1." ----- #if 0 : ".s:C_If0_Txt.s:C_If0_Counter." ----- ".s:C_Com2."\n\n"
+        let	pos1 = line("'<")
+        let	pos2 = line("'>")
+        let zz = "#endif     ".s:C_Com1." ----- #if 0 : ".s:C_If0_Txt.s:C_If0_Counter." ----- ".s:C_Com2."\n\n"
         exe ":".pos2."put =zz"
-        let zz=    "\n#if  0     ".s:C_Com1." ----- #if 0 : ".s:C_If0_Txt.s:C_If0_Counter." ----- ".s:C_Com2."\n"
+        let zz = "\n#if  0     ".s:C_Com1." ----- #if 0 : ".s:C_If0_Txt.s:C_If0_Counter." ----- ".s:C_Com2."\n"
         exe ":".pos1."put! =zz"
         "
         if  &foldenable && foldclosed(".")
@@ -162,19 +160,13 @@ function! C_PPIf0 (mode)
         endif
     endif
 
-endfunction    " ----------  end of function C_PPIf0 ----------
-"
-"------------------------------------------------------------------------------
-"  C_PPIf0Remove : remove  #if 0 .. #endif        {{{1
-"------------------------------------------------------------------------------
-function! C_PPIf0Remove ()
-    "
-    " cursor on fold: open fold first
+endfunction
+
+function! language#c#PPIf0Remove ()
     if  &foldenable && foldclosed(".")
         normal zv
     endif
-    "
-    let frstline	= searchpair( '^\s*#if\s\+0', '', '^\s*#endif\>.\+\<If0Label_', 'bn' )
+    let frstline = searchpair( '^\s*#if\s\+0', '', '^\s*#endif\>.\+\<If0Label_', 'bn' )
     if frstline<=0
         echohl WarningMsg | echo 'no  #if 0 ... #endif  found or cursor not inside such a directive'| echohl None
         return
@@ -194,7 +186,7 @@ function! C_PPIf0Remove ()
     silent exe ':'.lastline.','.lastline.'d'
     silent exe ':'.frstline.','.frstline.'d'
 
-endfunction    " ----------  end of function C_PPIf0Remove ----------
+endfunction    " ----------  end of functionlanguage#c#PPIf0Remove ----------
 
 "
 "------------------------------------------------------------------------------
@@ -209,10 +201,10 @@ let s:C_CComment         = '\/\*.\{-}\*\/\s*'		" C comment with trailing whitesp
 let s:C_CppComment       = '\/\/.*$'						" C++ comment
 "
 "------------------------------------------------------------------------------
-"  C_ProtoPick: pick up a method prototype (normal/visual)       {{{1
+" language#c#ProtoPick: pick up a method prototype (normal/visual)       {{{1
 "  type : 'function', 'method'
 "------------------------------------------------------------------------------
-function! C_ProtoPick( type ) range
+function! language#c#ProtoPick( type ) range
     "
     " remove C/C++-comments, leading and trailing whitespaces, squeeze whitespaces
     "
@@ -295,12 +287,12 @@ function! C_ProtoPick( type ) range
         echon	's'
     endif
     "
-endfunction    " ---------  end of function C_ProtoPick ----------
+endfunction    " ---------  end of functionlanguage#c#ProtoPick ----------
 "
 "------------------------------------------------------------------------------
-"  C_ProtoInsert : insert       {{{1
+" language#c#ProtoInsert : insert       {{{1
 "------------------------------------------------------------------------------
-function! C_ProtoInsert ()
+function! language#c#ProtoInsert ()
     "
     " use internal formatting to avoid conficts when using == below
     let	equalprg_save	= &equalprg
@@ -312,7 +304,7 @@ function! C_ProtoInsert ()
         endfor
         let	lines	= s:C_PrototypeCounter	- 1
         silent exe "normal =".lines."-"
-        call C_ProtoClear()
+        call language#c#ProtoClear()
     else
         echo "currently no prototypes available"
     endif
@@ -320,12 +312,12 @@ function! C_ProtoInsert ()
     " restore formatter programm
     let &equalprg	= equalprg_save
     "
-endfunction    " ---------  end of function C_ProtoInsert  ----------
+endfunction    " ---------  end of functionlanguage#c#ProtoInsert  ----------
 "
 "------------------------------------------------------------------------------
-"  C_ProtoClear : clear       {{{1
+" language#c#ProtoClear : clear       {{{1
 "------------------------------------------------------------------------------
-function! C_ProtoClear ()
+function! language#c#ProtoClear ()
     if s:C_PrototypeCounter > 0
         let s:C_Prototype        = []
         let s:C_PrototypeShow    = []
@@ -338,12 +330,12 @@ function! C_ProtoClear ()
     else
         echo "currently no prototypes available"
     endif
-endfunction    " ---------  end of function C_ProtoClear  ----------
+endfunction    " ---------  end of functionlanguage#c#ProtoClear  ----------
 "
 "------------------------------------------------------------------------------
-"  C_ProtoShow : show       {{{1
+" language#c#ProtoShow : show       {{{1
 "------------------------------------------------------------------------------
-function! C_ProtoShow ()
+function! language#c#ProtoShow ()
     if s:C_PrototypeCounter > 0
         for protytype in s:C_PrototypeShow
             echo protytype
@@ -351,5 +343,5 @@ function! C_ProtoShow ()
     else
         echo "currently no prototypes available"
     endif
-endfunction    " ---------  end of function C_ProtoShow  ----------
+endfunction    " ---------  end of functionlanguage#c#ProtoShow  ----------
 "

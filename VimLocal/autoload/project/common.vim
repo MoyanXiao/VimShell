@@ -16,11 +16,13 @@ endfunction
 function! project#common#RestoreOptions(group, optList)
     if len(a:optList) == 0
         for opt in keys(s:global_option_dict[a:group])
-            exe ':set '.opt.'='.s:global_option_dict[a:group][opt]
+            "exe ':set '.opt.'='.s:global_option_dict[a:group][opt]
+            exe "let &".opt."=".s:global_option_dict[a:group][opt]
         endfor
     else
         for opt in a:optList
-            exe ':set '.opt.'='.s:global_option_dict[a:group][opt]
+            "exe ':set '.opt.'='.s:global_option_dict[a:group][opt]
+            exe "let &".opt."=".s:global_option_dict[a:group][opt]
         endfor
 
     endif
