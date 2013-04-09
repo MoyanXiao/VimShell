@@ -20,3 +20,21 @@ function! project#operation#CscopeFind(cmd, msg,...)
     exec cmd.a:cmd.' '.key
 endfunction
 
+function! project#operation#VirtualGrep(cmd) range
+    let l:saved_reg = @"
+    execute "normal! vgvy"
+
+    let l:pattern = escape(@", '\\/.*$^~[]')
+    let l:pattern = substitute(l:pattern, "\n$", "", "")
+
+    let @/ = l:pattern
+    let @" = l:saved_reg
+    set verbose=0
+    exec a:cmd." ".l:pattern
+endfunction
+
+let s:replaceTemp=''
+function! project#operation#Replace(flag)
+    let s:replaceTemp= project#common#Input("Input the replace string: ", s:replaceTemp)
+    exec '%s/'.@/.'/'.s:replaceTemp.'/'.a:flag
+endfunction

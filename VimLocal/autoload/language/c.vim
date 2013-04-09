@@ -3,6 +3,14 @@ if exists("g:loaded_auto_language_c")
 endif
 let g:loaded_auto_language_c = 1
 
+let s:KeyListPath = '~/.vim/wordlists/'
+
+function language#c#LoadKeyList()
+    for file in split(globpath("~/.vim/wordlists/", "*"),"\n")
+        exe "setlocal dictionary+=".file
+    endfor
+endfunction
+
 let s:ScriptIdentifier = "INDENTY_C_LANGUAGE"
 let s:C_LineEndCommColDefault = 49
 

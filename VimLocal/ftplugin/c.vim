@@ -35,3 +35,8 @@ inoremap  <buffer>  /*<CR>  /*<CR><CR>/<Esc>kA<Space>
 inoremap  <buffer>  {<CR>    {<CR>}<Esc>O
 vnoremap  <buffer>  {<CR>   S{<CR>}<Esc>Pk=iB
 "
+inoremap <buffer> >> <Space>>><Space>
+inoremap <buffer> << <Space><<<Space>
+inoremap <buffer> <<" <Space><< ""<Space><Left><Left>
+inoremap <buffer> <<; <Space><< "\n";<Left><Left><Left><Left>
+"

@@ -18,8 +18,14 @@ let g:NERDTreeMapActivateNode="O"
 let g:NERDTreeMapOpenRecursively="o"
 let g:NERDTreeMapPreview="<space>"
 
+" open the Tree, TagList and BufExplorer, and move cursor between them
 map <unique> <F3> :call project#layout#LayoutToggle()<cr>
+map <unique> ;md :call project#layout#LayoutMoveTo(1)<cr>
+map <unique> ;mb :call project#layout#LayoutMoveTo(2)<cr>
+map <unique> ;ml :call project#layout#LayoutMoveTo(3)<cr>
+map <unique> ;mr :call project#layout#LayoutMoveBack()<cr>
 
+" Remap window operations
 map <unique> ;ws <C-W><C-S>
 map <unique> ;wv <C-W><C-V>
 map <unique> ;ww <C-W><C-W>
@@ -37,6 +43,7 @@ map <unique> ;w= <C-W>=
 map <unique> ;wf <C-W>f
 map <unique> ;wi <C-W><C-I>
 
+" Remap tab page operations
 map <unique> ;pn :tabnew<CR>
 map <unique> ;pf <C-W>f
 map <unique> ;po :tabonly<CR>
@@ -44,13 +51,9 @@ map <unique> ;pc :tabclose<CR>
 map <unique> ;pp :tabs<CR> 
 map <unique> ;pl gt
 map <unique> ;ph gT
-map <unique> ;p^ :tabfirst
-map <unique> ;p$ :tablast 
+map <unique> ;p^ :tabfirst<CR>
+map <unique> ;p$ :tablast<CR>
 
-map <unique> ;md :call project#layout#LayoutMoveTo(1)<cr>
-map <unique> ;mb :call project#layout#LayoutMoveTo(2)<cr>
-map <unique> ;ml :call project#layout#LayoutMoveTo(3)<cr>
-map <unique> ;mr :call project#layout#LayoutMoveBack()<cr>
 
 
 

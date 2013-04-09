@@ -653,6 +653,8 @@ function! s:RunGrepSpecial(cmd_name, which, action, ...)
             echohl None
             return
         endif
+    elseif a:which == "current"
+        let filenames = bufname(bufnr("%"))
     endif
 
     let grep_opt = ""
@@ -792,6 +794,8 @@ command! -nargs=* -complete=file Rgrep
             \ call s:RunGrepRecursive('Rgrep', 'grep', 'set', <f-args>)
 command! -nargs=* GrepBuffer
             \ call s:RunGrepSpecial('GrepBuffer', 'buffer', 'set', <f-args>)
+command! -nargs=* GrepCurrent
+            \ call s:RunGrepSpecial('GrepCurrent', 'current', 'set', <f-args>)
 command! -nargs=* Bgrep
             \ call s:RunGrepSpecial('Bgrep', 'buffer', 'set', <f-args>)
 command! -nargs=* GrepArgs

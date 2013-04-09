@@ -82,8 +82,18 @@ map <unique> ;tn :tag<CR>
 map <unique> ;ttn :tnext<CR>
 map <unique> ;ttp :ptp<CR>
 
-map <unique> ;fl [I
-map <unique> ;fn ]I
+map ;fl :GrepCurrent <C-R>=expand("<cword>")<CR><CR>
+map ;fb :GrepBuffer <C-R>=expand("<cword>")<CR><CR>
+map ;fr :Rgrep <C-R>=expand("<cword>")<CR><CR><CR><CR>
+vmap ;fl :call project#operation#VirtualGrep("GrepCurrent")<CR>
+vmap ;fb :call project#operation#VirtualGrep("GrepBuffer")<CR>
+vmap ;fl :call project#operation#VirtualGrep("Rgrep")<CR><CR><CR><CR>
+map <unique> ;fs :call project#operation#Replace('g')<CR>
+map <unique> ;fgg :Grep
+map <unique> ;fge :Egrep
+map <unique> ;fgf :Fgrep
+let Grep_Skip_Dirs =' .git bak'
+
 map <unique> ;fcl :ilist
 map <unique> ;fj :jumps<CR>
 map <unique> ;fo <C-O>
@@ -95,5 +105,7 @@ map <unique> ;ia :checkpath!<CR>
 
 map <unique> ;ff :CtrlP<CR>
 map <unique> ;fu :FufFile<CR>
+
+
 let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir', 'rtscript',
             \ 'undo', 'line', 'changes', 'mixed', 'bookmarkdir']
