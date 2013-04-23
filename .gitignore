@@ -1,0 +1,8 @@
+*~
+tags*
+**/*.cache
+**/cache/
+**/bak/*
+workspace/*
+**/spell/*
+

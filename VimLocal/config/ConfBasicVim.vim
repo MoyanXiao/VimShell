@@ -35,11 +35,11 @@ set wildmenu
 set spell
 set laststatus=2
 set hlsearch    " highlighting the search results
+set t_Co=256
+set background=dark
+colo peaksea
 syntax enable
 syntax on
-set background=dark
-set t_Co=256
-colo peaksea
 
 " Define the shift and <TAB> ralated options
 set shiftwidth=4     " number of spaces for (auto) indent

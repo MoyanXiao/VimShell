@@ -39,7 +39,7 @@ endif
 let g:colors_name = expand("<sfile>:t:r")
 
 " I don't want to abuse folding, but here folding is used to avoid confusion. 
-if &background=='light' 
+if 0 " &background=='light' 
   " for background=light {{{2
   " LIGHT COLOR DEFINE START
 
@@ -251,7 +251,7 @@ if &background=='light'
     "hi lCursor		ctermfg=bg	ctermbg=fg	cterm=NONE
   endif " t_Co==256
   " }}}2
-elseif &background=='dark' 
+elseif 1 "  &background=='dark' 
   " for background=dark {{{2
   " DARK COLOR DEFINE START
 

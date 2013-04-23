@@ -68,7 +68,9 @@ map <unique> ;cve :call project#operation#CscopeFind('e', "Search Open V egreps:
 map <unique> ;cvf :call project#operation#CscopeFind('f', "Search Open V files:", 'v')<CR>
 map <unique> ;cvi :call project#operation#CscopeFind('i', "Search Open V #include files:", 'v')<CR>
 
-map <unique> ;ts :tag <C-R>=expand("<cword>")<CR><CR>
+"map <unique> ;ts :tag <C-R>=expand("<cword>")<CR><CR>
+"map <unique> ;tn :tag<CR>
+map <unique> ;tg :tags<CR>
 map <unique> ;tl :tselect <C-R>=expand("<cword>")<CR><CR>
 map <unique> ;twl :stselect <C-R>=expand("<cword>")<CR><CR>
 map <unique> ;ttl :ptselect <C-R>=expand("<cword>")<CR><CR>
@@ -76,10 +78,8 @@ map <unique> ;tj :tjump <C-R>=expand("<cword>")<CR><CR>
 map <unique> ;twj :stjump <C-R>=expand("<cword>")<CR><CR>
 map <unique> ;ttj :ptjump <C-R>=expand("<cword>")<CR><CR>
 map <unique> ;ti <C-]>
-map <unique> ;tg :tags<CR>
 map <unique> ;tp <C-T>
-map <unique> ;tn :tag<CR>
-map <unique> ;ttn :tnext<CR>
+map <unique> ;tn :tnext<CR>
 map <unique> ;ttp :ptp<CR>
 
 map ;fl :GrepCurrent <C-R>=expand("<cword>")<CR><CR>

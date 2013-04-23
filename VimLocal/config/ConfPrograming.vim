@@ -19,3 +19,4 @@ map <silent> ;bdd :breakdel here<CR>
 map <silent> ;bda :breakdel *<CR>
 map <silent> ;bl :breakl <CR>
 
+map <silent> <unique> ;ma :call project#function#Help()<CR>
