@@ -45,7 +45,6 @@ map <unique> ;wi <C-W><C-I>
 
 " Remap tab page operations
 map <unique> ;pn :tabnew<CR>
-map <unique> ;pf <C-W>f
 map <unique> ;po :tabonly<CR>
 map <unique> ;pc :tabclose<CR> 
 map <unique> ;pp :tabs<CR> 

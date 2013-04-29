@@ -181,7 +181,7 @@ function! code#c#Run ()
             call C_HlMessage( "executable : '".s:C_ExecutableToRun."'" )
             exe '!'.Quote.s:C_ExecutableToRun.Quote.' '.l:arguments
         else
-            call code#c#Link()
+            call code#c#ExeToRun()
             if s:LastShellReturnCode == 0
                 let s:C_HlMessage = ""
                 call C_HlMessage()
@@ -197,7 +197,7 @@ function! code#c#Run ()
         let	l:currentbuffernr = bufnr("%")
         "
         if s:C_ExecutableToRun =~ "^\s*$"
-            call code#c#Link()
+            call code#c#ExeToRun()
         endif
 
         if l:currentbuffer ==  bufname("%")
@@ -248,7 +248,7 @@ function! code#c#Run ()
             :redraw!
             call C_HlMessage( "executable : '".s:C_ExecutableToRun."'" )
         else
-            silent call code#c#Link()
+            silent call code#c#ExeToRun()
             if  executable(Exe) && getftime(Exe) >= getftime(Obj) && getftime(Obj) >= getftime(Sou)
                 exe '!xterm -title '.ExeEsc.' '.s:C_XtermDefaults.' -e '.s:C_Wrapper.' '.ExeEsc.' '.l:arguments.' >/dev/null 2>&1 &'
                 :redraw!

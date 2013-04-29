@@ -18,7 +18,7 @@ set nocompatible
 set backspace=indent,eol,start
 
 " backup options
-set backup      " keep a backup file
+"set backup      " keep a backup file
 
 " basic options
 set history=150     " keep 150 lines of command line history
