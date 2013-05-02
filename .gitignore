@@ -3,6 +3,7 @@ tags*
 **/*.cache
 **/cache/
 **/bak/*
+*.swp
 workspace/*
 **/spell/*
 
