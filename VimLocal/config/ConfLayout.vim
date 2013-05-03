@@ -25,6 +25,9 @@ map <unique> ;mb :call project#layout#LayoutMoveTo(2)<cr>
 map <unique> ;ml :call project#layout#LayoutMoveTo(3)<cr>
 map <unique> ;mr :call project#layout#LayoutMoveBack()<cr>
 
+" Toggle GUndo"
+map <unique> ;un :GundoToggle<CR>
+
 " Remap window operations
 map <unique> ;ws <C-W><C-S>
 map <unique> ;wv <C-W><C-V>

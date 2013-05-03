@@ -19,7 +19,6 @@ echo "Project information file is found, entering..."
 let g:config_dict=project#workspaceInfo#LoadWorkSpaceInfo(g:project_file)
 
 if argc() =~ 0
-    call project#control#StartProject()
+    silent call project#control#StartProject()
 endif
-
-call project#control#UpdateProject()
+silent call project#control#UpdateProject()
