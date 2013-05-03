@@ -4,6 +4,7 @@ tags*
 **/cache/
 **/bak/*
 *.swp
+*.pyc
 workspace/*
 **/spell/*
 
