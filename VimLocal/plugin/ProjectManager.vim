@@ -10,12 +10,13 @@ let g:project_file = g:workspace_path . "workspace_info"
 
 map <Leader>pc :call project#control#CreateProject()<cr>
 
+call project#workspaceInfo#LoadWorkSpaceInfo()
+
 if !filereadable(g:project_file)
     finish
 endif
 echo "Project information file is found, entering..."
 
-call project#workspaceInfo#LoadWorkSpaceInfo()
 
 if argc() =~ 0
     silent call project#control#StartProject()

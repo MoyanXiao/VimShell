@@ -39,6 +39,20 @@ function! project#workspaceInfo#pluginHeader(pluginName, filename)
     return 1
 endfunction
 
+function! project#workspaceInfo#TogglePlugin(pluginName)
+    if !has_key(g:config_dict, a:pluginName)
+        echo "No such plugin ".a:pluginName
+        return
+    endif
+    if g:config_dict[a:pluginName]["enable"] ==? "True"
+        echo "Toggle pluginName: ".a:pluginName." to false"
+        let g:config_dict[a:pluginName]["enable"] = "False"
+    else
+        echo "Toggle pluginName: ".a:pluginName." to True"
+        let g:config_dict[a:pluginName]["enable"] = "True"
+    endif
+endfunction
+
 function! project#workspaceInfo#printConfigDict()
     call s:printEle(g:config_dict, '  ')
 endfunction
@@ -55,7 +69,7 @@ function! project#workspaceInfo#printPluginStatus()
             let tmpkey=tmpkey."\t"
             let upThr=upThr-1
         endwhile
-        if eval(g:config_dict[key]["loaded"]." ==? ".string("True"))
+        if exists(g:config_dict[key]["loaded"]) && eval(g:config_dict[key]["loaded"]." ==? ".string("True"))
             echo tmpkey."status=loaded\t ,\tenable=".g:config_dict[key]["enable"]
         else
             echo tmpkey."status=unload\t ,\tenable=".g:config_dict[key]["enable"]
