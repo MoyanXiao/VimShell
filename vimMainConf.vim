@@ -8,7 +8,11 @@
 " set mapleader
 let mapleader = "\\"
 
-source ~/.vim/plugin/ProjectManager.vim
+let g:project_path = $PWD
+let g:workspace_path = g:project_path."/workspace/"
+let g:project_file = g:workspace_path . "workspace_info"
+
+call project#workspaceInfo#LoadWorkSpaceInfo()
 
 " Source the basic config file
 source ~/.vim/config/ConfBasicVim.vim

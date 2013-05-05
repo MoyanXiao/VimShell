@@ -1,16 +1,8 @@
-if exists("g:loaded_project_manager")
+if &cp || project#workspaceInfo#pluginHeader("ProjectManager", expand("<sfile>:p")) 
     finish
 endif
-let g:loaded_project_manager = 1
-
-let g:project_path = $PWD
-let g:workspace_path = g:project_path."/workspace/"
-let g:project_file = g:workspace_path . "workspace_info"
-
 
 map <Leader>pc :call project#control#CreateProject()<cr>
-
-call project#workspaceInfo#LoadWorkSpaceInfo()
 
 if !filereadable(g:project_file)
     finish
