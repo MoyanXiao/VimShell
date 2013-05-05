@@ -4,7 +4,7 @@
 " @Created:     2008-03-24
 
 " define new command
-if &cp || project#workspaceInfo#pluginHeader("Vimgen", expand("<sfile>:p"))
+if &cp || project#workspaceInfo#pluginHeader("Vimgen", expand("<sfile>:p"), "False")
     finish
 endif
 

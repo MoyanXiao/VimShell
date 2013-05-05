@@ -19,7 +19,7 @@
 " faith to faith.
 " ---------------------------------------------------------------------
 " Load Once: {{{1
-if &cp || project#workspaceInfo#pluginHeader("AlignPlugin", expand("<sfile>:p")) 
+if &cp || project#workspaceInfo#pluginHeader("AlignPlugin", expand("<sfile>:p"), "False") 
     finish
 endif
 let s:keepcpo            = &cpo

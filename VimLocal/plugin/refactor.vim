@@ -44,7 +44,7 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " These are the default key mappings
-if &cp || project#workspaceInfo#pluginHeader("Refactor", expand("<sfile>:p"))
+if &cp || project#workspaceInfo#pluginHeader("Refactor", expand("<sfile>:p"), "False")
     finish
 endif
 

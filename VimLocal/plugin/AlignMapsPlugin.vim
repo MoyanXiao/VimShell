@@ -33,7 +33,7 @@
 " Note: these maps all use <Align.vim>.
 "
 " Load Once: {{{1
-if &cp || project#workspaceInfo#pluginHeader("AlignMaps", expand("<sfile>:p")) 
+if &cp || project#workspaceInfo#pluginHeader("AlignMaps", expand("<sfile>:p"), "False") 
     finish
 endif
 let s:keepcpo                = &cpo

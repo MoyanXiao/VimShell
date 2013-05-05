@@ -41,7 +41,7 @@
 "**   For futher information see stlrefvim.txt or do :help stlrefvim        **
 "*****************************************************************************
 
-if &cp || project#workspaceInfo#pluginHeader("StlRefVim", expand("<sfile>:p"))
+if &cp || project#workspaceInfo#pluginHeader("StlRefVim", expand("<sfile>:p"), "False")
     finish
 endif
 

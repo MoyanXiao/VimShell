@@ -9,7 +9,7 @@
 "                http://groups.yahoo.com/group/vim/post?act=reply&messageNum=34406
 " License:       GPL (Gnu Public License)
 " GetLatestVimScripts: 1234 1 :AutoInstall: yankring.vim
-if &cp || project#workspaceInfo#pluginHeader("YankRing", expand("<sfile>:p"))
+if &cp || project#workspaceInfo#pluginHeader("YankRing", expand("<sfile>:p"), "False")
     finish
 endif
 

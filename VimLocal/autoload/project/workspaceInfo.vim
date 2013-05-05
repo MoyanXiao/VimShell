@@ -17,10 +17,14 @@ function! project#workspaceInfo#SaveWorkSpaceInfo()
     call writefile(fl, g:project_file)
 endfunction
 
-function! project#workspaceInfo#pluginHeader(pluginName, filename)
+function! project#workspaceInfo#pluginHeader(pluginName, filename, ...)
     if !has_key(g:config_dict, a:pluginName)
         let g:config_dict[a:pluginName] = {}
-        let g:config_dict[a:pluginName]["enable"] = "True"
+        if a:0 > 0
+            let g:config_dict[a:pluginName]["enable"] = a:1
+        else
+            let g:config_dict[a:pluginName]["enable"] = "True"
+        endif
         let g:config_dict[a:pluginName]["loaded"] = "g:".a:pluginName."_loaded"
         let g:config_dict[a:pluginName]["files"] = [a:filename]
         let g:config_dict[a:pluginName]["values"] = {}
@@ -39,13 +43,19 @@ function! project#workspaceInfo#pluginHeader(pluginName, filename)
     return 1
 endfunction
 
-function! project#workspaceInfo#TogglePlugin(pluginName)
-    if !has_key(g:config_dict, a:pluginName)
-        echo "No such plugin ".a:pluginName
+function! project#workspaceInfo#ActionPlugin(pluginName, action)
+    if a:action !=? "True" && a:action !=? "False" && a:action !=? "Switch"
+        echo "No such action : ". a:action
         return
     endif
-    if g:config_dict[a:pluginName]["enable"] ==? "True"
-        echo "Toggle pluginName: ".a:pluginName." to false"
+
+    if !has_key(g:config_dict, a:pluginName)
+        echo "No such plugin : ".a:pluginName
+        return
+    endif
+
+    if a:action ==? "False" || (a:action ==? "Switch" && g:config_dict[a:pluginName]["enable"] ==? "True")
+        echo "Toggle pluginName: ".a:pluginName." to False"
         let g:config_dict[a:pluginName]["enable"] = "False"
     else
         echo "Toggle pluginName: ".a:pluginName." to True"
@@ -56,9 +66,9 @@ endfunction
 function! project#workspaceInfo#printConfigDict()
     call s:printEle(g:config_dict, '  ')
 endfunction
-" this is commiter
 
 function! project#workspaceInfo#printPluginStatus()
+    let output = [""]
     for key in keys(g:config_dict)
         if key ==? "FileExtense" 
             continue
@@ -70,11 +80,26 @@ function! project#workspaceInfo#printPluginStatus()
             let upThr=upThr-1
         endwhile
         if exists(g:config_dict[key]["loaded"]) && eval(g:config_dict[key]["loaded"]." ==? ".string("True"))
-            echo tmpkey."status=loaded\t ,\tenable=".g:config_dict[key]["enable"]
+            call add(output,tmpkey."status:\e[1;32mloaded\e[0m,\tenable:".g:config_dict[key]["enable"].",\tfile:".string(g:config_dict[key]["files"]) )
         else
-            echo tmpkey."status=unload\t ,\tenable=".g:config_dict[key]["enable"]
+            call add(output,tmpkey."status:\e[1;31munload\e[0m,\tenable:".g:config_dict[key]["enable"].",\tfile:".string(g:config_dict[key]["files"]) )
         endif
     endfor
+    silent execute "!echo -e ".string(join(sort(output), '\n'))
+    let toBeToggleRex = project#common#Input("Input the Rex to change:", "")
+    if len(toBeToggleRex) == 0
+        redraw!
+        return
+    endif
+    let toBeToggle = filter(copy(keys(g:config_dict)), 'v:val !=? "FileExtense" && v:val =~? '.string(toBeToggleRex))
+    let toAct = project#common#Confirm( "Any action to the set ".string(toBeToggle),["True", "False", "Switch", "S&kip"], 4)
+    redraw!
+    echo "Action to the set ".string(toBeToggle)." is ".toAct."\n"
+    if toAct !=? "Skip"
+        for pluginName in toBeToggle
+            call project#workspaceInfo#ActionPlugin(pluginName, toAct)
+        endfor
+    endif
 endfunction
 
 nmap <F2> :call project#workspaceInfo#printConfigDict()<CR>

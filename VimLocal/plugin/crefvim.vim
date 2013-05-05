@@ -44,7 +44,7 @@
 
 " allow user to avoid loading this plugin and prevent loading twice
 "
-if project#workspaceInfo#pluginHeader("CRefVim", expand("<sfile>:p")) 
+if project#workspaceInfo#pluginHeader("CRefVim", expand("<sfile>:p"), "False") 
     finish
 endif
 

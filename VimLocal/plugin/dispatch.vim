@@ -2,7 +2,7 @@
 " Maintainer:   Tim Pope <http://tpo.pe/>
 " Version:      1.0
 
-if &cp || project#workspaceInfo#pluginHeader("Dispatch", expand("<sfile>:p")) 
+if &cp || project#workspaceInfo#pluginHeader("Dispatch", expand("<sfile>:p"),"False") 
     finish
 endif
 if v:version < 700

@@ -8,7 +8,7 @@
 " GetLatestVimScripts: 1160 1 tskeleton.vim
 " http://www.vim.org/scripts/script.php?script_id=1160
 
-if &cp || project#workspaceInfo#pluginHeader("tSkeleton", expand("<sfile>:p"))
+if &cp || project#workspaceInfo#pluginHeader("tSkeleton", expand("<sfile>:p"), "False")
     finish
 endif
 if !exists('loaded_tlib') || loaded_tlib < 103

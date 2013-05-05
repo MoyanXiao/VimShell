@@ -2,7 +2,7 @@
 " Author:       Tim Pope <http://tpo.pe/>
 " Version:      2.0
 " GetLatestVimScripts: 1697 1 :AutoInstall: surround.vim
-if &cp || project#workspaceInfo#pluginHeader("Surround", expand("<sfile>:p"))
+if &cp || project#workspaceInfo#pluginHeader("Surround", expand("<sfile>:p"), "False")
     finish
 endif
 

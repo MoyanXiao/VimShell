@@ -13,7 +13,7 @@
 "
 
 """ Basic Functionality {{{1
-if &cp || project#workspaceInfo#pluginHeader("EvalSelection", expand("<sfile>:p")) 
+if &cp || project#workspaceInfo#pluginHeader("EvalSelection", expand("<sfile>:p"), "False") 
     finish
 endif
 

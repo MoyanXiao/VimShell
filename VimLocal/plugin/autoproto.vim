@@ -59,7 +59,7 @@
 "   Note: only *.c files are supported ! The file must exist.
 "   
 "
-if project#workspaceInfo#pluginHeader("AutoProto", expand("<sfile>:p")) 
+if project#workspaceInfo#pluginHeader("AutoProto", expand("<sfile>:p"), "False") 
     finish
 endif
 
