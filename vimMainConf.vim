@@ -18,6 +18,10 @@ call project#workspaceInfo#LoadWorkSpaceInfo()
 source ~/.vim/config/ConfBasicVim.vim
 
 " Source the config file of the plugin
+if filereadable(expand("~/ConfUltralBlog.vim"))
+    source ~/ConfUltralBlog.vim
+endif
+
 source ~/.vim/config/ConfBufExplorer.vim
 source ~/.vim/config/ConfLayout.vim
 source ~/.vim/config/ConfLookupFile.vim

@@ -13,4 +13,4 @@ echo "Project information file is found, entering..."
 if argc() =~ 0
     silent call project#control#StartProject()
 endif
-call project#control#UpdateProject()
+silent call project#control#UpdateProject()
