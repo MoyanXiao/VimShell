@@ -2,11 +2,13 @@
 " Author:       Tim Pope <http://tpo.pe/>
 " Version:      2.0
 " GetLatestVimScripts: 1697 1 :AutoInstall: surround.vim
+if &cp || project#workspaceInfo#pluginHeader("Surround", expand("<sfile>:p"))
+    finish
+endif
 
-if exists("g:loaded_surround") || &cp || v:version < 700
+if  v:version < 700
   finish
 endif
-let g:loaded_surround = 1
 
 " Input functions {{{1
 

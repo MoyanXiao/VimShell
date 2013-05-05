@@ -13,12 +13,11 @@ map <Leader>pc :call project#control#CreateProject()<cr>
 if !filereadable(g:project_file)
     finish
 endif
-
 echo "Project information file is found, entering..."
 
-let g:config_dict=project#workspaceInfo#LoadWorkSpaceInfo(g:project_file)
+call project#workspaceInfo#LoadWorkSpaceInfo()
 
 if argc() =~ 0
     silent call project#control#StartProject()
 endif
-silent call project#control#UpdateProject()
+call project#control#UpdateProject()

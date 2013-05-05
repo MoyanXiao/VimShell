@@ -4,6 +4,9 @@
 " GetLatestVimScripts: 3252 1 :AutoInstall: L9
 "=============================================================================
 " LOAD GUARD {{{1
+if &cp || project#workspaceInfo#pluginHeader("l9", expand("<sfile>:p")) 
+    finish
+endif
 
 if !l9#guardScriptLoading(expand('<sfile>:p'), 702, 0, [])
   finish

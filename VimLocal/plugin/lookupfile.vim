@@ -11,10 +11,10 @@
 "     http://www.vim.org//script.php?script_id=1581
 " Usage:
 "     See :help lookupfile.txt
-
-if exists('loaded_lookupfile')
-  finish
+if &cp || project#workspaceInfo#pluginHeader("LookUpFile", expand("<sfile>:p")) 
+    finish
 endif
+
 if v:version < 701
   echomsg 'lookupfile: You need at least Vim 7.1'
   finish
@@ -22,12 +22,10 @@ endif
 if !exists('loaded_genutils')
   runtime plugin/genutils.vim
 endif
-if !exists('loaded_genutils') || loaded_genutils < 203
+if !exists('loaded_genutils') 
   echomsg 'lookupfile: You need a newer version of genutils.vim plugin'
   finish
 endif
-
-let g:loaded_lookupfile = 108
 
 " Make sure line-continuations won't cause any problem. This will be restored
 "   at the end

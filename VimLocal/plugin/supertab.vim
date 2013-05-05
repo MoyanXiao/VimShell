@@ -51,7 +51,7 @@
 "   Running vim + supertab with the absolute bar minimum settings:
 "     $ vim -u NONE -U NONE -c "set nocp | runtime plugin/supertab.vim"
 " }}}
-
+" TODO complType with others
 if v:version < 700
   finish
 endif

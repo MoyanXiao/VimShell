@@ -8,6 +8,8 @@
 " set mapleader
 let mapleader = "\\"
 
+source ~/.vim/plugin/ProjectManager.vim
+
 " Source the basic config file
 source ~/.vim/config/ConfBasicVim.vim
 

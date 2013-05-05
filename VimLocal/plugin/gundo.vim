@@ -10,10 +10,9 @@
 
 
 "{{{ Init
-if !exists('g:gundo_debug') && (exists('g:gundo_disable') || exists('loaded_gundo') || &cp)"{{{
+if &cp || project#workspaceInfo#pluginHeader("Gundo", expand("<sfile>:p")) 
     finish
 endif
-let loaded_gundo = 1"}}}
 "}}}
 
 "{{{ Misc

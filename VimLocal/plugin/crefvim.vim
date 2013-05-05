@@ -43,12 +43,10 @@
 "*****************************************************************************
 
 " allow user to avoid loading this plugin and prevent loading twice
-if exists ("loaded_crefvim")
+"
+if project#workspaceInfo#pluginHeader("CRefVim", expand("<sfile>:p")) 
     finish
 endif
-
-let loaded_crefvim = 1
-
 
 
 

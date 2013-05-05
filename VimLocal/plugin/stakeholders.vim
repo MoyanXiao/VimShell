@@ -7,7 +7,7 @@
 " @Revision:    11
 " GetLatestVimScripts: 3326 0 :AutoInstall: stakeholders.vim
 
-if &cp || exists("loaded_stakeholders")
+if &cp || project#workspaceInfo#pluginHeader("StakeHolders", expand("<sfile>:p"))
     finish
 endif
 let loaded_stakeholders = 3

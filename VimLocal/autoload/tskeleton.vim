@@ -126,6 +126,7 @@ if !exists("g:tskel_completions") "{{{2
 endif
 
 if !exists('g:tskeleton#enable_stakeholders')
+    " TODO requires stakeholders"
     let g:tskeleton#enable_stakeholders = exists('g:loaded_stakeholders') && g:loaded_stakeholders  "{{{2
 endif
 

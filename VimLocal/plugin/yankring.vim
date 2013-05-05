@@ -9,8 +9,7 @@
 "                http://groups.yahoo.com/group/vim/post?act=reply&messageNum=34406
 " License:       GPL (Gnu Public License)
 " GetLatestVimScripts: 1234 1 :AutoInstall: yankring.vim
-
-if exists('loaded_yankring')
+if &cp || project#workspaceInfo#pluginHeader("YankRing", expand("<sfile>:p"))
     finish
 endif
 
@@ -126,7 +125,7 @@ endif
 
 " Controls whether the . operator will repeat yank operations
 " The default is based on cpoptions: |cpo-y|
-"	y	A yank command can be redone with ".".
+"   y   A yank command can be redone with ".".
 if !exists('g:yankring_dot_repeat_yank')
     let g:yankring_dot_repeat_yank = (s:cpo_save=~'y'?1:0)
 endif
@@ -1405,8 +1404,8 @@ function! s:YRPaste(replace_last_paste_selection, nextvalue, direction, ...)
         " let which_elem = a:nextvalue * ((v_count > 0)?(v_count):1) * -1
         let which_elem = matchstr(a:nextvalue, '-\?\d\+') * ((v_count > 0)?(v_count):1) * -1
         let s:yr_last_paste_idx = s:YRGetNextElem(
-		    \ s:yr_last_paste_idx, which_elem
-		    \ )
+            \ s:yr_last_paste_idx, which_elem
+            \ )
 
         let save_reg            = getreg(default_register)
         let save_reg_type       = getregtype(default_register)

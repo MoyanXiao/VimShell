@@ -1,9 +1,9 @@
 " cecutil.vim : save/restore window position
 "               save/restore mark position
 "               save/restore selected user maps
-"  Author:	Charles E. Campbell
-"  Version:	18h	ASTRO-ONLY
-"  Date:	Oct 16, 2012
+"  Author:  Charles E. Campbell
+"  Version: 18h ASTRO-ONLY
+"  Date:    Oct 16, 2012
 "
 "  Saving Restoring Destroying Marks: {{{1
 "       call SaveMark(markname)       let savemark= SaveMark(markname)
@@ -14,8 +14,8 @@
 "  Saving Restoring Destroying Window Position: {{{1
 "       call SaveWinPosn()        let winposn= SaveWinPosn()
 "       call RestoreWinPosn()     call RestoreWinPosn(winposn)
-"		\swp : save current window/buffer's position
-"		\rwp : restore current window/buffer's previous position
+"       \swp : save current window/buffer's position
+"       \rwp : restore current window/buffer's previous position
 "       commands: SWP RWP
 "
 "  Saving And Restoring User Maps: {{{1
@@ -31,10 +31,9 @@
 
 " ---------------------------------------------------------------------
 " Load Once: {{{1
-if &cp || exists("g:loaded_cecutil")
- finish
+if &cp || project#workspaceInfo#pluginHeader("cecutil", expand("<sfile>:p")) 
+    finish
 endif
-let g:loaded_cecutil = "v18h"
 let s:keepcpo        = &cpo
 set cpo&vim
 "DechoRemOn
@@ -51,18 +50,18 @@ endif
 if !hasmapto('<Plug>RestoreWinPosn')
  map <unique> <Leader>rwp <Plug>RestoreWinPosn
 endif
-nmap <silent> <Plug>SaveWinPosn		:call SaveWinPosn()<CR>
-nmap <silent> <Plug>RestoreWinPosn	:call RestoreWinPosn()<CR>
+nmap <silent> <Plug>SaveWinPosn     :call SaveWinPosn()<CR>
+nmap <silent> <Plug>RestoreWinPosn  :call RestoreWinPosn()<CR>
 
 " ---------------------------------------------------------------------
 " Command Interface: {{{2
-com! -bar -nargs=0 SWP	call SaveWinPosn()
-com! -bar -nargs=? RWP	call RestoreWinPosn(<args>)
-com! -bar -nargs=1 SM	call SaveMark(<q-args>)
-com! -bar -nargs=1 RM	call RestoreMark(<q-args>)
-com! -bar -nargs=1 DM	call DestroyMark(<q-args>)
+com! -bar -nargs=0 SWP  call SaveWinPosn()
+com! -bar -nargs=? RWP  call RestoreWinPosn(<args>)
+com! -bar -nargs=1 SM   call SaveMark(<q-args>)
+com! -bar -nargs=1 RM   call RestoreMark(<q-args>)
+com! -bar -nargs=1 DM   call DestroyMark(<q-args>)
 
-com! -bar -nargs=1 WLR	call s:WinLineRestore(<q-args>)
+com! -bar -nargs=1 WLR  call s:WinLineRestore(<q-args>)
 
 if v:version < 630
  let s:modifier= "sil! "
@@ -115,9 +114,9 @@ fun! SaveWinPosn(...)
   " only when SaveWinPosn() is used
   if a:0 == 0
    if !exists("b:cecutil_iwinposn")
-	let b:cecutil_iwinposn= 1
+    let b:cecutil_iwinposn= 1
    else
-	let b:cecutil_iwinposn= b:cecutil_iwinposn + 1
+    let b:cecutil_iwinposn= b:cecutil_iwinposn + 1
    endif
 "   echomsg "Decho: saving posn to SWP stack"
    let b:cecutil_winposn{b:cecutil_iwinposn}= savedposn
@@ -157,48 +156,48 @@ fun! RestoreWinPosn(...)
    " use saved window position in b:cecutil_winposn{b:cecutil_iwinposn} if it exists
    if exists("b:cecutil_iwinposn") && exists("b:cecutil_winposn{b:cecutil_iwinposn}")
 "    echomsg "Decho: using stack b:cecutil_winposn{".b:cecutil_iwinposn."}<".b:cecutil_winposn{b:cecutil_iwinposn}.">"
-	try
-	 exe s:modifier.b:cecutil_winposn{b:cecutil_iwinposn}
-	catch /^Vim\%((\a\+)\)\=:E749/
-	 " ignore empty buffer error messages
-	endtry
-	" normally drop top-of-stack by one
-	" but while new top-of-stack doesn't exist
-	" drop top-of-stack index by one again
-	if b:cecutil_iwinposn >= 1
-	 unlet b:cecutil_winposn{b:cecutil_iwinposn}
-	 let b:cecutil_iwinposn= b:cecutil_iwinposn - 1
-	 while b:cecutil_iwinposn >= 1 && !exists("b:cecutil_winposn{b:cecutil_iwinposn}")
-	  let b:cecutil_iwinposn= b:cecutil_iwinposn - 1
-	 endwhile
-	 if b:cecutil_iwinposn < 1
-	  unlet b:cecutil_iwinposn
-	 endif
-	endif
+    try
+     exe s:modifier.b:cecutil_winposn{b:cecutil_iwinposn}
+    catch /^Vim\%((\a\+)\)\=:E749/
+     " ignore empty buffer error messages
+    endtry
+    " normally drop top-of-stack by one
+    " but while new top-of-stack doesn't exist
+    " drop top-of-stack index by one again
+    if b:cecutil_iwinposn >= 1
+     unlet b:cecutil_winposn{b:cecutil_iwinposn}
+     let b:cecutil_iwinposn= b:cecutil_iwinposn - 1
+     while b:cecutil_iwinposn >= 1 && !exists("b:cecutil_winposn{b:cecutil_iwinposn}")
+      let b:cecutil_iwinposn= b:cecutil_iwinposn - 1
+     endwhile
+     if b:cecutil_iwinposn < 1
+      unlet b:cecutil_iwinposn
+     endif
+    endif
    else
-	echohl WarningMsg
-	echomsg "***warning*** need to SaveWinPosn first!"
-	echohl None
+    echohl WarningMsg
+    echomsg "***warning*** need to SaveWinPosn first!"
+    echohl None
    endif
 
-  else	 " handle input argument
+  else   " handle input argument
 "   echomsg "Decho: using input a:1<".a:1.">"
    " use window position passed to this function
    exe a:1
    " remove a:1 pattern from b:cecutil_winposn{b:cecutil_iwinposn} stack
    if exists("b:cecutil_iwinposn")
-	let jwinposn= b:cecutil_iwinposn
-	while jwinposn >= 1                     " search for a:1 in iwinposn..1
-	 if exists("b:cecutil_winposn{jwinposn}")    " if it exists
-	  if a:1 == b:cecutil_winposn{jwinposn}      " and the pattern matches
-	   unlet b:cecutil_winposn{jwinposn}            " unlet it
-	   if jwinposn == b:cecutil_iwinposn            " if at top-of-stack
-		let b:cecutil_iwinposn= b:cecutil_iwinposn - 1      " drop stacktop by one
-	   endif
-	  endif
-	 endif
-	 let jwinposn= jwinposn - 1
-	endwhile
+    let jwinposn= b:cecutil_iwinposn
+    while jwinposn >= 1                     " search for a:1 in iwinposn..1
+     if exists("b:cecutil_winposn{jwinposn}")    " if it exists
+      if a:1 == b:cecutil_winposn{jwinposn}      " and the pattern matches
+       unlet b:cecutil_winposn{jwinposn}            " unlet it
+       if jwinposn == b:cecutil_iwinposn            " if at top-of-stack
+        let b:cecutil_iwinposn= b:cecutil_iwinposn - 1      " drop stacktop by one
+       endif
+      endif
+     endif
+     let jwinposn= jwinposn - 1
+    endwhile
    endif
   endif
 
@@ -230,7 +229,7 @@ fun! s:WinLineRestore(swwline)
    let curwinline= winline()
    exe s:modifier."norm! \<c-y>"
    if curwinline == winline()
-	break
+    break
    endif
   endwhile
 "  echomsg "Decho: s:WinLineRestore"
@@ -249,8 +248,8 @@ fun! GoWinbufnr(bufnum)
   winc t
   let first=1
   while winbufnr(0) != a:bufnum && (first || winnr() != 1)
-  	winc w
-	let first= 0
+    winc w
+    let first= 0
    endwhile
 "  call Dret("GoWinbufnr")
 endfun
@@ -311,14 +310,14 @@ fun! RestoreMark(markname)
 
   if strlen(a:markname) <= 2
    if exists("g:savemark_{markname}") && strlen(g:savemark_{markname}) != 0
-	" use global variable g:savemark_{markname}
-"	call Decho("use savemark list")
-	call RestoreWinPosn(g:savemark_{markname})
-	exe "norm! m".markname
+    " use global variable g:savemark_{markname}
+"   call Decho("use savemark list")
+    call RestoreWinPosn(g:savemark_{markname})
+    exe "norm! m".markname
    endif
   else
    " markname is a savemark command (string)
-"	call Decho("use savemark command")
+"   call Decho("use savemark command")
    let markcmd= strpart(a:markname,1)
    call RestoreWinPosn(markcmd)
    exe "norm! m".markname
@@ -397,7 +396,7 @@ endfun
 "   endwhile                                                               " Decho 
 "  endif                                                                   " Decho
 "endfun                                                                    " Decho 
-"com! -nargs=0 LWP	call ListWinPosn()                                    " Decho 
+"com! -nargs=0 LWP  call ListWinPosn()                                    " Decho 
 
 " ---------------------------------------------------------------------
 " SaveUserMaps: this function sets up a script-variable (s:restoremap) {{{2
@@ -462,10 +461,10 @@ fun! SaveUserMaps(mapmode,maplead,mapchx,suffix)
    let s:restoremap_{a:suffix} = s:restoremap_{a:suffix}."|:sil! ".mapmode."unmap ".dobuffer.amap
    if maparg(amap,mapmode) != ""
     let maprhs                  = substitute(maparg(amap,mapmode),'|','<bar>','ge')
-	let s:restoremap_{a:suffix} = s:restoremap_{a:suffix}."|:".mapmode."map ".dobuffer.amap." ".maprhs
+    let s:restoremap_{a:suffix} = s:restoremap_{a:suffix}."|:".mapmode."map ".dobuffer.amap." ".maprhs
    endif
    if dounmap
-	exe "sil! ".mapmode."unmap ".dobuffer.amap
+    exe "sil! ".mapmode."unmap ".dobuffer.amap
    endif
  
   " save single map <something>
@@ -474,15 +473,15 @@ fun! SaveUserMaps(mapmode,maplead,mapchx,suffix)
    let amap       = a:mapchx
    if amap == "|" || amap == "\<c-v>"
     let amap= "\<c-v>".amap
-"	call Decho("amap[[".amap."]]")
+"   call Decho("amap[[".amap."]]")
    endif
    let s:restoremap_{a:suffix} = s:restoremap_{a:suffix}."|sil! ".mapmode."unmap ".dobuffer.amap
    if maparg(a:mapchx,mapmode) != ""
     let maprhs                  = substitute(maparg(amap,mapmode),'|','<bar>','ge')
-	let s:restoremap_{a:suffix} = s:restoremap_{a:suffix}."|".mapmode."map ".dobuffer.amap." ".maprhs
+    let s:restoremap_{a:suffix} = s:restoremap_{a:suffix}."|".mapmode."map ".dobuffer.amap." ".maprhs
    endif
    if dounmap
-	exe "sil! ".mapmode."unmap ".dobuffer.amap
+    exe "sil! ".mapmode."unmap ".dobuffer.amap
    endif
  
   " save multiple maps
@@ -491,17 +490,17 @@ fun! SaveUserMaps(mapmode,maplead,mapchx,suffix)
    let i= 1
    while i <= strlen(a:mapchx)
     let amap= a:maplead.strpart(a:mapchx,i-1,1)
-	if amap == "|" || amap == "\<c-v>"
-	 let amap= "\<c-v>".amap
-	endif
-	let s:restoremap_{a:suffix} = s:restoremap_{a:suffix}."|sil! ".mapmode."unmap ".dobuffer.amap
+    if amap == "|" || amap == "\<c-v>"
+     let amap= "\<c-v>".amap
+    endif
+    let s:restoremap_{a:suffix} = s:restoremap_{a:suffix}."|sil! ".mapmode."unmap ".dobuffer.amap
     if maparg(amap,mapmode) != ""
      let maprhs                  = substitute(maparg(amap,mapmode),'|','<bar>','ge')
-	 let s:restoremap_{a:suffix} = s:restoremap_{a:suffix}."|".mapmode."map ".dobuffer.amap." ".maprhs
+     let s:restoremap_{a:suffix} = s:restoremap_{a:suffix}."|".mapmode."map ".dobuffer.amap." ".maprhs
     endif
-	if dounmap
-	 exe "sil! ".mapmode."unmap ".dobuffer.amap
-	endif
+    if dounmap
+     exe "sil! ".mapmode."unmap ".dobuffer.amap
+    endif
     let i= i + 1
    endwhile
   endif
@@ -516,7 +515,7 @@ fun! RestoreUserMaps(suffix)
   if exists("s:restoremap_{a:suffix}")
    let s:restoremap_{a:suffix}= substitute(s:restoremap_{a:suffix},'|\s*$','','e')
    if s:restoremap_{a:suffix} != ""
-"   	call Decho("exe ".s:restoremap_{a:suffix})
+"       call Decho("exe ".s:restoremap_{a:suffix})
     exe "sil! ".s:restoremap_{a:suffix}
    endif
    unlet s:restoremap_{a:suffix}

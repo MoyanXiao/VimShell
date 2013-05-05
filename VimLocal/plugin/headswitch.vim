@@ -22,13 +22,12 @@
 "
 
 " Do not load a.vim if is has already been loaded.
-if exists("loaded_alternateFile")
+if &cp || project#workspaceInfo#pluginHeader("HeadSwitch", expand("<sfile>:p")) 
     finish
 endif
 if (v:progname == "ex")
    finish
 endif
-let loaded_alternateFile = 1
 
 let alternateExtensionsDict = {}
 

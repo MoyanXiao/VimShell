@@ -28,7 +28,7 @@ function! project#control#CreateProject()
         let g:config_dict = {}
         let g:config_dict['FileExtense']=split(stringExt)
     endif
-    call project#workspaceInfo#SaveWorkSpaceInfo(g:project_file, g:config_dict)
+    call project#workspaceInfo#SaveWorkSpaceInfo()
     call project#control#UpdateProject()
 endfunction
 
@@ -50,20 +50,19 @@ endfunction
   
 function! project#control#UpdateProject()
     let extList = g:config_dict['FileExtense']
-    echo "find the file list in the path " .g:workspace_path.": "
-    echo extList
+    echo "find the file list in the path " .g:workspace_path.": ".string(extList)
     call project#command#findTagsFileList(g:project_path,
                 \g:file_list, extList)
     " TODO add the part of the lookup plugin file buffer
-    if hasmapto(':LUTags')
-        echo 'Create the tags for lookup plugin...'
-        call project#command#findLookupFilelist(
-                    \g:project_path,
-                    \g:file_tags,
-                    \extList)
-        "let &tags= g:file_tags
-        let g:LookupFile_TagExpr = 'g:file_tags'
-    endif
+    "if hasmapto(':LUTags')
+        "echo 'Create the tags for lookup plugin...'
+        "call project#command#findLookupFilelist(
+                    "\g:project_path,
+                    "\g:file_tags,
+                    "\extList)
+        ""let &tags= g:file_tags
+        "let g:LookupFile_TagExpr = 'g:file_tags'
+    "endif
 
     if executable('ctags')
         echo 'Create the tags of the project...'
@@ -85,7 +84,7 @@ endfunction
 
 function! project#control#SaveProject()
     echo "Save the project ..."
-    call project#workspaceInfo#SaveWorkSpaceInfo(g:project_file, g:config_dict)
+    call project#workspaceInfo#SaveWorkSpaceInfo()
     exec "tabdo ". "call project#layout#LayoutClose()"
     silent! execute "mksession! ".g:session_file
     silent! execute "wviminfo! ".g:viminfo_file

@@ -204,10 +204,10 @@
 "       let MRU_Max_Submenu_Entries = 15
 "
 " ****************** Do not modify after this line ************************
-if exists('loaded_mru')
+
+if project#workspaceInfo#pluginHeader("MostRecentFiles", expand("<sfile>:p")) 
     finish
 endif
-let loaded_mru=1
 
 if v:version < 700
     finish

@@ -1035,10 +1035,10 @@
 "     multvals to make way for it to be retired. New functions are:
 "     genutils#CrUnProtectedCharsPattern
 "     PromptForElement/GetSelectedIndex
-
-if exists('loaded_genutils')
-  finish
+if &cp || project#workspaceInfo#pluginHeader("Genutils", expand("<sfile>:p")) 
+    finish
 endif
+
 if v:version < 700
   echomsg 'genutils: You need at least Vim 7.0'
   finish

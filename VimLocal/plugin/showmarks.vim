@@ -85,10 +85,9 @@
 " ==============================================================================
 
 " Check if we should continue loading
-if exists( "loaded_showmarks" )
-	finish
+if &cp || project#workspaceInfo#pluginHeader("ShowMarks", expand("<sfile>:p"))
+    finish
 endif
-let loaded_showmarks = 1
 
 " Bail if Vim isn't compiled with signs support.
 if has( "signs" ) == 0

@@ -17,11 +17,9 @@
 "=============================================================================
 
 " Define function once only
-if exists('loaded_csExplorer') || &cp
-  finish
+if &cp || project#workspaceInfo#pluginHeader("csExplorer", expand("<sfile>:p")) 
+    finish
 endif
-
-let loaded_csExplorer = 1
 
 " Create commands
 if !exists(":ColorSchemeExplorer")

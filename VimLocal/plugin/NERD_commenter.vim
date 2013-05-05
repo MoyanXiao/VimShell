@@ -13,14 +13,13 @@
 " ============================================================================
 
 " Section: script init stuff {{{1
-if exists("loaded_nerd_comments")
+if &cp || project#workspaceInfo#pluginHeader("NERDCommenter", expand("<sfile>:p"))
     finish
 endif
 if v:version < 700
     echoerr "NERDCommenter: this plugin requires vim >= 7. DOWNLOAD IT! You'll thank me later!"
     finish
 endif
-let loaded_nerd_comments = 1
 
 " Function: s:InitVariable() function {{{2
 " This function is used to initialise a given variable to a given value. The

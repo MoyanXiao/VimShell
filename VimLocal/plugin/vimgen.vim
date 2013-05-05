@@ -4,6 +4,10 @@
 " @Created:     2008-03-24
 
 " define new command
+if &cp || project#workspaceInfo#pluginHeader("Vimgen", expand("<sfile>:p"))
+    finish
+endif
+
 com! -range -nargs=0 Vimgen <line1>,<line2>call Vimgen()
 
 " start tag character, default «

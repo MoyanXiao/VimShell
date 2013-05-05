@@ -100,13 +100,13 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Avoid reloading {{{
+if &cp || project#workspaceInfo#pluginHeader("SrcExpl", expand("<sfile>:p"))
+    finish
+endif
+
 let g:SrcExpl_isUpdateTags = 0
 let g:SrcExpl_updateTagsCmd = "call project#command#createTagFile(g:file_list,g:tags_file)""
 
-if exists('loaded_srcexpl')
-    finish
-endif
-let loaded_srcexpl = 1
 let s:save_cpo = &cpoptions
 
 " }}}

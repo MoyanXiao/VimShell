@@ -44,6 +44,10 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " These are the default key mappings
+if &cp || project#workspaceInfo#pluginHeader("Refactor", expand("<sfile>:p"))
+    finish
+endif
+
 map <A-r>e :call ExtractMethod()<ENTER>
 map <A-r>p :call LocalVariableToParameter()<ENTER>
 map <A-r>r :call RenameVariable()<ENTER>

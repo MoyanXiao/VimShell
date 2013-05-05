@@ -1,7 +1,6 @@
-if exists('g:loaded_gitgutter') || !executable('git') || !has('signs') || &cp
-  finish
+if &cp || project#workspaceInfo#pluginHeader("GitGutter", expand("<sfile>:p")) 
+    finish
 endif
-let g:loaded_gitgutter = 1
 
 " Initialisation {{{
 

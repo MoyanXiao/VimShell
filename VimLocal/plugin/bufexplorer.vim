@@ -43,7 +43,7 @@
 
 " Plugin Code {{{1
 " Exit quickly if already running or when 'compatible' is set. {{{2
-if exists("g:bufexplorer_version") || &cp
+if &cp || project#workspaceInfo#pluginHeader("BufExplorer", expand("<sfile>:p")) 
     finish
 endif
 "2}}}

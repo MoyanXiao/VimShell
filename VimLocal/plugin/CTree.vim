@@ -10,6 +10,10 @@
 "      CTag  -- Jump to the class/interface definition of the tag
 "  }}}
 
+if &cp || project#workspaceInfo#pluginHeader("CTree", expand("<sfile>:p")) 
+    finish
+endif
+
 if v:version < 700
 	echomsg "Vim 7 or higher is required for CTree.vim"
 	finish

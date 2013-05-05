@@ -19,10 +19,9 @@
 " faith to faith.
 " ---------------------------------------------------------------------
 " Load Once: {{{1
-if &cp || exists("g:loaded_AlignPlugin")
- finish
+if &cp || project#workspaceInfo#pluginHeader("AlignPlugin", expand("<sfile>:p")) 
+    finish
 endif
-let g:loaded_AlignPlugin = "v37"
 let s:keepcpo            = &cpo
 set cpo&vim
 

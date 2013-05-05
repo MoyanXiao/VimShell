@@ -9,7 +9,10 @@
 "                :helptags ~/.vim/doc
 "                :h snipMate.txt
 
-if exists('loaded_snips') || &cp || version < 700
+if &cp || project#workspaceInfo#pluginHeader("snipMate", expand("<sfile>:p"))
+    finish
+endif
+if version < 700
 	finish
 endif
 let loaded_snips = 1

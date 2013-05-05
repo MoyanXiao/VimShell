@@ -57,6 +57,8 @@
 " ****************** Do not modify after this line ************************
 
 " Line continuation used here
+call project#workspaceInfo#pluginHeader("Taglist", expand("<sfile>:p"))
+
 if !exists('s:cpo_save')
     " If the taglist plugin is sourced recursively, the 'cpo' setting will be
     " set to the default value.  To avoid this problem, save the cpo setting

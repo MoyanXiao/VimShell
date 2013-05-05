@@ -4,6 +4,10 @@
 " @Created:     2008-03-24
 
 " Range_int(start, stop[, step[, format]])
+if &cp || project#workspaceInfo#pluginHeader("RangeData", expand("<sfile>:p"))
+    finish
+endif
+
 function! Range_int(start,stop,...)
 	let l:step = a:0 >= 1 ? a:1 : 1
 	let l:format = a:0 >= 2 ? a:2 : "%d"

@@ -288,10 +288,9 @@
 "       :let Grep_Shell_Escape_Char = "'"
 "
 " --------------------- Do not modify after this line ---------------------
-if exists("loaded_grep")
+if &cp || project#workspaceInfo#pluginHeader("Grep", expand("<sfile>:p")) 
     finish
 endif
-let loaded_grep = 1
 
 " Line continuation used here
 let s:cpo_save = &cpo

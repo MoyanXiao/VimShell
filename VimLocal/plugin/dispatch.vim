@@ -2,10 +2,12 @@
 " Maintainer:   Tim Pope <http://tpo.pe/>
 " Version:      1.0
 
-if exists("g:loaded_dispatch") || v:version < 700 || &cp
+if &cp || project#workspaceInfo#pluginHeader("Dispatch", expand("<sfile>:p")) 
+    finish
+endif
+if v:version < 700
   finish
 endif
-let g:loaded_dispatch = 1
 
 command! -bang -nargs=* -complete=custom,dispatch#command_complete Dispatch
       \ execute dispatch#compile_command(<bang>0, <q-args>)

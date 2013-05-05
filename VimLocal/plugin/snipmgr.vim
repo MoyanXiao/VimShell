@@ -10,21 +10,19 @@
 let g:snipmgr_version = "1.2"
 
 " Check snipMate loading
-if exists('loaded_snips')
-  if loaded_snips == 0
+if &cp || project#workspaceInfo#pluginHeader("snipMgr", expand("<sfile>:p"))
     finish
-  endif
-else
-  finish
 endif
+" TODO require snipMate
+"if exists('loaded_snips')
+  "if loaded_snips == 0
+    "finish
+  "endif
+"else
+  "finish
+"endif
 
 " Check loading option
-if exists('g:loaded_snipmgr')
-  if g:loaded_snipmgr == 0
-    finish
-  endif
-endif
-let g:loaded_snipmgr = 1
 
 " 'save_cpo' beginning
 let s:save_cpo = &cpo

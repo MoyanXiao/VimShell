@@ -75,8 +75,8 @@ hi MarkWord5  ctermbg=Magenta  ctermfg=Black  guibg=#FFB3FF    guifg=Black
 hi MarkWord6  ctermbg=Blue     ctermfg=Black  guibg=#9999FF    guifg=Black
 
 " Anti reinclusion guards
-if exists('g:loaded_mark') && !exists('g:force_reload_mark')
-	finish
+if project#workspaceInfo#pluginHeader("Mark", expand("<sfile>:p")) && !exists('g:force_reload_mark')
+    finish
 endif
 
 " Support for |line-continuation|

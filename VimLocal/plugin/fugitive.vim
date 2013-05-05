@@ -2,11 +2,9 @@
 " Maintainer:   Tim Pope <http://tpo.pe/>
 " Version:      2.0
 " GetLatestVimScripts: 2975 1 :AutoInstall: fugitive.vim
-
-if exists('g:loaded_fugitive') || &cp
-  finish
+if &cp || project#workspaceInfo#pluginHeader("Fugitive", expand("<sfile>:p")) 
+    finish
 endif
-let g:loaded_fugitive = 1
 
 if !exists('g:fugitive_git_executable')
   let g:fugitive_git_executable = 'git'

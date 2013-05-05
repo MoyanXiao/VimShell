@@ -7,7 +7,7 @@
 " @Revision:    729
 " GetLatestVimScripts: 1863 1 tlib.vim
 
-if &cp || exists("loaded_tlib")
+if &cp || project#workspaceInfo#pluginHeader("tlib", expand("<sfile>:p"))
     finish
 endif
 if v:version < 700 "{{{2

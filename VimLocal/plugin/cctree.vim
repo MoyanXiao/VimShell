@@ -410,11 +410,11 @@
 "    }}}
 
 " {{{ Init
-if !exists('loaded_cctree') && v:version >= 700
-  " First time loading the cctree plugin
-  let loaded_cctree = 1
-else
-  "finish
+if project#workspaceInfo#pluginHeader("CCTree", expand("<sfile>:p")) 
+    finish
+endif
+if v:version < 700
+  finish
 endif
 
 " Line continuation used here

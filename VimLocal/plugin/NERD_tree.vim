@@ -14,14 +14,13 @@ let s:NERD_tree_version = '4.2.0'
 
 " SECTION: Script init stuff {{{1
 "============================================================
-if exists("loaded_nerd_tree")
+if &cp || project#workspaceInfo#pluginHeader("NERDTree", expand("<sfile>:p"))
     finish
 endif
 if v:version < 700
     echoerr "NERDTree: this plugin requires vim >= 7. DOWNLOAD IT! You'll thank me later!"
     finish
 endif
-let loaded_nerd_tree = 1
 
 "for line continuation - i.e dont want C in &cpo
 let s:old_cpo = &cpo

@@ -37,10 +37,9 @@
 
 " allow user to prevent loading
 " and prevent duplicate loading
-if exists("loaded_matchit") || &cp
-  finish
+if &cp || project#workspaceInfo#pluginHeader("Matchit", expand("<sfile>:p"))
+    finish
 endif
-let loaded_matchit = 1
 let s:last_mps = ""
 let s:last_words = ":"
 

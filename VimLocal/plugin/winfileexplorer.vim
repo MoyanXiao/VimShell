@@ -32,10 +32,9 @@
 "=============================================================================
 
 " Has this already been loaded?
-if exists("loaded_winfileexplorer")
-  finish
+if &cp || project#workspaceInfo#pluginHeader("winfileexplorer", expand("<sfile>:p"))
+    finish
 endif
-let loaded_winfileexplorer=1
 
 " Line continuation used here
 let s:cpo_save = &cpo

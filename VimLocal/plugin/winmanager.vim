@@ -14,10 +14,9 @@
 " ============================================================================
 
 " quit if the user doesnt want us or if we are already loaded.
-if exists("loaded_winmanager")
-	finish
-end
-let loaded_winmanager = 1
+if &cp || project#workspaceInfo#pluginHeader("winmanager", expand("<sfile>:p"))
+    finish
+endif
 
 " width of the explorer windows 
 if !exists("g:winManagerWidth")

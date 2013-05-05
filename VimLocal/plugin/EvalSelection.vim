@@ -13,11 +13,9 @@
 "
 
 """ Basic Functionality {{{1
-
-if &cp || exists("s:loaded_evalselection") "{{{2
+if &cp || project#workspaceInfo#pluginHeader("EvalSelection", expand("<sfile>:p")) 
     finish
 endif
-let s:loaded_evalselection = 16
 
 " Parameters {{{2
 if !exists("g:evalSelectionLeader")         | let g:evalSelectionLeader         = '<Leader>e' | endif "{{{2

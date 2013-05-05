@@ -45,12 +45,10 @@
 "             released the first as 1.0, April 3, 2007
 
 " Setup -----------------------------------------------------{{{2
-if exists('g:autoclose_loaded') || &cp
+if &cp || project#workspaceInfo#pluginHeader("AutoClose", expand("<sfile>:p")) 
     finish
 endif
 
-
-let g:autoclose_loaded = 1
 let s:cotstate = &completeopt
 
 if !exists('g:autoclose_on')

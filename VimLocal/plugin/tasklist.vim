@@ -100,10 +100,9 @@
 
 " Load script once
 "------------------------------------------------------------------------------
-if exists("g:loaded_tasklist") || &cp
+if &cp || project#workspaceInfo#pluginHeader("TaskList", expand("<sfile>:p"))
     finish
 endif
-let g:loaded_tasklist = 1
 
 " Set where the window opens
 "------------------------------------------------------------------------------

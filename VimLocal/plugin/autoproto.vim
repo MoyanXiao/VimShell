@@ -59,6 +59,9 @@
 "   Note: only *.c files are supported ! The file must exist.
 "   
 "
+if project#workspaceInfo#pluginHeader("AutoProto", expand("<sfile>:p")) 
+    finish
+endif
 
 function! Debug (...)
 

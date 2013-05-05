@@ -41,12 +41,9 @@
 "**   For futher information see stlrefvim.txt or do :help stlrefvim        **
 "*****************************************************************************
 
-if exists ("loaded_stlrefvim")
+if &cp || project#workspaceInfo#pluginHeader("StlRefVim", expand("<sfile>:p"))
     finish
 endif
-
-let loaded_stlrefvim = 1
-
 
 "*****************************************************************************
 "************************** C O N F I G U R A T I O N ************************

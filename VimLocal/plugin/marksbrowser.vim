@@ -18,11 +18,9 @@
 "
 " Installation:
 " Put this file into your $HOME/.vim/plugin directory.
-
-if exists("loaded_marksbrowser")
-"  finish
+if project#workspaceInfo#pluginHeader("MarksBrowser", expand("<sfile>:p"))
+    finish
 endif
-let loaded_marksbrowser = 1
 
 if !exists("marksCloseWhenSelected")
   let s:marksCloseWhenSelected = 1

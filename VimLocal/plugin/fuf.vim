@@ -4,6 +4,9 @@
 " GetLatestVimScripts: 1984 1 :AutoInstall: FuzzyFinder
 "=============================================================================
 " LOAD GUARD {{{1
+if &cp || project#workspaceInfo#pluginHeader("Fuf", expand("<sfile>:p")) 
+    finish
+endif
 
 try
   if !l9#guardScriptLoading(expand('<sfile>:p'), 702, 101, [])

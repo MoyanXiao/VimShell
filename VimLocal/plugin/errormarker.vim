@@ -22,17 +22,16 @@
 " === Initialization ====================================================={{{1
 
 " Exit when the Vim version is too old or missing some features
+if &cp || project#workspaceInfo#pluginHeader("ErrorMarker", expand("<sfile>:p")) 
+    finish
+endif
 if v:version < 700 || !has("signs") || !has("autocmd")
     finish
 endif
 
 " Exit quickly when the script has already been loaded or when 'compatible'
 " is set.
-if exists("g:loaded_errormarker") || &compatible
-    finish
-endif
 
-" Version number.
 let g:loaded_errormarker = "0.1.13"
 
 let s:save_cpo = &cpo
