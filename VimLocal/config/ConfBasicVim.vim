@@ -57,6 +57,7 @@ set encoding=utf-8
 set showmatch
 set cindent
 set cinoptions=:0g0t0(sus
+set synmaxcol=200
 
 " Folder options
 set foldenable
