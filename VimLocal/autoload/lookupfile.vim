@@ -105,9 +105,9 @@ function! s:LookupFileSet()
     return
   endif
   let s:_backspace = &backspace
-  set backspace=start
+  setlocal backspace=start
   let s:_completeopt = &completeopt
-  set completeopt+=menuone
+  setlocal completeopt+=menuone
   let s:_updatetime = &updatetime
   let &updatetime = g:LookupFile_UpdateTime
 endfunction
