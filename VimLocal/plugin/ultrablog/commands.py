@@ -41,7 +41,7 @@ def __ub_exception_handler(func):
 
 def __ub_enc_check(func):
     def __check(*args, **kw):
-        orig_enc = vim.eval("&encoding") 
+        orig_enc = vim.eval("&encoding")
         if orig_enc != "utf-8":
             modified = vim.eval("&modified")
             buf_list = '\n'.join(vim.current.buffer).decode(orig_enc).encode('utf-8').split('\n')
@@ -302,9 +302,9 @@ class UBCommand(object):
         frame = inspect.currentframe(1)
         self = frame.f_locals["self"]
         methodName = frame.f_code.co_name
-        
+
         method = getattr(super(cls, self), methodName, None)
-        
+
         if inspect.ismethod(method):
             return method(*args, **kwargs)
 
@@ -323,8 +323,6 @@ class UBCmdList(UBCommand):
         if self.pageNo<1: raise UBException(_('Page NO. cannot be less than 1 !'))
         if self.pageSize<1: raise UBException(_('Illegal page size (%s) !') % self.pageSize)
 
-    def _exec(self):
-        if self.itemType=='tmpl': self._listTemplates()
         else: eval("self._list%s%ss()" % (self.scope.capitalize(), self.itemType.capitalize()))
 
     def _postExec(self):
@@ -578,7 +576,7 @@ class UBCmdSave(UBCommand):
 
         ub_set_meta(self.item.getKeyProperty(), self.itemKey)
         vim.command('setl nomodified')
-        
+
         evt = eval("UB%sSaveEvent('%s')" % (self.itemType=='tmpl' and 'Tmpl' or 'Post', self.itemKey));
         UBEventQueue.fireEvent(evt)
         UBEventQueue.processEvents()
@@ -670,7 +668,7 @@ class UBCmdSend(UBCommand):
         saveit = ub_get_option('ub_save_after_sent')
         if '1'==vim.eval('&modified') and saveit is not None and saveit.isdigit() and int(saveit) == 1:
             ub_save_item()
-        
+
         evt = eval("UBPostSendEvent(%s)" % self.postId)
         UBEventQueue.fireEvent(evt)
         UBEventQueue.processEvents()
@@ -746,7 +744,8 @@ class UBCmdOpen(UBCommand):
 
         # Fetch the remote post if there is not a local copy
         if self.item is None:
-            remote_post = api.metaWeblog.getPost(self.itemKey, cfg.loginName, cfg.password)
+            key = str(self.itemKey)
+            remote_post = api.metaWeblog.getPost(key, cfg.loginName, cfg.password)
             self.item = Post()
             self.item.post_id = self.itemKey
             self.item.title = remote_post['title']
@@ -1007,7 +1006,7 @@ class UBCmdDelItemUnderCursor(UBCommand):
             self.postId = int(lineParts[1])
             rslt = self.sess.query(Post.type).filter(
                     or_(
-                        and_(Post.id>0, Post.id==self.itemKey), 
+                        and_(Post.id>0, Post.id==self.itemKey),
                         and_(Post.post_id>0, Post.post_id==self.postId)
                     )
                 ).first()

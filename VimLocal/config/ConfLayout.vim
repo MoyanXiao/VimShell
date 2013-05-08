@@ -56,7 +56,12 @@ map <unique> ;ph gT
 map <unique> ;p^ :tabfirst<CR>
 map <unique> ;p$ :tablast<CR>
 
-
+" ConqueTerm
+let g:ConqueTerm_SessionSupport = 1
+let g:ConqueTerm_ReadUnfocused = 1
+let g:ConqueTerm_InsertOnEnter = 1
+let g:ConqueTerm_CWInsert = 0
+let g:ConqueTerm_CloseOnEnd = 1
 
 
 

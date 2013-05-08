@@ -1010,7 +1010,7 @@ function! conque_term#on_blur() " {{{
 
     " reset poll interval
     if g:ConqueTerm_ReadUnfocused == 1
-        set updatetime=1000
+        set updatetime=50
         autocmd ConqueTerm CursorHoldI * call conque_term#read_all(1)
         autocmd ConqueTerm CursorHold * call conque_term#read_all(0)
     elseif exists('s:save_updatetime')
