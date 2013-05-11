@@ -30,6 +30,10 @@
 
 
 "---Quickload---------------------------------{{{1
+if &cp || project#workspaceInfo#pluginHeader("Voom", expand("<sfile>:p"), "False") 
+    finish
+endif
+
 if !exists('s:voom_did_quickload')
     com! -complete=custom,Voom_Complete -nargs=? Voom call Voom_Init(<q-args>)
     com! -complete=custom,Voom_Complete -nargs=? VoomToggle call Voom_Init(<q-args>,1)

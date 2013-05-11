@@ -14,3 +14,4 @@ if argc() =~ 0
     silent call project#control#StartProject()
 endif
 silent call project#control#UpdateProject()
+map <Leader>pu :call project#control#UpdateProject()<cr>

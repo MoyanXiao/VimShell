@@ -4,8 +4,8 @@
 " Home: http://code.google.com/p/vimwiki/
 " GetLatestVimScripts: 2226 1 :AutoInstall: vimwiki
 
-if exists("loaded_vimwiki") || &cp
-  finish
+if &cp || project#workspaceInfo#pluginHeader("Vimwiki", expand("<sfile>:p"), "False") 
+    finish
 endif
 let loaded_vimwiki = 1
 

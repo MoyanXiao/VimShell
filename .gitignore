@@ -9,4 +9,5 @@ tags*
 *.pyc
 workspace/*
 **/spell/*
+**/*.db
 
