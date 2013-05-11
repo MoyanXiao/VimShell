@@ -22,6 +22,7 @@ if filereadable(expand("~/ConfUltralBlog.vim"))
     source ~/ConfUltralBlog.vim
 endif
 
+source ~/.vim/config/ConfInput.vim
 source ~/.vim/config/ConfBufExplorer.vim
 source ~/.vim/config/ConfLayout.vim
 source ~/.vim/config/ConfLookupFile.vim

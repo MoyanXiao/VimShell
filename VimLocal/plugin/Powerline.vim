@@ -7,9 +7,10 @@
 if &cp || project#workspaceInfo#pluginHeader("Powerline", expand("<sfile>:p"))
     finish
 endif
-	if version < 702
-		finish
-	endif
+let g:Powerline_loaded=1
+if version < 702
+    finish
+endif
 " }}}
 " Commands {{{
 	command! PowerlineClearCache call Pl#ClearCache()
