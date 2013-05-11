@@ -17,22 +17,16 @@ call project#workspaceInfo#LoadWorkSpaceInfo()
 " Source the basic config file
 source ~/.vim/config/ConfBasicVim.vim
 
+" Source the sub config
+source ~/.vim/config/ConfLayout.vim
+source ~/.vim/config/ConfSearch.vim 
+source ~/.vim/config/ConfPrograming.vim
+source ~/.vim/config/ConfEdit.vim
+
 " Source the config file of the plugin
 if filereadable(expand("~/ConfUltralBlog.vim"))
     source ~/ConfUltralBlog.vim
 endif
-
-source ~/.vim/config/ConfInput.vim
-source ~/.vim/config/ConfBufExplorer.vim
-source ~/.vim/config/ConfLayout.vim
-source ~/.vim/config/ConfLookupFile.vim
-source ~/.vim/config/ConfMark.vim
-source ~/.vim/config/ConfComplete.vim
-source ~/.vim/config/ConfMarkChange.vim
-source ~/.vim/config/ConfMRU.vim
-source ~/.vim/config/ConfSearch.vim 
-source ~/.vim/config/ConfPrograming.vim
-source ~/.vim/config/ConfEdit.vim
 
 
 
