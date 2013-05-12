@@ -45,9 +45,10 @@ if !exists('s:voom_did_quickload')
     au BufFilePost __PyLog__ call Voom_LogSessionLoad()
     au BufFilePost *_VOOM\d\+ call Voom_TreeSessionLoad()
     let s:voom_did_quickload = 'v4.7'
-    finish
+    "finish
 endif
 
+echo "start the voom"
 
 "---Initialize--------------------------------{{{1
 if !exists('s:voom_did_init')
