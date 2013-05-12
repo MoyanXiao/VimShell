@@ -6,6 +6,9 @@
 "
 
 " set mapleader
+
+runtime! ftdetect/*.vim
+
 let mapleader = "\\"
 
 let g:project_path = $PWD
