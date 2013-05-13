@@ -38,7 +38,6 @@ set hlsearch    " highlighting the search results
 set t_Co=256
 set background=dark
 colo peaksea
-syntax enable
 syntax on
 
 " Define the shift and <TAB> ralated options

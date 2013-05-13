@@ -48,8 +48,6 @@ if !exists('s:voom_did_quickload')
     "finish
 endif
 
-echo "start the voom"
-
 "---Initialize--------------------------------{{{1
 if !exists('s:voom_did_init')
     let s:script_path = expand("<sfile>:p")

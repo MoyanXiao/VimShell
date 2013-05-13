@@ -522,8 +522,10 @@ elseif 1 "  &background=='dark'
     hi Title		ctermfg=219	ctermbg=NONE	cterm=NONE
     hi WarningMsg	ctermfg=209	ctermbg=NONE	cterm=NONE
     hi WildMenu		ctermfg=16	ctermbg=186	cterm=NONE
-    hi Folded		ctermfg=NONE	ctermbg=22	cterm=NONE
-    hi FoldColumn	ctermfg=254	ctermbg=28	cterm=NONE
+    "hi Folded		ctermfg=NONE	ctermbg=22	cterm=NONE
+    "hi FoldColumn	ctermfg=254	ctermbg=28	cterm=NONE
+    hi Folded    	ctermfg=LightCyan ctermbg=DarkGrey
+    hi FoldColumn 	ctermfg=LightCyan ctermbg=DarkGrey
     hi DiffAdd		ctermfg=NONE	ctermbg=18	cterm=NONE
     hi DiffChange	ctermfg=NONE	ctermbg=90	cterm=NONE
     hi DiffDelete	ctermfg=69	ctermbg=234	cterm=NONE
