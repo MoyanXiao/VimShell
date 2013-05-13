@@ -65,7 +65,7 @@ let b:current_syntax = "outliner"
 
 " User Preferences {{{1
 
-let maplocalleader = ",,"		" this is prepended to VO key mappings
+let maplocalleader = ","		" this is prepended to VO key mappings
 
 setlocal ignorecase			" searches ignore case
 setlocal smartcase			" searches use smart case
@@ -91,6 +91,7 @@ setlocal foldmethod=expr
 setlocal foldexpr=MyFoldLevel(v:lnum)
 setlocal indentexpr=
 setlocal nocindent
+setlocal nonumber
 setlocal iskeyword=@,39,45,48-57,_,129-255
 
 " Vim Outliner Functions {{{1
@@ -557,7 +558,6 @@ nmap <silent><buffer> <localleader>d $:call InsertSpaceDate()<cr>
 imap <silent><buffer> <localleader>d ~<esc>x:call InsertDate(0)<cr>a
 nmap <silent><buffer> <localleader>D ^:call InsertDate(1)<cr>a <esc>
 
-
 " insert the time
 nmap <silent><buffer> <localleader>t $:call InsertSpaceTime()<cr>
 imap <silent><buffer> <localleader>t ~<esc>x:call InsertTime(0)<cr>a
@@ -615,46 +615,7 @@ map <silent><buffer> <localleader>H :echo "VimOutliner reserved command: ,,H"<cr
 imap <silent><buffer> <localleader>H :echo "VimOutliner reserved command: ,,H"<cr>
 
 " End of Vim Outliner Key Mappings }}}1
-" Menu Entries {{{1
-" VO menu
-amenu &VO.Expand\ Level\ &1 :set foldlevel=0<cr>
-amenu &VO.Expand\ Level\ &2 :set foldlevel=1<cr>
-amenu &VO.Expand\ Level\ &3 :set foldlevel=2<cr>
-amenu &VO.Expand\ Level\ &4 :set foldlevel=3<cr>
-amenu &VO.Expand\ Level\ &5 :set foldlevel=4<cr>
-amenu &VO.Expand\ Level\ &6 :set foldlevel=5<cr>
-amenu &VO.Expand\ Level\ &7 :set foldlevel=6<cr>
-amenu &VO.Expand\ Level\ &8 :set foldlevel=7<cr>
-amenu &VO.Expand\ Level\ &9 :set foldlevel=8<cr>
-amenu &VO.Expand\ Level\ &All :set foldlevel=99999<cr>
-amenu &VO.-Sep1- :
-"Tools sub-menu
-let s:path2scripts = expand('<sfile>:p:h:h').'/vimoutliner/scripts'
-" otl2html
-exec 'amenu &VO.&Tools.otl2&html\.py\	(otl2html\.py\ thisfile\ -S\ html2otl_nnnnnn\.css\ >\ thisfile\.html) :!'.s:path2scripts.'/otl2html.py -S html2otl_nnnnnn.css % > %.html<CR>'
-" otl2docbook
-exec 'amenu &VO.&Tools.otl2&docbook\.pl\	(otl2docbook\.pl\ thisfile\ >\ thisfile\.dbk) :!'.s:path2scripts.'/otl2docbook.pl % > %.dbk<CR>'
-" otl2table
-exec 'amenu &VO.&Tools.otl2&table\.py\	(otl2table\.py\ thisfile\ >\ thisfile\.txt) :!'.s:path2scripts.'/otl2table.py % > %.txt<CR>'
-" otl2tags => FreeMind
-exec 'amenu &VO.&Tools.otl2tags\.py\ =>\ &FreeMind\	(otl2tags\.py\ \-c\ otl2tags_freemind\.conf\ thisfile\ >\ thisfile\.mm) :!'.s:path2scripts.'/otl2tags.py -c '.s:path2scripts.'/otl2tags_freemind.conf % > %.mm<CR>'
-" otl2tags => Graphviz
-exec 'amenu &VO.&Tools.otl2tags\.py\ =>\ &Graphviz\	(otl2tags\.py\ \-c\ otl2tags_graphviz\.conf\ thisfile\ >\ thisfile\.gv) :!'.s:path2scripts.'/otl2tags.py -c '.s:path2scripts.'/otl2tags_graphviz.conf % > %.gv<CR>'
-amenu &VO.&Tools.&myotl2thml\.sh\	(myotl2html\.sh\ thisfile) :!myotl2html.sh %<CR>
-amenu &VO.-Sep2- :
-amenu &VO.&Color\ Scheme :popup Edit.Color\ Scheme<cr>
-amenu &VO.-Sep3- :
-amenu &VO.&Help.&Index :he vo<cr>
-amenu &VO.&Help.&,,\ Commands :he vo-command<cr>
-amenu &VO.&Help.&Checkboxes :he vo-checkbox<cr>
-amenu &VO.&Help.&Hoisting :he vo-hoisting<cr>
-amenu &Help.-Sep1- :
-" Help menu additions
-amenu &Help.&Vim\ Outliner.&Index :he vo<cr>
-amenu &Help.&Vim\ Outliner.&,,\ Commands :he vo-command<cr>
-amenu &Help.&Vim\ Outliner.&Checkboxes :he vo-checkbox<cr>
-amenu &Help.&Vim\ Outliner.&Hoisting :he vo-hoisting<cr>
-"}}}1
+
 " Auto-commands {{{1
 if !exists("autocommand_vo_loaded")
 	let autocommand_vo_loaded = 1
@@ -686,4 +647,4 @@ unlet! vo_module
 endif
 
 " The End
-" vim600: set foldmethod=marker foldlevel=0:
+" vim600: set foldmethod=marker 

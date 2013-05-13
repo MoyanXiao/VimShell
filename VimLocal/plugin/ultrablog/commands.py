@@ -170,6 +170,7 @@ def ub_upload_media(file_path):
         dict(name=os.path.basename(file_path), type=file_type, bits=bin_data))
 
     img_tmpl_info = ub_get_option('ub_tmpl_img_url', True)
+    result['file'] = file_path
     img_url = img_tmpl_info['tmpl'] % result
     syntax = vim.eval('&syntax')
     img_url = ub_convert_str(img_url, img_tmpl_info['syntax'], syntax)
@@ -653,7 +654,7 @@ class UBCmdSend(UBCommand):
         if self.postId is None:
             self.postId = api.metaWeblog.newPost('', cfg.loginName, cfg.password, self.item, self.publish)
         else:
-            api.metaWeblog.editPost(self.postId, cfg.loginName, cfg.password, self.item, self.publish)
+            api.metaWeblog.editPost(str(self.postId), cfg.loginName, cfg.password, self.item, self.publish)
         msg = _("%s sent as %s !") % (self.itemTypeName.capitalize(), ub_get_status_label(self.status))
         ub_echo(msg)
 

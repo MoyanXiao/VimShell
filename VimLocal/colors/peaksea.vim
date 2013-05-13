@@ -598,4 +598,4 @@ hi link		MyTagListTagScope	Constant
 " COLOR LINKS DEFINE END
 
 " vim:et:nosta:sw=2:ts=8:
-" vim600:fdm=marker:fdl=1:
+" vim600:fdm=marker:
