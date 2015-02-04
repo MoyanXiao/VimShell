@@ -34,11 +34,11 @@ let g:NERDTreeMapOpenRecursively="o"
 let g:NERDTreeMapPreview="<space>"
 
 " open the Tree, TagList and BufExplorer, and move cursor between them
-map <unique> <F3> :call project#layout#LayoutToggle()<cr>
-map <unique> ;md :call project#layout#LayoutMoveTo(1)<cr>
-map <unique> ;mb :call project#layout#LayoutMoveTo(2)<cr>
-map <unique> ;ml :call project#layout#LayoutMoveTo(3)<cr>
-map <unique> ;mr :call project#layout#LayoutMoveBack()<cr>
+map <silent> <unique> <F3> :call project#layout#LayoutToggle()<cr>
+map <silent> <unique> ;md :call project#layout#LayoutMoveTo(1)<cr>
+map <silent> <unique> ;mb :call project#layout#LayoutMoveTo(2)<cr>
+map <silent> <unique> ;ml :call project#layout#LayoutMoveTo(3)<cr>
+map <silent> <unique> ;mr :call project#layout#LayoutMoveBack()<cr>
 
 " Toggle GUndo"
 map <unique> ;un :GundoToggle<CR>
