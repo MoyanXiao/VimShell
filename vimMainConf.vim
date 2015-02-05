@@ -62,6 +62,7 @@ if has("autocmd")
   autocmd FileType text setlocal textwidth=78
 
   autocmd BufReadPost *.ipp set filetype=cpp
+  autocmd BufReadPost *.md set filetype=markdown
 
   " When editing a file, always jump to the last known cursor position.
   " Don't do it when the position is invalid or when inside an event handler
