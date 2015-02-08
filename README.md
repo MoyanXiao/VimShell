@@ -15,4 +15,4 @@ Issues:
 
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/MoyanXiao/vimshell/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
+[![Travis CI](https://travis-ci.org/MoyanXiao/VimShell.svg?branch=master)]
