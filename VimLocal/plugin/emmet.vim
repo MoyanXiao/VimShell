@@ -66,6 +66,10 @@
 " GetLatestVimScripts: 2981 1 :AutoInstall: emmet.vim
 " script type: plugin
 
+if project#workspaceInfo#pluginHeader("Emmet", expand("<sfile>:p")) 
+    finish
+endif
+
 if &compatible || v:version < 702 || (exists('g:loaded_emmet_vim') && g:loaded_emmet_vim)
   finish
 endif
@@ -95,7 +99,7 @@ if exists('g:user_emmet_complete_tag') && g:user_emmet_complete_tag
 endif
 
 if !exists('g:user_emmet_leader_key')
-  let g:user_emmet_leader_key = '<c-y>'
+  let g:user_emmet_leader_key = '<c-a>'
 endif
 
 function! s:install_plugin(mode, buffer)
