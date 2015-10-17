@@ -12,3 +12,7 @@ Issues:
   1. Terminal may not support 256 color, change the colo <sheme> in ConfBasicVim.vim
   2. ctags( Exuberant Ctags) works well. others may not.
   3. Some commands in the plugin works well in bash. May not in other shell
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/MoyanXiao/vimshell/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+![Travis CI](https://travis-ci.org/MoyanXiao/VimShell.svg?branch=master)

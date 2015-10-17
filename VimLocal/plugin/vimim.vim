@@ -2,6 +2,11 @@
 " ===========================================================
 "                   VimIM —— Vim 中文輸入法
 " ===========================================================
+"
+if &cp || project#workspaceInfo#pluginHeader("Vimim", expand("<sfile>:p"), "False") 
+    finish
+endif
+
 let s:egg = ' vimim easter egg:' " vim i vimim CTRL-^ CTRL-^
 let s:url = ' http://vimim.googlecode.com/svn/vimim/vimim.vim.html'
 let s:url = ' http://code.google.com/p/vimim/source/list'
