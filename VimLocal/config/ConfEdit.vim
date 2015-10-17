@@ -42,4 +42,4 @@ inoremap <C-F> <C-X><C-F>
 inoremap <C-D> <C-X><C-D>
 inoremap <C-L> <C-X><C-L>
 
-
+map gf :e <cfile><CR>

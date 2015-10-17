@@ -21,6 +21,7 @@ call project#workspaceInfo#LoadWorkSpaceInfo()
 source ~/.vim/config/ConfBasicVim.vim
 
 " Source the sub config
+source ~/.vim/config/system.vim
 source ~/.vim/config/ConfLayout.vim
 source ~/.vim/config/ConfSearch.vim 
 source ~/.vim/config/ConfPrograming.vim
