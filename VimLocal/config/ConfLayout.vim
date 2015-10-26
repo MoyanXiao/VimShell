@@ -22,7 +22,6 @@ noremap <script> <silent> <unique> <Leader>bs :BufExplorerHorizontalSplit<CR>
 noremap <script> <silent> <unique> <Leader>bv :BufExplorerVerticalSplit<CR>
 
 " TagList config
-let Tlist_Ctags_Cmd = '/usr/bin/ctags'
 let Tlist_Show_One_File = 1
 let Tlist_Exit_OnlyWindow = 1
 let Tlist_Use_Right_Window = 1
@@ -35,6 +34,7 @@ let g:NERDTreeMapPreview="<space>"
 
 " open the Tree, TagList and BufExplorer, and move cursor between them
 map <silent> <unique> <F3> :call project#layout#LayoutToggle()<cr>
+map <silent> <unique> ;mm :call project#layout#LayoutToggle()<cr>
 map <silent> <unique> ;md :call project#layout#LayoutMoveTo(1)<cr>
 map <silent> <unique> ;mb :call project#layout#LayoutMoveTo(2)<cr>
 map <silent> <unique> ;ml :call project#layout#LayoutMoveTo(3)<cr>

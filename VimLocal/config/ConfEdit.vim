@@ -43,3 +43,5 @@ inoremap <C-D> <C-X><C-D>
 inoremap <C-L> <C-X><C-L>
 
 map gf :e <cfile><CR>
+
+let g:snipmgr_snippets_dir = "~/code/VimShell/VimLocal/snippets/"

@@ -8,9 +8,9 @@ endif
 let loaded_programming_conf = 1
 
 map <unique> ;bb :wall<CR>:make<CR>
-map <unique> ;bpc :call code#c#Compile()<CR>
-map <unique> ;bpl :call code#c#Link()<CR>
-map <unique> ;bps :call code#c#CppcheckCheck()<CR>
+map <silent> <unique> ;bpc :call code#c#Compile()<CR>
+map <silent> <unique> ;bpl :call code#c#Link()<CR>
+map <silent> <unique> ;bps :call code#c#CppcheckCheck()<CR>
 
 map <unique> ;rco :call code#c#ChooseOutput()<CR>
 map <unique> ;rcm :call code#c#ChooseMakefile()<CR>

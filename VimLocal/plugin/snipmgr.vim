@@ -62,12 +62,14 @@ endif
 map <Leader>ssa :SnipAdd<CR>
 map <Leader>ssr :SnipRemove<CR>
 map <Leader>ssu :SnipUpdate<CR>
+map <Leader>sse :SnipEdit<CR>
 " }}}
 
 " New commands {{{
 command! -range SnipAdd :<line1>,<line2>call SnipMgrAdd()
 command! SnipRemove :call SnipMgrRemove()
 command! SnipUpdate :call SnipMgrUpdate()
+command! SnipEdit :call SnipMgrEdit()
 " }}}
 
 " * Add new snippet * {{{
@@ -139,11 +141,18 @@ function! SnipMgrRemove()
 endfunction
 " }}}
 
-" * Update list of available snippets for current filetype * {{{
+"" * Update list of available snippets for current filetype * {{{
 function! SnipMgrUpdate()
-  call ResetSnippets()
+  call ResetSnippets(&ft)
   call GetSnippets(g:snipmgr_snippets_dir, '_')
   call GetSnippets(g:snipmgr_snippets_dir, &ft)
+endfunction
+" }}}
+
+"" * edit available snippets for current filetype * {{{
+function! SnipMgrEdit()
+  let snip_d = g:snipmgr_snippets_dir.'/'.&ft.'.snippets'
+  exec ":vsp ".snip_d
 endfunction
 " }}}
 

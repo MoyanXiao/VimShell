@@ -12,15 +12,15 @@ let s:C_ObjExtension = '.o'
 let s:C_ExeExtension = ''	
 
 
-let s:C_CCompiler = 'gcc'
-let s:C_CplusCompiler = 'g++'
+let s:C_CCompiler = 'clang'
+let s:C_CplusCompiler = 'clang++'
 
 let s:C_CFlags = '-Wall -g -O0 -c'
 let s:C_LFlags = '-Wall -g -O0'
 let s:C_Libs = '-lm'
 
-let s:C_CplusCFlags = '-Wall -g -O0 -c'
-let s:C_CplusLFlags = '-Wall -g -O0'
+let s:C_CplusCFlags = '--std=c++11 -Wall -g -O0 -c'
+let s:C_CplusLFlags = '--std=c++11 -Wall -g -O0 -lpthread'
 let s:C_CplusLibs = '-lm'
 
 let s:C_VimCompilerName = 'gcc'
@@ -41,7 +41,7 @@ function!  code#c#Compile()
     " compilation if object does not exist or object exists and is older then the source
     if !filereadable(Obj) || (filereadable(Obj) && (getftime(Obj) < getftime(Sou)))
         " &makeprg can be a string containing blanks
-        call project#common#SaveOptions(s:ScriptIdentity, ['makeprg'], '')
+        "call project#common#SaveOptions(s:ScriptIdentity, ['makeprg'], '')
         if expand("%:e") == s:C_CExtension
             exe	"setlocal makeprg=".s:C_CCompiler
             let	compilerflags	= s:C_CFlags
@@ -62,7 +62,7 @@ function!  code#c#Compile()
         if v:shell_error != 0
             let	s:LastShellReturnCode	= v:shell_error
         endif
-        call project#common#RestoreOptions(s:ScriptIdentity, [])
+        "call project#common#RestoreOptions(s:ScriptIdentity, [])
         "
         " open error window if necessary
         :redraw!
@@ -120,7 +120,7 @@ function! code#c#Link ()
     let	linkerflags	= s:C_LFlags 
 
     if filereadable(Obj) && (getftime(Obj) >= getftime(Sou))
-        call project#common#SaveOptions(s:ScriptIdentity, ['makeprg'], '')
+        "call project#common#SaveOptions(s:ScriptIdentity, ['makeprg'], '')
         if expand("%:e") == s:C_CExtension
             exe	"setlocal makeprg=".s:C_CCompiler
             let	linkerflags	= s:C_LFlags
@@ -137,7 +137,7 @@ function! code#c#Link ()
         if v:shell_error != 0
             let	s:LastShellReturnCode	= v:shell_error
         endif
-        call project#common#RestoreOptions(s:ScriptIdentity, [])
+        "call project#common#RestoreOptions(s:ScriptIdentity, [])
         "
         if empty(v:statusmsg)
             let s:C_HlMessage = "'".Exe."' : linking successful"
