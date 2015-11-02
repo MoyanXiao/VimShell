@@ -45,3 +45,17 @@ inoremap <C-L> <C-X><C-L>
 map gf :e <cfile><CR>
 
 let g:snipmgr_snippets_dir = "~/code/VimShell/VimLocal/snippets/"
+
+func! AddKey(key)
+    let file = "/Users/erika/.vim/keyDictionary/keys.txt"
+    let keylist = readfile(file)
+    if index(keylist, a:key) == -1
+        call add(keylist, a:key)
+        call sort(keylist)
+        call writefile(keylist, file)
+    endif
+endfunction
+command! -nargs=* AddInKey :call AddKey(<f-args>)
+nmap ;aa :AddInKey <C-R>=expand("<cword>")<CR><CR>
+
+set dictionary+=~/.vim/keyDictionary/keys.txt

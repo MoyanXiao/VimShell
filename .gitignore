@@ -7,7 +7,7 @@ tags*
 **/bak/*
 *.swp
 *.pyc
-workspace/*
+**/workspace/*
 **/spell/*
 **/*.db
 

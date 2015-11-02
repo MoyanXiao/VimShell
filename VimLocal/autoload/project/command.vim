@@ -3,6 +3,10 @@ if exists("g:loaded_auto_project_cmd")
 endif
 let g:loaded_auto_project_cmd=1
 
+if !exists('Tlist_Ctags_Cmd')
+    let Tlist_Ctags_Cmd='ctags'
+endif
+
 function! project#command#findTagsFileList(curPath, targetFile, extList)
     let tmpCmd = '!find '.a:curPath
     if empty(a:extList)
@@ -35,7 +39,7 @@ function! project#command#findLookupFilelist(curPath, targetFile, extList)
 endfunction
 
 function! project#command#createTagFile(listFile, tagFile)
-    execute '!ctags -f ' . a:tagFile .
+    execute '!'.g:Tlist_Ctags_Cmd.' -f ' . a:tagFile .
                 \' -R --c++-kinds=+p --fields=+aiS --extra=+q --tag-relative=no ' .
                 \' -L ' . a:listFile 
 endfunction

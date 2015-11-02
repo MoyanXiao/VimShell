@@ -1,4 +1,5 @@
 " vim:tabstop=2:shiftwidth=2:expandtab:foldmethod=marker:textwidth=79
+" makefile.vim
 " Vimwiki syntax file
 " Default syntax
 " Author: Maxim Kim <habamax@gmail.com>
