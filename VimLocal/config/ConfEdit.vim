@@ -47,7 +47,7 @@ map gf :e <cfile><CR>
 let g:snipmgr_snippets_dir = "~/code/VimShell/VimLocal/snippets/"
 
 func! AddKey(key)
-    let file = "/Users/erika/.vim/keyDictionary/keys.txt"
+    let file = expand("~/.vim/keyDictionary/keys.txt")
     let keylist = readfile(file)
     if index(keylist, a:key) == -1
         call add(keylist, a:key)

@@ -42,9 +42,9 @@ map Q gq
 inoremap <C-U> <C-G>u<C-U>
 
 " In many terminal emulators the mouse works just fine, thus enable it.
-if has('mouse')
-  set mouse=a
-endif
+"if has('mouse')
+  "set mouse=a
+"endif
 
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")

@@ -12,16 +12,16 @@ let s:C_ObjExtension = '.o'
 let s:C_ExeExtension = ''	
 
 
-let s:C_CCompiler = 'clang'
-let s:C_CplusCompiler = 'clang++'
+let s:C_CCompiler = 'gcc'
+let s:C_CplusCompiler = 'g++'
 
 let s:C_CFlags = '-Wall -g -O0 -c'
 let s:C_LFlags = '-Wall -g -O0'
 let s:C_Libs = '-lm'
 
-let s:C_CplusCFlags = '--std=c++11 -Wall -g -O0 -c'
-let s:C_CplusLFlags = '--std=c++11 -Wall -g -O0 -lpthread'
-let s:C_CplusLibs = '-lm'
+let s:C_CplusCFlags = '--std=c++11 -Wall -g -O0 -c '
+let s:C_CplusLFlags = '--std=c++11 -Wall -g -O0'
+let s:C_CplusLibs = '-lm -lpthread'
 
 let s:C_VimCompilerName = 'gcc'
 
@@ -124,16 +124,18 @@ function! code#c#Link ()
         if expand("%:e") == s:C_CExtension
             exe	"setlocal makeprg=".s:C_CCompiler
             let	linkerflags	= s:C_LFlags
+            let linkerlibs = s:C_Libs
         else
             exe	"setlocal makeprg=".s:C_CplusCompiler
             let	linkerflags	= s:C_CplusLFlags 
+            let linkerlibs = s:C_CplusLibs
         endif
 
         exe ":compiler ".s:C_VimCompilerName
         let	s:LastShellReturnCode	= 0
         let linkerflags = ''
         let v:statusmsg = ''
-        exe "make ".linkerflags." ".ObjEsc." ".s:C_Libs." -o ".ExeEsc
+        exe "make ".linkerflags." ".ObjEsc." ".linkerlibs." -o ".ExeEsc
         if v:shell_error != 0
             let	s:LastShellReturnCode	= v:shell_error
         endif
