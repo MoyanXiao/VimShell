@@ -7,6 +7,9 @@ let g:winManagerWidth = 30
 let g:defaultExplorer = 0
 let g:persistentBehaviour=0
 
+" airline
+let g:airline#extensions#tabline#enabled = 1
+
 " BufExplorer config 
 let g:bufExplorerDefaultHelp=0 " Do not show default help.
 let g:bufExplorerShowRelativePath=1 " Show relative paths.
