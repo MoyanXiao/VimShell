@@ -1,5 +1,6 @@
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
+export TERM=xterm-256color
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -76,6 +77,7 @@ source $ZSH/oh-my-zsh.sh
 
 # powerline setting
 [[ -s /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh ]] && . /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
+[[ -s /usr/local/lib/python2.7/dist-packages/powerline/bindings/zsh/powerline.zsh ]] && . /usr/local/lib/python2.7/dist-packages/powerline/bindings/zsh/powerline.zsh
 
 # enable vi mode
 set -o vi
