@@ -8,7 +8,37 @@ let g:defaultExplorer = 0
 let g:persistentBehaviour=0
 
 " airline
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ''
+
+" airline-tabline
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#tab_nr_type = 0 " # of splits (default)
+let g:airline#extensions#tabline#tab_nr_type = 1 " tab number
+let g:airline#extensions#tabline#tab_nr_type = 2 " splits and tab number
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+nmap ;1 <Plug>AirlineSelectTab1
+nmap ;2 <Plug>AirlineSelectTab2
+nmap ;3 <Plug>AirlineSelectTab3
+nmap ;4 <Plug>AirlineSelectTab4
+nmap ;5 <Plug>AirlineSelectTab5
+nmap ;6 <Plug>AirlineSelectTab6
+nmap ;7 <Plug>AirlineSelectTab7
+nmap ;8 <Plug>AirlineSelectTab8
+nmap ;9 <Plug>AirlineSelectTab9
+nmap ;n <Plug>AirlineSelectPrevTab
+nmap ;b <Plug>AirlineSelectNextTab
+
+
+
 
 " BufExplorer config 
 let g:bufExplorerDefaultHelp=0 " Do not show default help.
