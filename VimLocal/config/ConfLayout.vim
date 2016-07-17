@@ -34,8 +34,8 @@ nmap ;6 <Plug>AirlineSelectTab6
 nmap ;7 <Plug>AirlineSelectTab7
 nmap ;8 <Plug>AirlineSelectTab8
 nmap ;9 <Plug>AirlineSelectTab9
-nmap <C-L> <Plug>AirlineSelectPrevTab
-nmap <C-H> <Plug>AirlineSelectNextTab
+nmap <C-H> <Plug>AirlineSelectPrevTab
+nmap <C-L> <Plug>AirlineSelectNextTab
 
 
 
