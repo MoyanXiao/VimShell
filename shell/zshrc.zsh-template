@@ -76,8 +76,8 @@ source $ZSH/oh-my-zsh.sh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
 # powerline setting
-[[ -s /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh ]] && . /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
-[[ -s /usr/local/lib/python2.7/dist-packages/powerline/bindings/zsh/powerline.zsh ]] && . /usr/local/lib/python2.7/dist-packages/powerline/bindings/zsh/powerline.zsh
+#[[ -s /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh ]] && . /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
+#[[ -s /usr/local/lib/python2.7/dist-packages/powerline/bindings/zsh/powerline.zsh ]] && . /usr/local/lib/python2.7/dist-packages/powerline/bindings/zsh/powerline.zsh
 
 # enable vi mode
 set -o vi
