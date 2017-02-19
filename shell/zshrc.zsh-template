@@ -51,7 +51,7 @@ ZSH_THEME="agnoster"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git osx autojump zsh-syntax-highlighting zsh_reload)
+plugins=(git osx autojump zsh-syntax-highlighting zsh_reload archlinux)
 
 # User configuration
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -91,11 +91,12 @@ set -o vi
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias psg="ps -elf|grep --color=auto"
+alias psg="ps -elf|grep -v grep|grep --color=auto"
 alias hg="history|grep"
 alias alg="alias|grep"
 alias chrome="open -a Google\ Chrome"
 alias ipyNote="cd ~/code/ipyWorkspace/ && jupyter notebook"
+alias sv="sudo vim"
 
 #autoload -U up-line-or-beginning-search
 #autoload -U down-line-or-beginning-search
