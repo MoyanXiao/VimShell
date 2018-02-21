@@ -1,6 +1,7 @@
 #!/bin/bash 
 
-if [ $USER != 'root' ] then
+if [ $USER != 'root' ] 
+then
     echo 'should be run in ROOT/SUDO'
     exit 1
 fi

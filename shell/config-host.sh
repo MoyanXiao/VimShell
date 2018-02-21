@@ -1,6 +1,7 @@
 #!/bin/bash 
 
-if [ $USER == 'root' ] then
+if [ $USER == 'root' ] 
+then
     echo 'should not be run in ROOT/SUDO'
     exit 1
 fi
@@ -9,11 +10,13 @@ sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/i
 
 cd ~ && git clone https://github.com/MoyanXiao/VimShell.git
 
-if [ -f '~/.vimrc' ] then
+if [ -f '~/.vimrc' ] 
+then
     mv ~/.vimrc ~/.vimrc.bak
 fi
 
-if [ -d '~/.vim' ] then
+if [ -d '~/.vim' ]
+then
     mv ~/.vim ~/.vim.bak
 fi
 ln -s ~/VimShell/vimMainConf.vim ~/.vimrc 

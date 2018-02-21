@@ -2,7 +2,7 @@
 
 set -e
 
-if `lsmod |grep bbr`;
+if lsmod |grep bbr > /dev/null
 then
     echo 'mod bbr inserted'
 else
@@ -15,21 +15,21 @@ echo "net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf
 
 sysctl -p
 
-if `sysctl net.ipv4.tcp_available_congestion_control|grep bbr`;
+if sysctl net.ipv4.tcp_available_congestion_control |grep bbr > /dev/null;
 then
     echo 'tcp_available_congestion_control success'
 else
     echo 'tcp_available_congestion_control fail'
 fi
-if `sysctl net.ipv4.tcp_congestion_control|grep bbr`;
+
+if sysctl net.ipv4.tcp_congestion_control|grep bbr > /dev/null;
 then
     echo 'tcp_congestion_control success'
 else
     echo 'tcp_congestion_control fail'
 fi
 
-
-if `lsmod |grep bbr`;
+if lsmod |grep bbr > /dev/null;
 then
     echo 'bbr enable success'
 else
