@@ -6,7 +6,7 @@ then
     exit 1
 fi
 
-apt-get install git shadowsocks-libev
+apt-get install git shadowsocks-libev autoconf
 
 git clone https://github.com/shadowsocks/simple-obfs.git
 cd simple-obfs
