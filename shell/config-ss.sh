@@ -6,7 +6,7 @@ then
     exit 1
 fi
 
-apt-get install git shadowsocks-libev autoconf libtool libsysfs-dev libev-dev -y
+apt-get install git shadowsocks-libev autoconf libtool libsysfs-dev libev-dev make -y
 
 git clone https://github.com/shadowsocks/simple-obfs.git
 cd simple-obfs
