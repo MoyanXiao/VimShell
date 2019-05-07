@@ -13,4 +13,4 @@ then
     mv ~/.zshrc ~/.zshrc.bak
 fi
 
-ln -s ~/VimShell/shell/zshrc.template ~/.zshrc
+ln -s ~/VimShell/shell/zshrc.zsh-template ~/.zshrc
