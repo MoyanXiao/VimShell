@@ -3,6 +3,8 @@
 if [ $USER == 'root' ] 
 then
     echo 'should not be run in ROOT/SUDO'
+    ln -s ~/VimShell/vimMainConf.vim /root/.vimrc 
+    ln -s ~/VimShell/VimLocal /root/.vim
     exit 1
 fi
 

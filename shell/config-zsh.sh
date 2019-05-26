@@ -3,6 +3,7 @@
 if [ $USER == 'root' ] 
 then
     echo 'should not be run in ROOT/SUDO'
+    ln -s ~/VimShell/shell/zshrc.zsh-template /root/.zshrc
     exit 1
 fi
 
