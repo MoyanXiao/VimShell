@@ -103,3 +103,5 @@ alias ll="ls -al"
 #autoload -U down-line-or-beginning-search
 bindkey '^[OA' history-search-backward
 bindkey '^[OB' history-search-forward
+
+eval `dircolors ~/.dircolors`
