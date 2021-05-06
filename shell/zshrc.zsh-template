@@ -97,11 +97,11 @@ alias alg="alias|grep"
 alias chrome="open -a Google\ Chrome"
 alias ipyNote="cd ~/code/ipyWorkspace/ && jupyter notebook"
 alias sv="sudo vim"
-alias ll="ls -al"
+alias ll="ls -l"
 
 #autoload -U up-line-or-beginning-search
 #autoload -U down-line-or-beginning-search
 bindkey '^[OA' history-search-backward
 bindkey '^[OB' history-search-forward
 
-eval `dircolors ~/.dircolors`
+eval `dircolors $(dirname "$0")/dircolors`
