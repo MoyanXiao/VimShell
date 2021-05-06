@@ -104,4 +104,4 @@ alias ll="ls -l"
 bindkey '^[OA' history-search-backward
 bindkey '^[OB' history-search-forward
 
-eval `dircolors $(dirname "$0")/dircolors`
+eval `dircolors ~/.dircolors`
