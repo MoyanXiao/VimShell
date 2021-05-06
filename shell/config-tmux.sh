@@ -19,5 +19,5 @@ then
     mv ~/.tmux.conf.local ~/.tmux.conf.local.bak
 fi
 
-ln -s ~/VimShell/tmux/tmux.conf ~/.tmux.conf
-ln -s ~/VimShell/tmux/tmux.conf.local ~/.tmux.conf.local
+ln -s -f ~/VimShell/tmux/tmux.conf ~/.tmux.conf
+ln -s -f ~/VimShell/tmux/tmux.conf.local ~/.tmux.conf.local
