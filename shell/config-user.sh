@@ -9,7 +9,6 @@ fi
 sudo apt-get update
 sudo apt-get upgrade -y
 sudo apt-get install git zsh fontconfig tmux autojump ctags cscope -y
-sudo passwd $USER
 
 wget https://github.com/Lokaltog/powerline/raw/develop/font/PowerlineSymbols.otf 
 wget https://github.com/Lokaltog/powerline/raw/develop/font/10-powerline-symbols.conf
