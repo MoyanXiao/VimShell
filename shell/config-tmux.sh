@@ -21,3 +21,6 @@ fi
 
 ln -s -f ~/VimShell/tmux/tmux.conf ~/.tmux.conf
 ln -s -f ~/VimShell/tmux/tmux.conf.local ~/.tmux.conf.local
+
+ln -s -f ~/VimShell/shell/zshrc.zsh-template ~/.zshrc
+ln -s -f ~/VimShell/shell/dircolors ~/.dircolors

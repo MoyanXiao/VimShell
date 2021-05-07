@@ -11,5 +11,3 @@ sudo passwd "$USER"
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 
-ln -s -f ~/VimShell/shell/zshrc.zsh-template ~/.zshrc
-ln -s -f ~/VimShell/shell/dircolors ~/.dircolors
